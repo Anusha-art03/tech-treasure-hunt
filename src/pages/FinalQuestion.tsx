@@ -258,10 +258,10 @@ function FinalQuestion({ crewName }: FinalQuestionProps) {
               FINAL CHALLENGE
             </span>
 
-            <h2>
-              Which programming language is known for powering
-              the web&apos;s interactivity?
-            </h2>
+           <h2>
+            In JavaScript, what is the output of{" "}
+         <code>typeof null</code>?
+        </h2>
 
             <p>
               Enter your crew&apos;s final answer below.

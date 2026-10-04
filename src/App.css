@@ -1,8 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Pirata+One&display=swap");
 
-/* =========================================
+/* =========================================================
    GLOBAL
-   ========================================= */
+   ========================================================= */
 
 * {
   box-sizing: border-box;
@@ -31,35 +31,20 @@ button {
   cursor: pointer;
 }
 
-/* =========================================
-   MAIN APP / HOME
-   ========================================= */
+/* =========================================================
+   HOME / STARTING PAGE
+   UNCHANGED
+   ========================================================= */
 
 .app {
   min-height: 100vh;
   position: relative;
   overflow: hidden;
-
   background:
-    radial-gradient(
-      circle at 50% 25%,
-      rgba(24, 57, 82, 0.5),
-      transparent 35%
-    ),
-    radial-gradient(
-      circle at 20% 80%,
-      rgba(134, 86, 27, 0.12),
-      transparent 30%
-    ),
-    linear-gradient(
-      180deg,
-      #07111c 0%,
-      #050a12 55%,
-      #03070d 100%
-    );
+    radial-gradient(circle at 50% 25%, rgba(24, 57, 82, 0.5), transparent 35%),
+    radial-gradient(circle at 20% 80%, rgba(134, 86, 27, 0.12), transparent 30%),
+    linear-gradient(180deg, #07111c 0%, #050a12 55%, #03070d 100%);
 }
-
-/* Ocean glow */
 
 .ocean-glow {
   position: absolute;
@@ -68,57 +53,35 @@ button {
   left: 50%;
   top: 30%;
   transform: translate(-50%, -50%);
-
   background: radial-gradient(
     circle,
     rgba(38, 103, 139, 0.16),
     transparent 68%
   );
-
   pointer-events: none;
 }
-
-/* Technical grid */
 
 .app::before {
   content: "";
   position: absolute;
   inset: 0;
-
   background-image:
-    linear-gradient(
-      rgba(220, 169, 62, 0.035) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(220, 169, 62, 0.035) 1px,
-      transparent 1px
-    );
-
+    linear-gradient(rgba(220, 169, 62, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(220, 169, 62, 0.035) 1px, transparent 1px);
   background-size: 55px 55px;
   pointer-events: none;
 }
 
-/* =========================================
-   NAVBAR
-   ========================================= */
-
 .navbar {
   position: relative;
   z-index: 10;
-
   width: 100%;
   height: 78px;
-
   padding: 0 55px;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   border-bottom: 1px solid rgba(220, 169, 62, 0.18);
-
   background: rgba(3, 8, 14, 0.7);
   backdrop-filter: blur(10px);
 }
@@ -127,9 +90,7 @@ button {
   display: flex;
   align-items: center;
   gap: 13px;
-
   color: #e6b84d;
-
   font-family: "Cinzel", serif;
   font-size: 0.85rem;
   font-weight: 700;
@@ -139,18 +100,14 @@ button {
 .brand-icon {
   font-size: 1.35rem;
   color: #e1b348;
-
-  text-shadow:
-    0 0 12px rgba(225, 179, 72, 0.4);
+  text-shadow: 0 0 12px rgba(225, 179, 72, 0.4);
 }
 
 .nav-status {
   display: flex;
   align-items: center;
   gap: 9px;
-
   color: rgba(244, 228, 189, 0.5);
-
   font-size: 0.62rem;
   letter-spacing: 0.14em;
 }
@@ -158,54 +115,34 @@ button {
 .status-dot {
   width: 7px;
   height: 7px;
-
   border-radius: 50%;
-
   background: #dca93e;
-
-  box-shadow:
-    0 0 10px rgba(220, 169, 62, 0.8);
+  box-shadow: 0 0 10px rgba(220, 169, 62, 0.8);
 }
-
-/* =========================================
-   HOME HERO
-   ========================================= */
 
 .hero {
   position: relative;
   z-index: 2;
-
   min-height: calc(100vh - 78px);
-
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   text-align: center;
-
   padding: 50px 20px 100px;
 }
-
-/* Compass */
 
 .compass {
   width: 58px;
   height: 58px;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   margin-bottom: 25px;
-
   border: 1px solid rgba(220, 169, 62, 0.45);
   border-radius: 50%;
-
   color: #e0b34b;
-
   font-size: 1.4rem;
-
   box-shadow:
     0 0 25px rgba(220, 169, 62, 0.08),
     inset 0 0 20px rgba(220, 169, 62, 0.05);
@@ -214,49 +151,30 @@ button {
 .compass::before,
 .compass::after {
   content: "";
-
   position: absolute;
-
   width: 75px;
   height: 1px;
-
   background: rgba(220, 169, 62, 0.18);
 }
 
-/* Eyebrow */
-
 .eyebrow {
   margin: 0 0 17px;
-
   color: #c99a38;
-
   font-family: "Cinzel", serif;
   font-size: 0.68rem;
   font-weight: 600;
-
   letter-spacing: 0.28em;
-
-  text-shadow:
-    0 0 12px rgba(220, 169, 62, 0.15);
+  text-shadow: 0 0 12px rgba(220, 169, 62, 0.15);
 }
-
-/* Main title */
 
 .hero h1 {
   margin: 0;
-
   font-family: "Pirata One", cursive;
-
   font-size: clamp(5rem, 13vw, 10rem);
-
   font-weight: 400;
-
   line-height: 0.75;
-
   letter-spacing: 0.025em;
-
   color: #f2e4c3;
-
   text-shadow:
     0 3px 0 rgba(0, 0, 0, 0.5),
     0 0 35px rgba(232, 183, 75, 0.08);
@@ -264,134 +182,86 @@ button {
 
 .hero h1 span {
   display: block;
-
   margin-top: 18px;
-
   color: #dba83d;
-
   font-size: 0.55em;
-
   letter-spacing: 0.14em;
-
-  text-shadow:
-    0 0 25px rgba(220, 169, 62, 0.2);
+  text-shadow: 0 0 25px rgba(220, 169, 62, 0.2);
 }
-
-/* Divider */
 
 .divider {
   width: min(400px, 70vw);
-
   margin: 32px auto 25px;
-
   display: flex;
   align-items: center;
   gap: 15px;
-
   color: #dca93e;
 }
 
 .divider::before,
 .divider::after {
   content: "";
-
   flex: 1;
-
   height: 1px;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(220, 169, 62, 0.55)
-    );
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(220, 169, 62, 0.55)
+  );
 }
 
 .divider::after {
-  background:
-    linear-gradient(
-      90deg,
-      rgba(220, 169, 62, 0.55),
-      transparent
-    );
+  background: linear-gradient(
+    90deg,
+    rgba(220, 169, 62, 0.55),
+    transparent
+  );
 }
 
 .divider span {
   font-size: 1.2rem;
-
-  text-shadow:
-    0 0 15px rgba(220, 169, 62, 0.4);
+  text-shadow: 0 0 15px rgba(220, 169, 62, 0.4);
 }
-
-/* Subtitle */
 
 .hero h2 {
   margin: 0;
-
   color: #ead19a;
-
   font-family: "Cinzel", serif;
-
   font-size: clamp(1rem, 2vw, 1.35rem);
-
   font-weight: 600;
-
   letter-spacing: 0.38em;
-
   text-indent: 0.38em;
 }
 
 .description {
   margin: 24px 0 35px;
-
   color: rgba(244, 228, 189, 0.58);
-
   font-family: "Cinzel", serif;
-
   font-size: 0.78rem;
-
   line-height: 2;
-
   letter-spacing: 0.05em;
 }
 
-/* =========================================
-   SET SAIL BUTTON
-   ========================================= */
-
 .sail-button {
   min-width: 210px;
-
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 28px;
-
   padding: 16px 25px;
-
   border: 1px solid #dca93e;
-
   color: #15100a;
-
-  background:
-    linear-gradient(
-      135deg,
-      #c58b29,
-      #edc55f,
-      #c58b29
-    );
-
+  background: linear-gradient(
+    135deg,
+    #c58b29,
+    #edc55f,
+    #c58b29
+  );
   font-family: "Cinzel", serif;
-
   font-size: 0.72rem;
-
   font-weight: 800;
-
   letter-spacing: 0.16em;
-
-  box-shadow:
-    0 8px 30px rgba(220, 169, 62, 0.12);
-
+  box-shadow: 0 8px 30px rgba(220, 169, 62, 0.12);
   transition:
     transform 0.25s ease,
     box-shadow 0.25s ease;
@@ -399,14 +269,11 @@ button {
 
 .sail-button:hover {
   transform: translateY(-3px);
-
-  box-shadow:
-    0 12px 35px rgba(220, 169, 62, 0.25);
+  box-shadow: 0 12px 35px rgba(220, 169, 62, 0.25);
 }
 
 .sail-button .arrow {
   font-size: 1.2rem;
-
   transition: transform 0.2s ease;
 }
 
@@ -414,33 +281,21 @@ button {
   transform: translateX(5px);
 }
 
-/* =========================================
-   HOME ROUND LEGEND
-   ========================================= */
-
 .legend {
   width: min(850px, 90vw);
-
   margin-top: 70px;
-
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-
   border-top: 1px solid rgba(220, 169, 62, 0.18);
   border-bottom: 1px solid rgba(220, 169, 62, 0.18);
 }
 
 .legend div {
   padding: 18px 12px;
-
   color: rgba(244, 228, 189, 0.45);
-
   font-family: "Cinzel", serif;
-
   font-size: 0.58rem;
-
   letter-spacing: 0.12em;
-
   border-right: 1px solid rgba(220, 169, 62, 0.12);
 }
 
@@ -450,37 +305,22 @@ button {
 
 .legend span {
   margin-right: 9px;
-
   color: #dca93e;
-
   font-weight: 700;
 }
 
-/* =========================================
-   FOOTER
-   ========================================= */
-
 footer {
   position: absolute;
-
   z-index: 5;
-
   bottom: 18px;
-
   left: 0;
   right: 0;
-
   display: flex;
-
   justify-content: center;
   align-items: center;
-
   gap: 14px;
-
   color: rgba(244, 228, 189, 0.28);
-
   font-size: 0.55rem;
-
   letter-spacing: 0.2em;
 }
 
@@ -488,9 +328,9 @@ footer span {
   color: rgba(220, 169, 62, 0.5);
 }
 
-/* =========================================
-   ROUND 01
-   ========================================= */
+/* =========================================================
+   SHARED ROUND
+   ========================================================= */
 
 .round-page {
   min-height: 100vh;
@@ -509,67 +349,46 @@ footer span {
 
 .round-container {
   width: min(1100px, calc(100% - 40px));
-
   margin: 0 auto;
-
   padding: 70px 0 50px;
-
   text-align: center;
 }
 
 .round-title {
   margin: 12px 0 8px;
-
   font-family: "Pirata One", cursive;
-
   font-size: clamp(3rem, 7vw, 6rem);
-
   font-weight: 400;
-
   line-height: 0.9;
-
   color: #f4e4bd;
 }
 
 .round-title span {
   display: block;
-
   color: #dca93e;
-
   font-size: 0.48em;
-
   margin-top: 15px;
-
   letter-spacing: 0.14em;
 }
 
 .round-subtitle {
   color: rgba(245, 231, 199, 0.65);
-
   font-size: 0.9rem;
-
   letter-spacing: 0.08em;
-
   margin: 20px auto 35px;
 }
 
 .round-stats {
   width: min(800px, 100%);
-
   margin: 0 auto 30px;
-
   display: grid;
-
   grid-template-columns: repeat(3, 1fr);
-
   border: 1px solid rgba(214, 165, 61, 0.25);
-
   background: rgba(5, 10, 18, 0.72);
 }
 
 .round-stats > div {
   padding: 18px 12px;
-
   border-right: 1px solid rgba(214, 165, 61, 0.2);
 }
 
@@ -579,46 +398,34 @@ footer span {
 
 .round-stats small {
   display: block;
-
   color: rgba(245, 224, 170, 0.5);
-
   font-size: 0.65rem;
-
   letter-spacing: 0.15em;
-
   margin-bottom: 7px;
 }
 
 .round-stats strong {
   color: #e5b74e;
-
   font-size: 1.15rem;
-
   letter-spacing: 0.08em;
 }
 
-/* Wanted card */
+/* =========================================================
+   ROUND 1 — LOGO GAME
+   ========================================================= */
 
 .wanted-card {
   width: min(760px, 100%);
-
   margin: 0 auto;
-
   padding: 0 0 30px;
-
   position: relative;
-
   overflow: hidden;
-
   border: 2px solid rgba(206, 158, 55, 0.65);
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(43, 30, 16, 0.95),
-      rgba(14, 17, 23, 0.98)
-    );
-
+  background: linear-gradient(
+    135deg,
+    rgba(43, 30, 16, 0.95),
+    rgba(14, 17, 23, 0.98)
+  );
   box-shadow:
     0 20px 70px rgba(0, 0, 0, 0.45),
     inset 0 0 60px rgba(205, 157, 51, 0.04);
@@ -626,118 +433,80 @@ footer span {
 
 .wanted-card::before {
   content: "";
-
   position: absolute;
-
   inset: 8px;
-
   border: 1px solid rgba(231, 188, 91, 0.2);
-
   pointer-events: none;
 }
 
 .wanted-header {
   position: relative;
-
   padding: 15px;
-
   color: #17120b;
-
-  background:
-    linear-gradient(
-      90deg,
-      #b67b20,
-      #f0c761,
-      #b67b20
-    );
-
+  background: linear-gradient(
+    90deg,
+    #b67b20,
+    #f0c761,
+    #b67b20
+  );
   font-family: "Pirata One", cursive;
-
   font-size: 1.6rem;
-
   letter-spacing: 0.12em;
 }
 
 .logo-area {
   position: relative;
-
   padding: 55px 20px 35px;
 }
 
 .logo-circle {
   width: 190px;
   height: 190px;
-
   margin: 0 auto 25px;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   border-radius: 50%;
-
   color: #e8bd58;
-
   border: 1px solid rgba(226, 178, 75, 0.45);
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(229, 180, 69, 0.13),
-      rgba(4, 8, 14, 0.8) 70%
-    );
-
+  background: radial-gradient(
+    circle,
+    rgba(229, 180, 69, 0.13),
+    rgba(4, 8, 14, 0.8) 70%
+  );
   box-shadow:
     0 0 40px rgba(211, 159, 47, 0.12),
     inset 0 0 35px rgba(211, 159, 47, 0.08);
 }
 
 .logo-circle svg {
-  filter:
-    drop-shadow(
-      0 0 15px rgba(232, 189, 88, 0.25)
-    );
+  filter: drop-shadow(0 0 15px rgba(232, 189, 88, 0.25));
 }
 
 .logo-question {
   margin: 0;
-
   color: rgba(246, 229, 190, 0.65);
-
   font-size: 0.75rem;
-
   letter-spacing: 0.2em;
 }
 
 .answer-area {
   position: relative;
-
   width: min(580px, calc(100% - 40px));
-
   margin: 0 auto;
-
   display: flex;
-
   gap: 10px;
 }
 
 .answer-area input {
   flex: 1;
-
   min-width: 0;
-
   padding: 16px 18px;
-
   border: 1px solid rgba(219, 172, 71, 0.4);
-
   outline: none;
-
   color: #f4e4bd;
-
   background: rgba(3, 7, 13, 0.9);
-
   font-size: 0.78rem;
-
   letter-spacing: 0.08em;
 }
 
@@ -747,32 +516,22 @@ footer span {
 
 .answer-area input:focus {
   border-color: #dca93e;
-
-  box-shadow:
-    0 0 18px rgba(220, 169, 62, 0.12);
+  box-shadow: 0 0 18px rgba(220, 169, 62, 0.12);
 }
 
 .submit-button {
   padding: 0 25px;
-
   border: 1px solid #dca93e;
-
   color: #171109;
-
   background: #dca93e;
-
   font-weight: 700;
-
   font-size: 0.7rem;
-
   letter-spacing: 0.12em;
-
   transition: 0.2s ease;
 }
 
 .submit-button:hover {
   background: #f0c761;
-
   transform: translateY(-1px);
 }
 
@@ -782,5332 +541,1077 @@ footer span {
 
 .answer-feedback {
   position: relative;
-
   margin: 22px auto 0;
-
   width: fit-content;
-
   padding: 10px 18px;
-
   font-size: 0.72rem;
-
   letter-spacing: 0.1em;
 }
 
 .answer-feedback.correct {
   color: #d9e9c5;
-
   border: 1px solid rgba(134, 185, 87, 0.5);
-
   background: rgba(81, 120, 45, 0.15);
 }
 
 .answer-feedback.wrong {
   color: #e9b4a5;
-
   border: 1px solid rgba(189, 82, 58, 0.5);
-
   background: rgba(120, 43, 30, 0.15);
 }
 
+/* =========================================================
+   ROUND 1 — HINTS
+   ========================================================= */
+
+.hint-section {
+  position: relative;
+  width: min(580px, calc(100% - 40px));
+  margin: 28px auto 0;
+  padding-top: 22px;
+  border-top: 1px solid rgba(220, 169, 62, 0.16);
+}
+
+.hint-title {
+  margin-bottom: 14px;
+  color: rgba(245, 224, 170, 0.5);
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+}
+
+.hint-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.hint-button {
+  min-width: 130px;
+  padding: 10px 18px;
+  border: 1px solid rgba(220, 169, 62, 0.35);
+  color: #dca93e;
+  background: rgba(220, 169, 62, 0.04);
+  font-family: "Cinzel", serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  transition: 0.2s ease;
+}
+
+.hint-button span {
+  display: block;
+  margin-top: 4px;
+  color: rgba(245, 224, 170, 0.4);
+  font-size: 0.55rem;
+}
+
+.hint-button:hover:not(:disabled) {
+  border-color: #dca93e;
+  background: rgba(220, 169, 62, 0.1);
+  box-shadow: 0 0 18px rgba(220, 169, 62, 0.08);
+}
+
+.hint-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.25;
+}
+
+.hint-text {
+  margin-top: 16px;
+  padding: 12px 15px;
+  color: #e8c978;
+  border: 1px solid rgba(220, 169, 62, 0.2);
+  background: rgba(220, 169, 62, 0.05);
+  font-size: 0.68rem;
+  line-height: 1.6;
+  letter-spacing: 0.04em;
+}
+
 .back-button {
   margin-top: 30px;
-
   padding: 10px 18px;
-
   border: 1px solid rgba(220, 169, 62, 0.3);
-
   color: rgba(245, 224, 170, 0.55);
-
   background: transparent;
-
   font-size: 0.65rem;
-
   letter-spacing: 0.12em;
-
   transition: 0.2s ease;
 }
 
 .back-button:hover {
   color: #e5b74e;
-
   border-color: rgba(220, 169, 62, 0.7);
 }
+/* =========================================================
+   ROUND 2 — PHYSICAL TREASURE HUNT
+   ========================================================= */
 
-/* =========================================
-   ROUND COMPLETE
-   ========================================= */
-
-.round-complete {
-  padding-top: 100px;
-}
-
-.treasure-icon {
-  width: 100px;
-  height: 100px;
-
-  margin: 35px auto 25px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
+.treasure-clue-card {
+  width: min(850px, 100%);
+  margin: 35px auto 0;
+  padding: 45px 50px;
+  position: relative;
   border: 1px solid rgba(220, 169, 62, 0.45);
-
-  border-radius: 50%;
-
-  color: #e5b74e;
-
-  font-size: 2.5rem;
-}
-
-.final-stats {
-  width: min(700px, 100%);
-
-  margin: 35px auto;
-
-  display: grid;
-
-  grid-template-columns: repeat(3, 1fr);
-
-  gap: 1px;
-
-  background: rgba(220, 169, 62, 0.2);
-}
-
-.final-stats > div {
-  padding: 22px 15px;
-
-  background: rgba(7, 11, 18, 0.9);
-}
-
-.final-stats small {
-  display: block;
-
-  margin-bottom: 8px;
-
-  color: rgba(245, 224, 170, 0.45);
-
-  font-size: 0.6rem;
-
-  letter-spacing: 0.15em;
-}
-
-.final-stats strong {
-  color: #e5b74e;
-
-  font-size: 1rem;
-}
-
-/* =========================================
-   MOBILE
-   ========================================= */
-
-@media (max-width: 700px) {
-  .navbar {
-    height: auto;
-    min-height: 70px;
-
-    padding: 15px 20px;
-
-    gap: 15px;
-  }
-
-  .nav-status {
-    display: none;
-  }
-
-  .hero {
-    padding-top: 45px;
-  }
-
-  .hero h1 {
-    font-size: clamp(4.5rem, 22vw, 7rem);
-  }
-
-  .hero h2 {
-    font-size: 0.8rem;
-
-    letter-spacing: 0.22em;
-  }
-
-  .description {
-    font-size: 0.68rem;
-  }
-
-  .legend {
-    grid-template-columns: 1fr;
-
-    margin-top: 45px;
-  }
-
-  .legend div {
-    border-right: none;
-
-    border-bottom: 1px solid rgba(220, 169, 62, 0.12);
-  }
-
-  .legend div:last-child {
-    border-bottom: none;
-  }
-
-  footer {
-    position: relative;
-
-    padding: 20px;
-
-    bottom: auto;
-  }
-
-  .round-container {
-    width: calc(100% - 24px);
-
-    padding-top: 45px;
-  }
-
-  .round-stats {
-    grid-template-columns: 1fr;
-  }
-
-  .round-stats > div {
-    border-right: none;
-
-    border-bottom: 1px solid rgba(214, 165, 61, 0.2);
-  }
-
-  .round-stats > div:last-child {
-    border-bottom: none;
-  }
-
-  .answer-area {
-    flex-direction: column;
-  }
-
-  .answer-area input {
-    width: auto;
-  }
-
-  .submit-button {
-    min-height: 48px;
-  }
-
-  .final-stats {
-    grid-template-columns: 1fr;
-  }
-
-  .logo-circle {
-    width: 160px;
-    height: 160px;
-  }
-
-  .logo-circle svg {
-    width: 100px;
-    height: 100px;
-  }
-}
-/* =========================================
-   ROUND HINT SYSTEM
-   ========================================= */
-
-.hint-section {
-  position: relative;
-
-  width: min(580px, calc(100% - 40px));
-
-  margin: 28px auto 0;
-
-  padding-top: 22px;
-
-  border-top: 1px solid rgba(220, 169, 62, 0.16);
-}
-
-.hint-title {
-  margin-bottom: 14px;
-
-  color: rgba(245, 224, 170, 0.5);
-
-  font-size: 0.62rem;
-
-  letter-spacing: 0.16em;
-}
-
-.hint-buttons {
-  display: flex;
-
-  justify-content: center;
-
-  gap: 10px;
-}
-
-.hint-button {
-  min-width: 130px;
-
-  padding: 10px 18px;
-
-  border: 1px solid rgba(220, 169, 62, 0.35);
-
-  color: #dca93e;
-
-  background: rgba(220, 169, 62, 0.04);
-
-  font-family: "Cinzel", serif;
-
-  font-size: 0.65rem;
-
-  font-weight: 700;
-
-  letter-spacing: 0.1em;
-
-  transition: 0.2s ease;
-}
-
-.hint-button span {
-  display: block;
-
-  margin-top: 4px;
-
-  color: rgba(245, 224, 170, 0.4);
-
-  font-size: 0.55rem;
-}
-
-.hint-button:hover:not(:disabled) {
-  border-color: #dca93e;
-
-  background: rgba(220, 169, 62, 0.1);
-
-  box-shadow:
-    0 0 18px rgba(220, 169, 62, 0.08);
-}
-
-.hint-button:disabled {
-  cursor: not-allowed;
-
-  opacity: 0.25;
-}
-
-.hint-text {
-  margin-top: 16px;
-
-  padding: 12px 15px;
-
-  color: #e8c978;
-
-  border: 1px solid rgba(220, 169, 62, 0.2);
-
-  background: rgba(220, 169, 62, 0.05);
-
-  font-size: 0.68rem;
-
-  line-height: 1.6;
-
-  letter-spacing: 0.04em;
-}
-
-@media (max-width: 650px) {
-  .hint-buttons {
-    flex-direction: column;
-  }
-
-  .hint-button {
-    width: 100%;
-  }
-}
-
-/* =========================================================
-   ROUND 2 — GRAND LINE HUNT
-========================================================= */
-
-.round-two-page {
-  min-height: 100vh;
-  padding: 35px 6vw 60px;
-  background:
-    radial-gradient(
-      circle at 50% 15%,
-      rgba(194, 145, 52, 0.10),
-      transparent 32%
-    ),
-    radial-gradient(
-      circle at 15% 80%,
-      rgba(20, 70, 90, 0.12),
-      transparent 30%
-    ),
-    #05090e;
-  color: #eee4ce;
-  position: relative;
-  overflow-x: hidden;
-}
-
-/* subtle treasure-map grid */
-
-.round-two-page::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.08;
-  background-image:
-    linear-gradient(rgba(215, 170, 83, 0.3) 1px, transparent 1px),
-    linear-gradient(
-      90deg,
-      rgba(215, 170, 83, 0.3) 1px,
-      transparent 1px
-    );
-  background-size: 50px 50px;
-}
-
-/* =========================================================
-   HEADER
-========================================================= */
-
-.round-two-page .game-header {
-  width: min(1100px, 100%);
-  margin: 0 auto 30px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 20px;
-  position: relative;
-  z-index: 2;
-}
-
-.round-two-page .game-header h1 {
-  margin: 0;
-  color: #e0ad52;
-  font-family: "Pirata One", cursive;
-  font-size: clamp(42px, 6vw, 72px);
-  line-height: 0.9;
-  letter-spacing: 2px;
-  text-shadow: 0 4px 20px rgba(208, 158, 61, 0.12);
-}
-
-.round-two-page .game-header p {
-  margin: 13px 0 0;
-  color: #817c72;
-  font-size: 13px;
-}
-
-.round-two-page .game-header p strong {
-  color: #cda45a;
-}
-
-/* =========================================================
-   TIMER
-========================================================= */
-
-.round-two-page .timer-box {
-  min-width: 125px;
-  padding: 14px 22px;
-  border: 1px solid rgba(207, 158, 70, 0.35);
-  background: rgba(10, 16, 22, 0.9);
-  box-shadow: inset 0 0 25px rgba(200, 150, 50, 0.03);
-  text-align: center;
-}
-
-.round-two-page .timer-box span {
-  display: block;
-  color: #6e6b63;
-  font-size: 9px;
-  letter-spacing: 3px;
-  margin-bottom: 6px;
-}
-
-.round-two-page .timer-box strong {
-  color: #e1b35b;
-  font-size: 23px;
-  font-weight: 700;
-}
-
-/* =========================================================
-   STATUS BAR
-========================================================= */
-
-.round-two-page .hunt-status {
-  width: min(900px, 100%);
-  margin: 0 auto 22px;
-
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-
-  border: 1px solid rgba(204, 157, 67, 0.22);
-  background: rgba(9, 15, 21, 0.88);
-
-  position: relative;
-  z-index: 2;
-}
-
-.round-two-page .hunt-status > div {
-  padding: 15px 10px;
-  text-align: center;
-  border-right: 1px solid rgba(204, 157, 67, 0.14);
-}
-
-.round-two-page .hunt-status > div:last-child {
-  border-right: none;
-}
-
-.round-two-page .hunt-status span {
-  display: block;
-  color: #66645e;
-  font-size: 9px;
-  letter-spacing: 2px;
-  margin-bottom: 6px;
-}
-
-.round-two-page .hunt-status strong {
-  color: #d7a951;
-  font-size: 14px;
-  letter-spacing: 1px;
-}
-
-/* =========================================================
-   MAIN HUNT CARD
-========================================================= */
-
-.round-two-page .hunt-card {
-  width: min(900px, 100%);
-  margin: 0 auto;
-
-  padding: clamp(28px, 5vw, 55px);
-
-  position: relative;
-  z-index: 2;
-
   background:
     linear-gradient(
       145deg,
-      rgba(18, 27, 34, 0.98),
-      rgba(7, 12, 17, 0.98)
+      rgba(29, 23, 15, 0.96),
+      rgba(7, 12, 19, 0.98)
     );
-
-  border: 1px solid rgba(204, 157, 67, 0.28);
-
   box-shadow:
-    0 30px 80px rgba(0, 0, 0, 0.45),
-    inset 0 0 50px rgba(204, 157, 67, 0.025);
-
-  text-align: center;
+    0 25px 70px rgba(0, 0, 0, 0.45),
+    inset 0 0 50px rgba(220, 169, 62, 0.035);
 }
 
-.round-two-page .hunt-card::before {
+.treasure-clue-card::before {
   content: "";
   position: absolute;
   inset: 9px;
-
-  border: 1px solid rgba(255, 255, 255, 0.025);
-
+  border: 1px solid rgba(220, 169, 62, 0.12);
   pointer-events: none;
 }
 
-/* =========================================================
-   ICON
-========================================================= */
-
-.round-two-page .stage-icon {
-  width: 68px;
-  height: 68px;
-
-  margin: 0 auto 20px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  color: #d9a94f;
-
-  border: 1px solid rgba(210, 163, 74, 0.35);
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(211, 164, 73, 0.10),
-      transparent 70%
-    );
-
-  box-shadow:
-    0 0 30px rgba(205, 157, 66, 0.08);
-
+.clue-label {
   position: relative;
-  z-index: 2;
-}
-
-/* =========================================================
-   EYEBROW
-========================================================= */
-
-.round-two-page .eyebrow {
-  color: #b8893c;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  margin-bottom: 10px;
-  position: relative;
-  z-index: 2;
-}
-
-/* =========================================================
-   HEADINGS
-========================================================= */
-
-.round-two-page .hunt-card h2 {
-  margin: 0;
-
-  color: #f0e4cb;
-
-  font-family: "Cinzel", serif;
-
-  font-size: clamp(21px, 3vw, 30px);
-
-  letter-spacing: 2px;
-
-  position: relative;
-  z-index: 2;
-}
-
-/* =========================================================
-   CLUE BOX
-========================================================= */
-
-.round-two-page .clue-box {
-  width: min(650px, 100%);
-
-  margin: 28px auto;
-
-  padding: 28px 30px;
-
-  border-left: 2px solid #bd8d3e;
-  border-right: 2px solid #bd8d3e;
-
-  background:
-    linear-gradient(
-      90deg,
-      rgba(186, 139, 57, 0.025),
-      rgba(186, 139, 57, 0.08),
-      rgba(186, 139, 57, 0.025)
-    );
-
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 16px;
-}
-
-.round-two-page .clue-box span {
-  color: #c99843;
-  font-size: 22px;
-  flex-shrink: 0;
-}
-
-.round-two-page .clue-box p {
-  margin: 0;
-
-  color: #d5c8af;
-
-  font-family: "Cinzel", serif;
-
-  font-size: 16px;
-
-  line-height: 1.8;
-}
-
-/* =========================================================
-   LOCATION FOUND
-========================================================= */
-
-.round-two-page .location-warning {
-  width: min(650px, 100%);
-
-  margin: 28px auto;
-
-  padding: 22px;
-
-  display: flex;
-  align-items: center;
-  gap: 18px;
-
-  text-align: left;
-
-  border: 1px solid rgba(204, 157, 67, 0.28);
-
-  background: rgba(190, 140, 48, 0.045);
-}
-
-.round-two-page .location-warning svg {
-  color: #d3a34f;
-  flex-shrink: 0;
-}
-
-.round-two-page .location-warning strong {
-  color: #d4a451;
-  font-size: 11px;
-  letter-spacing: 2px;
-}
-
-.round-two-page .location-warning p {
-  margin: 6px 0 0;
-
-  color: #918b7f;
-
-  font-size: 12px;
-
-  line-height: 1.6;
-}
-
-/* =========================================================
-   TECHNICAL CHALLENGE
-========================================================= */
-
-.round-two-page .challenge-box {
-  width: min(650px, 100%);
-
-  margin: 28px auto;
-
-  padding: 30px;
-
-  border: 1px solid rgba(93, 134, 157, 0.28);
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(13, 28, 38, 0.8),
-      rgba(7, 15, 21, 0.9)
-    );
-
-  text-align: left;
-
-  position: relative;
-}
-
-.round-two-page .challenge-box::before {
-  content: "< / >";
-
-  position: absolute;
-
-  top: 12px;
-  right: 15px;
-
-  color: rgba(207, 158, 70, 0.3);
-
-  font-family: monospace;
-
-  font-size: 12px;
-}
-
-.round-two-page .challenge-box p {
-  margin: 0;
-
-  color: #d9e0df;
-
-  font-family: monospace;
-
-  font-size: 16px;
-
-  line-height: 1.7;
-}
-
-/* =========================================================
-   INSTRUCTION
-========================================================= */
-
-.round-two-page .instruction {
-  max-width: 600px;
-
-  margin: 20px auto 25px;
-
-  color: #77736a;
-
-  font-size: 12px;
-
-  line-height: 1.7;
-
-  position: relative;
-  z-index: 2;
-}
-
-/* =========================================================
-   ANSWER AREA
-========================================================= */
-
-.round-two-page .answer-area {
-  width: min(650px, 100%);
-
-  margin: 0 auto;
-
-  display: flex;
-
-  gap: 10px;
-
-  position: relative;
-  z-index: 2;
-}
-
-.round-two-page .answer-area input {
-  flex: 1;
-
-  min-width: 0;
-
-  height: 52px;
-
-  padding: 0 17px;
-
-  border: 1px solid rgba(204, 157, 67, 0.25);
-
-  outline: none;
-
-  background: #080e14;
-
-  color: #eee5d2;
-
-  font-size: 13px;
-
-  transition: 0.2s;
-}
-
-.round-two-page .answer-area input::placeholder {
-  color: #55534e;
-}
-
-.round-two-page .answer-area input:focus {
-  border-color: rgba(211, 164, 75, 0.65);
-
-  box-shadow:
-    0 0 0 2px rgba(211, 164, 75, 0.06);
-}
-
-.round-two-page .answer-area button {
-  height: 52px;
-
-  padding: 0 23px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-
-  border: 1px solid #c4933e;
-
-  background: linear-gradient(
-    135deg,
-    #d3a34e,
-    #a87328
-  );
-
-  color: #0b0d0e;
-
-  font-size: 11px;
-
-  font-weight: 800;
-
-  letter-spacing: 1.5px;
-
-  transition: 0.2s;
-}
-
-.round-two-page .answer-area button:hover {
-  transform: translateY(-2px);
-
-  box-shadow:
-    0 8px 25px rgba(196, 147, 62, 0.2);
-}
-
-/* =========================================================
-   FEEDBACK
-========================================================= */
-
-.round-two-page .feedback {
-  width: min(650px, 100%);
-
-  margin: 17px auto 0;
-
-  padding: 13px 16px;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  gap: 10px;
-
-  font-size: 11px;
-
-  line-height: 1.5;
-}
-
-.round-two-page .feedback.error {
-  color: #d98989;
-
-  border: 1px solid rgba(190, 70, 70, 0.25);
-
-  background: rgba(160, 50, 50, 0.06);
-}
-
-.round-two-page .feedback.warning {
-  color: #e0ad55;
-
-  border: 1px solid rgba(204, 157, 67, 0.3);
-
-  background: rgba(204, 157, 67, 0.07);
-}
-
-.round-two-page .feedback.hint-feedback {
-  color: #d9b76d;
-
-  border: 1px solid rgba(204, 157, 67, 0.22);
-
-  background: rgba(204, 157, 67, 0.05);
-}
-
-/* =========================================================
-   HINT
-========================================================= */
-
-.round-two-page .hint-area {
-  margin-top: 25px;
-
-  position: relative;
-  z-index: 2;
-}
-
-.round-two-page .hint-button {
-  padding: 11px 18px;
-
-  display: inline-flex;
-
-  align-items: center;
-
-  gap: 8px;
-
-  border: 1px solid rgba(204, 157, 67, 0.25);
-
-  background: transparent;
-
-  color: #aa8241;
-
-  font-size: 9px;
-
-  letter-spacing: 1.5px;
-
-  transition: 0.2s;
-}
-
-.round-two-page .hint-button:hover:not(:disabled) {
-  border-color: rgba(204, 157, 67, 0.6);
-
-  color: #d6a752;
-
-  background: rgba(204, 157, 67, 0.04);
-}
-
-.round-two-page .hint-button:disabled {
-  cursor: not-allowed;
-
-  opacity: 0.35;
-}
-
-/* =========================================================
-   BACK BUTTON
-========================================================= */
-
-.round-two-page .back-button {
-  display: block;
-
-  margin: 25px auto 0;
-
-  border: none;
-
-  background: transparent;
-
-  color: #55534d;
-
-  font-size: 10px;
-
-  letter-spacing: 2px;
-
-  transition: 0.2s;
-
-  position: relative;
-  z-index: 2;
-}
-
-.round-two-page .back-button:hover {
-  color: #9b7942;
-}
-
-/* =========================================================
-   QR ASSEMBLY SCREEN
-========================================================= */
-
-.round-two-page .assembly-card {
-  width: min(850px, 100%);
-
-  margin: 40px auto 0;
-
-  padding: clamp(30px, 6vw, 65px);
-
-  text-align: center;
-
-  border: 1px solid rgba(204, 157, 67, 0.3);
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(18, 27, 34, 0.98),
-      rgba(7, 12, 17, 0.98)
-    );
-
-  box-shadow:
-    0 30px 80px rgba(0, 0, 0, 0.45);
-
-  position: relative;
-  z-index: 2;
-}
-
-.round-two-page .assembly-card > svg {
-  color: #d5a64f;
-
-  margin-bottom: 20px;
-
-  filter: drop-shadow(
-    0 0 12px rgba(213, 166, 79, 0.25)
-  );
-}
-
-.round-two-page .assembly-card h2 {
-  margin: 5px 0 15px;
-
-  color: #f0e3c9;
-
-  font-family: "Cinzel", serif;
-
-  letter-spacing: 3px;
-}
-
-.round-two-page .assembly-card > p {
-  max-width: 560px;
-
-  margin: 0 auto 30px;
-
-  color: #858078;
-
-  font-size: 13px;
-
-  line-height: 1.8;
-}
-
-/* =========================================================
-   QR GRID
-========================================================= */
-
-.round-two-page .qr-grid {
-  width: min(390px, 90%);
-
-  margin: 30px auto;
-
-  display: grid;
-
-  grid-template-columns: repeat(3, 1fr);
-
-  gap: 7px;
-
-  padding: 7px;
-
-  background: #030507;
-
-  border: 1px solid rgba(204, 157, 67, 0.35);
-
-  box-shadow:
-    0 0 40px rgba(0, 0, 0, 0.4);
-}
-
-.round-two-page .qr-piece {
-  aspect-ratio: 1;
-
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: center;
-
-  justify-content: center;
-
-  gap: 7px;
-
-  background: #111820;
-
-  border: 1px solid rgba(204, 157, 67, 0.15);
-
-  color: #817b70;
-}
-
-.round-two-page .qr-piece.found {
-  color: #d4a34d;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(205, 157, 66, 0.1),
-      #0c131a
-    );
-
-  border-color: rgba(204, 157, 67, 0.4);
-}
-
-.round-two-page .qr-piece span {
-  font-size: 10px;
-
-  color: #81745e;
-
-  font-family: monospace;
-}
-
-/* =========================================================
-   ASSEMBLY MESSAGE
-========================================================= */
-
-.round-two-page .assembly-message {
-  width: min(600px, 100%);
-
-  margin: 25px auto;
-
-  padding: 15px 18px;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  gap: 10px;
-
-  color: #a9c18e;
-
-  border: 1px solid rgba(116, 155, 92, 0.25);
-
-  background: rgba(90, 130, 70, 0.05);
-
-  font-size: 11px;
-
-  line-height: 1.5;
-}
-
-.round-two-page .assembly-message svg {
-  color: #86a969;
-
-  flex-shrink: 0;
-}
-
-/* =========================================================
-   FINAL INSTRUCTION
-========================================================= */
-
-.round-two-page .final-instruction {
-  width: min(600px, 100%);
-
-  margin: 25px auto;
-
-  padding: 20px;
-
-  border-left: 2px solid #b8893b;
-
-  background: rgba(184, 137, 59, 0.045);
-
-  text-align: left;
-}
-
-.round-two-page .final-instruction strong {
-  color: #d2a14c;
-
-  font-size: 10px;
-
-  letter-spacing: 2px;
-}
-
-.round-two-page .final-instruction p {
-  margin: 8px 0 0;
-
-  color: #8b867c;
-
-  font-size: 12px;
-
-  line-height: 1.7;
-}
-
-/* =========================================================
-   FINAL BUTTON
-========================================================= */
-
-.round-two-page .primary-game-button {
-  margin-top: 15px;
-
-  padding: 15px 25px;
-
-  display: inline-flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  gap: 9px;
-
-  border: 1px solid #c79640;
-
-  background: linear-gradient(
-    135deg,
-    #d4a64e,
-    #a97529
-  );
-
-  color: #0b0d0e;
-
-  font-size: 10px;
-
-  font-weight: 800;
-
-  letter-spacing: 1.5px;
-
-  transition: 0.2s;
-}
-
-.round-two-page .primary-game-button:hover {
-  transform: translateY(-2px);
-
-  box-shadow:
-    0 10px 30px rgba(200, 150, 60, 0.2);
-}
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-
-@media (max-width: 700px) {
-  .round-two-page {
-    padding: 22px 15px 40px;
-  }
-
-  .round-two-page .game-header {
-    flex-direction: column;
-  }
-
-  .round-two-page .timer-box {
-    width: 100%;
-  }
-
-  .round-two-page .hunt-status {
-    grid-template-columns: 1fr;
-  }
-
-  .round-two-page .hunt-status > div {
-    border-right: none;
-    border-bottom: 1px solid rgba(204, 157, 67, 0.14);
-  }
-
-  .round-two-page .hunt-status > div:last-child {
-    border-bottom: none;
-  }
-
-  .round-two-page .hunt-card {
-    padding: 28px 18px;
-  }
-
-  .round-two-page .answer-area {
-    flex-direction: column;
-  }
-
-  .round-two-page .answer-area input,
-  .round-two-page .answer-area button {
-    width: 100%;
-  }
-
-  .round-two-page .answer-area button {
-    height: 48px;
-  }
-
-  .round-two-page .clue-box {
-    padding: 22px 16px;
-  }
-
-  .round-two-page .clue-box p {
-    font-size: 14px;
-  }
-
-  .round-two-page .location-warning {
-    align-items: flex-start;
-  }
-
-  .round-two-page .challenge-box {
-    padding: 24px 18px;
-  }
-
-  .round-two-page .challenge-box p {
-    font-size: 14px;
-  }
-
-  .round-two-page .assembly-card {
-    padding: 30px 18px;
-  }
-
-  .round-two-page .qr-grid {
-    width: min(320px, 100%);
-  }
-}
-
-/* =========================================================
-   ROUND 3 — FIND THE ONE PIECE
-   ========================================================= */
-
-.round-three-page {
-  min-height: 100vh;
-  box-sizing: border-box;
-  padding: 34px 6vw 60px;
-  color: #f5ead2;
-  background:
-    radial-gradient(circle at 50% 15%, rgba(190, 130, 45, 0.12), transparent 30%),
-    radial-gradient(circle at 15% 80%, rgba(20, 75, 100, 0.15), transparent 28%),
-    #060a12;
-}
-
-/* Header */
-
-.round-three-page .game-header {
-  max-width: 1180px;
-  margin: 0 auto 45px;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 30px;
-}
-
-.round-three-page .game-header h1 {
-  margin: 4px 0 8px;
-  font-family: "Cinzel", serif;
-  font-size: clamp(28px, 4vw, 48px);
-  letter-spacing: 0.08em;
-}
-
-.round-three-page .crew-label {
-  margin: 0;
-  color: #a9a39a;
-  font-size: 14px;
-}
-
-.round-three-page .eyebrow {
-  margin: 0;
-  color: #d4a72c;
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.22em;
-}
-
-/* Timer */
-
-.round-three-page .timer-box {
-  min-width: 125px;
-  padding: 14px 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  border: 1px solid rgba(212, 167, 44, 0.35);
-  background: rgba(212, 167, 44, 0.07);
-  color: #f5d879;
-  font-family: "Cinzel", serif;
-  font-size: 20px;
-  letter-spacing: 0.08em;
-}
-
-/* Intro */
-
-.final-intro {
-  max-width: 800px;
-  margin: 0 auto 55px;
-  text-align: center;
-}
-
-.final-icon {
-  width: 72px;
-  height: 72px;
-  margin: 0 auto 22px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(212, 167, 44, 0.4);
-  border-radius: 50%;
-  color: #d4a72c;
-  background: rgba(212, 167, 44, 0.07);
-}
-
-.final-intro h2 {
-  margin: 14px 0 20px;
-  font-family: "Pirata One", cursive;
-  font-size: clamp(42px, 7vw, 78px);
-  line-height: 0.95;
-  font-weight: 400;
-  color: #f5ead2;
-}
-
-.final-intro > p:last-child {
-  max-width: 650px;
-  margin: 0 auto;
-  color: #aaa49a;
-  line-height: 1.8;
-  font-size: 15px;
-}
-
-/* Section */
-
-.fragment-section,
-.assembly-final-section,
-.final-question-section {
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.section-heading {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 25px;
-}
-
-.section-heading h2 {
-  margin: 7px 0 0;
-  font-family: "Cinzel", serif;
-  font-size: 25px;
-}
-
-.fragment-counter {
-  width: 58px;
-  height: 58px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(212, 167, 44, 0.4);
-  color: #d4a72c;
-  font-family: "Cinzel", serif;
-  font-size: 18px;
-}
-
-/* Fragment Grid */
-
-.fragment-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
-  margin-bottom: 32px;
-}
-
-.fragment-card {
-  position: relative;
-  min-height: 145px;
-  padding: 18px;
-  border: 1px solid rgba(245, 234, 210, 0.12);
-  border-radius: 3px;
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255, 255, 255, 0.035),
-      rgba(255, 255, 255, 0.01)
-    );
-  color: #f5ead2;
-  text-align: left;
-  cursor: pointer;
-  transition:
-    transform 0.2s ease,
-    border-color 0.2s ease,
-    background 0.2s ease;
-}
-
-.fragment-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(212, 167, 44, 0.55);
-  background: rgba(212, 167, 44, 0.06);
-}
-
-.fragment-card.selected {
-  border-color: #d4a72c;
-  background: rgba(212, 167, 44, 0.11);
-  box-shadow: 0 0 25px rgba(212, 167, 44, 0.08);
-}
-
-.fragment-number {
-  color: #d4a72c;
-  margin-bottom: 22px;
-}
-
-.fragment-card span {
-  display: block;
-  color: #77736c;
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  margin-bottom: 7px;
-}
-
-.fragment-card strong {
-  display: block;
-  font-family: "Cinzel", serif;
-  font-size: 17px;
-  letter-spacing: 0.05em;
-}
-
-.fragment-card small {
-  display: block;
-  margin-top: 9px;
-  color: #9b968d;
-  font-size: 9px;
-  letter-spacing: 0.14em;
-}
-
-/* Main buttons */
-
-.round-three-page .primary-game-button {
-  min-height: 52px;
-  padding: 0 27px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  margin: 0 auto;
-  border: 1px solid #d4a72c;
-  border-radius: 2px;
-  background: #d4a72c;
-  color: #080a0d;
-  font-family: "Cinzel", serif;
-  font-weight: 800;
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.round-three-page .primary-game-button:hover {
-  background: #f0c957;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(212, 167, 44, 0.18);
-}
-
-/* Assembly */
-
-.assembly-final-section {
-  text-align: center;
-  padding: 30px 20px 50px;
-}
-
-.success-icon {
-  width: 75px;
-  height: 75px;
-  margin: 0 auto 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  border: 1px solid rgba(75, 180, 115, 0.45);
-  color: #72d59a;
-  background: rgba(75, 180, 115, 0.08);
-}
-
-.assembly-final-section h2 {
-  margin: 10px 0 28px;
-  font-family: "Cinzel", serif;
-  font-size: clamp(26px, 4vw, 42px);
-}
-
-.qr-placeholder {
-  width: min(330px, 80vw);
-  margin: 0 auto 25px;
-  padding: 24px;
-  box-sizing: border-box;
-  border: 1px solid rgba(212, 167, 44, 0.3);
-  background: #f3ead7;
-  color: #17130d;
-}
-
-.qr-frame {
-  width: 230px;
-  height: 230px;
-  margin: 0 auto 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #fff;
-}
-
-.qr-placeholder p {
-  margin: 0;
-  font-family: "Cinzel", serif;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-}
-
-.scan-instruction {
-  color: #99938a;
-  margin-bottom: 25px;
-  font-size: 14px;
-}
-
-/* Final Question */
-
-.final-question-section {
-  max-width: 850px;
-  text-align: center;
-  padding: 35px 20px 50px;
-}
-
-.question-icon {
-  width: 68px;
-  height: 68px;
-  margin: 0 auto 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(212, 167, 44, 0.45);
-  color: #d4a72c;
-  background: rgba(212, 167, 44, 0.07);
-  border-radius: 50%;
-}
-
-.final-question-section h2 {
-  max-width: 760px;
-  margin: 14px auto 18px;
-  font-family: "Cinzel", serif;
-  font-size: clamp(24px, 4vw, 38px);
-  line-height: 1.3;
-}
-
-.question-note {
-  color: #858078;
-  font-size: 13px;
-  margin-bottom: 30px;
-}
-
-.final-answer-area {
-  max-width: 620px;
-  margin: 0 auto;
-}
-
-.final-answer-area input {
-  width: 100%;
-  height: 58px;
-  box-sizing: border-box;
-  margin-bottom: 14px;
-  padding: 0 18px;
-  border: 1px solid rgba(245, 234, 210, 0.2);
-  outline: none;
-  background: rgba(255, 255, 255, 0.045);
-  color: #f5ead2;
-  font-size: 16px;
-  text-align: center;
-}
-
-.final-answer-area input:focus {
-  border-color: #d4a72c;
-  box-shadow: 0 0 20px rgba(212, 167, 44, 0.08);
-}
-
-.final-answer-area input::placeholder {
-  color: #66625c;
-}
-
-.final-feedback {
-  max-width: 620px;
-  margin: 20px auto 0;
-  padding: 14px 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  border: 1px solid rgba(95, 185, 120, 0.3);
-  background: rgba(95, 185, 120, 0.07);
-  color: #8ce0ad;
-  font-size: 13px;
-}
-
-.final-feedback.error {
-  border-color: rgba(220, 80, 70, 0.35);
-  background: rgba(220, 80, 70, 0.07);
-  color: #f08b82;
-}
-
-/* Final Win */
-
-.final-win-card {
-  width: min(760px, 90vw);
-  min-height: 70vh;
-  margin: 0 auto;
-  box-sizing: border-box;
-  padding: 70px 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.final-skull {
-  width: 92px;
-  height: 92px;
-  margin-bottom: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(212, 167, 44, 0.5);
-  border-radius: 50%;
-  color: #d4a72c;
-  background: rgba(212, 167, 44, 0.07);
-  box-shadow: 0 0 45px rgba(212, 167, 44, 0.08);
-}
-
-.final-win-card h1 {
-  margin: 14px 0;
-  font-family: "Pirata One", cursive;
-  font-size: clamp(55px, 10vw, 105px);
-  font-weight: 400;
-  line-height: 0.9;
-  color: #f5ead2;
-}
-
-.win-message {
-  color: #aaa49a;
-  line-height: 1.8;
-  font-size: 16px;
-}
-
-.win-message strong {
-  color: #d4a72c;
-}
-
-.final-time {
-  min-width: 230px;
-  margin: 28px 0;
-  padding: 17px 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  border: 1px solid rgba(212, 167, 44, 0.35);
-  color: #d4a72c;
-}
-
-.final-time span {
-  font-size: 10px;
-  letter-spacing: 0.15em;
-}
-
-.final-time strong {
-  font-family: "Cinzel", serif;
-  font-size: 22px;
-}
-
-.win-divider {
-  color: #d4a72c;
-  letter-spacing: 0.6em;
-  margin: 10px 0 25px;
-}
-
-.win-quote {
-  color: #77736d;
-  line-height: 1.8;
-  font-size: 13px;
-  font-style: italic;
-}
-
-/* Back */
-
-.round-three-page .back-button {
-  display: block;
-  margin: 50px auto 0;
-  border: none;
-  background: none;
-  color: #65615a;
-  font-size: 10px;
-  letter-spacing: 0.15em;
-  cursor: pointer;
-}
-
-.round-three-page .back-button:hover {
-  color: #d4a72c;
-}
-
-/* Responsive */
-
-@media (max-width: 800px) {
-  .round-three-page {
-    padding: 25px 20px 45px;
-  }
-
-  .round-three-page .game-header {
-    flex-direction: column;
-    margin-bottom: 35px;
-  }
-
-  .round-three-page .timer-box {
-    align-self: flex-start;
-  }
-
-  .fragment-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .fragment-card {
-    min-height: 130px;
-  }
-}
-
-@media (max-width: 500px) {
-  .fragment-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .final-intro h2 {
-    font-size: 50px;
-  }
-
-  .qr-frame {
-    width: 190px;
-    height: 190px;
-  }
-
-  .final-win-card h1 {
-    font-size: 65px;
-  }
-}
-
-/* =========================================
-   ROUND COMPLETE
-   ========================================= */
-
-.round-complete {
-  padding-top: 100px;
-}
-
-.treasure-icon {
-  width: 100px;
-  height: 100px;
-
-  margin: 35px auto 25px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border: 1px solid rgba(220, 169, 62, 0.45);
-
-  border-radius: 50%;
-
-  color: #e5b74e;
-
-  font-size: 2.5rem;
-}
-
-.final-stats {
-  width: min(700px, 100%);
-
-  margin: 35px auto;
-
-  display: grid;
-
-  grid-template-columns: repeat(3, 1fr);
-
-  gap: 1px;
-
-  background: rgba(220, 169, 62, 0.2);
-}
-
-.final-stats > div {
-  padding: 22px 15px;
-
-  background: rgba(7, 11, 18, 0.9);
-}
-
-.final-stats small {
-  display: block;
-
-  margin-bottom: 8px;
-
-  color: rgba(245, 224, 170, 0.45);
-
-  font-size: 0.6rem;
-
-  letter-spacing: 0.15em;
-}
-
-.final-stats strong {
-  color: #e5b74e;
-
-  font-size: 1rem;
-}
-
-/* =========================================
-   MOBILE
-   ========================================= */
-
-@media (max-width: 700px) {
-  .navbar {
-    height: auto;
-    min-height: 70px;
-
-    padding: 15px 20px;
-
-    gap: 15px;
-  }
-
-  .nav-status {
-    display: none;
-  }
-
-  .hero {
-    padding-top: 45px;
-  }
-
-  .hero h1 {
-    font-size: clamp(4.5rem, 22vw, 7rem);
-  }
-
-  .hero h2 {
-    font-size: 0.8rem;
-
-    letter-spacing: 0.22em;
-  }
-
-  .description {
-    font-size: 0.68rem;
-  }
-
-  .legend {
-    grid-template-columns: 1fr;
-
-    margin-top: 45px;
-  }
-
-  .legend div {
-    border-right: none;
-
-    border-bottom: 1px solid rgba(220, 169, 62, 0.12);
-  }
-
-  .legend div:last-child {
-    border-bottom: none;
-  }
-
-  footer {
-    position: relative;
-
-    padding: 20px;
-
-    bottom: auto;
-  }
-
-  .round-container {
-    width: calc(100% - 24px);
-
-    padding-top: 45px;
-  }
-
-  .round-stats {
-    grid-template-columns: 1fr;
-  }
-
-  .round-stats > div {
-    border-right: none;
-
-    border-bottom: 1px solid rgba(214, 165, 61, 0.2);
-  }
-
-  .round-stats > div:last-child {
-    border-bottom: none;
-  }
-
-  .answer-area {
-    flex-direction: column;
-  }
-
-  .answer-area input {
-    width: auto;
-  }
-
-  .submit-button {
-    min-height: 48px;
-  }
-
-  .final-stats {
-    grid-template-columns: 1fr;
-  }
-
-  .logo-circle {
-    width: 160px;
-    height: 160px;
-  }
-
-  .logo-circle svg {
-    width: 100px;
-    height: 100px;
-  }
-}
-/* =========================================
-   ROUND HINT SYSTEM
-   ========================================= */
-
-.hint-section {
-  position: relative;
-
-  width: min(580px, calc(100% - 40px));
-
-  margin: 28px auto 0;
-
-  padding-top: 22px;
-
-  border-top: 1px solid rgba(220, 169, 62, 0.16);
-}
-
-.hint-title {
-  margin-bottom: 14px;
-
-  color: rgba(245, 224, 170, 0.5);
-
-  font-size: 0.62rem;
-
-  letter-spacing: 0.16em;
-}
-
-.hint-buttons {
-  display: flex;
-
-  justify-content: center;
-
-  gap: 10px;
-}
-
-.hint-button {
-  min-width: 130px;
-
-  padding: 10px 18px;
-
-  border: 1px solid rgba(220, 169, 62, 0.35);
-
+  margin-bottom: 18px;
   color: #dca93e;
-
-  background: rgba(220, 169, 62, 0.04);
-
-  font-family: "Cinzel", serif;
-
   font-size: 0.65rem;
-
   font-weight: 700;
-
-  letter-spacing: 0.1em;
-
-  transition: 0.2s ease;
+  letter-spacing: 0.25em;
 }
 
-.hint-button span {
-  display: block;
-
-  margin-top: 4px;
-
-  color: rgba(245, 224, 170, 0.4);
-
-  font-size: 0.55rem;
-}
-
-.hint-button:hover:not(:disabled) {
-  border-color: #dca93e;
-
-  background: rgba(220, 169, 62, 0.1);
-
-  box-shadow:
-    0 0 18px rgba(220, 169, 62, 0.08);
-}
-
-.hint-button:disabled {
-  cursor: not-allowed;
-
-  opacity: 0.25;
-}
-
-.hint-text {
-  margin-top: 16px;
-
-  padding: 12px 15px;
-
-  color: #e8c978;
-
-  border: 1px solid rgba(220, 169, 62, 0.2);
-
-  background: rgba(220, 169, 62, 0.05);
-
-  font-size: 0.68rem;
-
-  line-height: 1.6;
-
-  letter-spacing: 0.04em;
-}
-
-@media (max-width: 650px) {
-  .hint-buttons {
-    flex-direction: column;
-  }
-
-  .hint-button {
-    width: 100%;
-  }
-}
-
-/* =========================================================
-   ROUND 2 — GRAND LINE HUNT
-========================================================= */
-
-.round-two-page {
-  min-height: 100vh;
-  padding: 35px 6vw 60px;
-  background:
-    radial-gradient(
-      circle at 50% 15%,
-      rgba(194, 145, 52, 0.10),
-      transparent 32%
-    ),
-    radial-gradient(
-      circle at 15% 80%,
-      rgba(20, 70, 90, 0.12),
-      transparent 30%
-    ),
-    #05090e;
-  color: #eee4ce;
+.clue-number {
   position: relative;
-  overflow-x: hidden;
-}
-
-/* subtle treasure-map grid */
-
-.round-two-page::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.08;
-  background-image:
-    linear-gradient(rgba(215, 170, 83, 0.3) 1px, transparent 1px),
-    linear-gradient(
-      90deg,
-      rgba(215, 170, 83, 0.3) 1px,
-      transparent 1px
-    );
-  background-size: 50px 50px;
-}
-
-/* =========================================================
-   HEADER
-========================================================= */
-
-.round-two-page .game-header {
-  width: min(1100px, 100%);
-  margin: 0 auto 30px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 20px;
-  position: relative;
-  z-index: 2;
-}
-
-.round-two-page .game-header h1 {
-  margin: 0;
-  color: #e0ad52;
-  font-family: "Pirata One", cursive;
-  font-size: clamp(42px, 6vw, 72px);
-  line-height: 0.9;
-  letter-spacing: 2px;
-  text-shadow: 0 4px 20px rgba(208, 158, 61, 0.12);
-}
-
-.round-two-page .game-header p {
-  margin: 13px 0 0;
-  color: #817c72;
-  font-size: 13px;
-}
-
-.round-two-page .game-header p strong {
-  color: #cda45a;
-}
-
-/* =========================================================
-   TIMER
-========================================================= */
-
-.round-two-page .timer-box {
-  min-width: 125px;
-  padding: 14px 22px;
-  border: 1px solid rgba(207, 158, 70, 0.35);
-  background: rgba(10, 16, 22, 0.9);
-  box-shadow: inset 0 0 25px rgba(200, 150, 50, 0.03);
-  text-align: center;
-}
-
-.round-two-page .timer-box span {
-  display: block;
-  color: #6e6b63;
-  font-size: 9px;
-  letter-spacing: 3px;
-  margin-bottom: 6px;
-}
-
-.round-two-page .timer-box strong {
-  color: #e1b35b;
-  font-size: 23px;
-  font-weight: 700;
-}
-
-/* =========================================================
-   STATUS BAR
-========================================================= */
-
-.round-two-page .hunt-status {
-  width: min(900px, 100%);
-  margin: 0 auto 22px;
-
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-
-  border: 1px solid rgba(204, 157, 67, 0.22);
-  background: rgba(9, 15, 21, 0.88);
-
-  position: relative;
-  z-index: 2;
-}
-
-.round-two-page .hunt-status > div {
-  padding: 15px 10px;
-  text-align: center;
-  border-right: 1px solid rgba(204, 157, 67, 0.14);
-}
-
-.round-two-page .hunt-status > div:last-child {
-  border-right: none;
-}
-
-.round-two-page .hunt-status span {
-  display: block;
-  color: #66645e;
-  font-size: 9px;
-  letter-spacing: 2px;
-  margin-bottom: 6px;
-}
-
-.round-two-page .hunt-status strong {
-  color: #d7a951;
-  font-size: 14px;
-  letter-spacing: 1px;
-}
-
-/* =========================================================
-   MAIN HUNT CARD
-========================================================= */
-
-.round-two-page .hunt-card {
-  width: min(900px, 100%);
-  margin: 0 auto;
-
-  padding: clamp(28px, 5vw, 55px);
-
-  position: relative;
-  z-index: 2;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(18, 27, 34, 0.98),
-      rgba(7, 12, 17, 0.98)
-    );
-
-  border: 1px solid rgba(204, 157, 67, 0.28);
-
-  box-shadow:
-    0 30px 80px rgba(0, 0, 0, 0.45),
-    inset 0 0 50px rgba(204, 157, 67, 0.025);
-
-  text-align: center;
-}
-
-.round-two-page .hunt-card::before {
-  content: "";
-  position: absolute;
-  inset: 9px;
-
-  border: 1px solid rgba(255, 255, 255, 0.025);
-
-  pointer-events: none;
-}
-
-/* =========================================================
-   ICON
-========================================================= */
-
-.round-two-page .stage-icon {
-  width: 68px;
-  height: 68px;
-
-  margin: 0 auto 20px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  color: #d9a94f;
-
-  border: 1px solid rgba(210, 163, 74, 0.35);
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(211, 164, 73, 0.10),
-      transparent 70%
-    );
-
-  box-shadow:
-    0 0 30px rgba(205, 157, 66, 0.08);
-
-  position: relative;
-  z-index: 2;
-}
-
-/* =========================================================
-   EYEBROW
-========================================================= */
-
-.round-two-page .eyebrow {
-  color: #b8893c;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  margin-bottom: 10px;
-  position: relative;
-  z-index: 2;
-}
-
-/* =========================================================
-   HEADINGS
-========================================================= */
-
-.round-two-page .hunt-card h2 {
-  margin: 0;
-
-  color: #f0e4cb;
-
-  font-family: "Cinzel", serif;
-
-  font-size: clamp(21px, 3vw, 30px);
-
-  letter-spacing: 2px;
-
-  position: relative;
-  z-index: 2;
-}
-
-/* =========================================================
-   CLUE BOX
-========================================================= */
-
-.round-two-page .clue-box {
-  width: min(650px, 100%);
-
-  margin: 28px auto;
-
-  padding: 28px 30px;
-
-  border-left: 2px solid #bd8d3e;
-  border-right: 2px solid #bd8d3e;
-
-  background:
-    linear-gradient(
-      90deg,
-      rgba(186, 139, 57, 0.025),
-      rgba(186, 139, 57, 0.08),
-      rgba(186, 139, 57, 0.025)
-    );
-
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 16px;
-}
-
-.round-two-page .clue-box span {
-  color: #c99843;
-  font-size: 22px;
-  flex-shrink: 0;
-}
-
-.round-two-page .clue-box p {
-  margin: 0;
-
-  color: #d5c8af;
-
-  font-family: "Cinzel", serif;
-
-  font-size: 16px;
-
-  line-height: 1.8;
-}
-
-/* =========================================================
-   LOCATION FOUND
-========================================================= */
-
-.round-two-page .location-warning {
-  width: min(650px, 100%);
-
-  margin: 28px auto;
-
-  padding: 22px;
-
-  display: flex;
-  align-items: center;
-  gap: 18px;
-
-  text-align: left;
-
-  border: 1px solid rgba(204, 157, 67, 0.28);
-
-  background: rgba(190, 140, 48, 0.045);
-}
-
-.round-two-page .location-warning svg {
-  color: #d3a34f;
-  flex-shrink: 0;
-}
-
-.round-two-page .location-warning strong {
-  color: #d4a451;
-  font-size: 11px;
-  letter-spacing: 2px;
-}
-
-.round-two-page .location-warning p {
-  margin: 6px 0 0;
-
-  color: #918b7f;
-
-  font-size: 12px;
-
-  line-height: 1.6;
-}
-
-/* =========================================================
-   TECHNICAL CHALLENGE
-========================================================= */
-
-.round-two-page .challenge-box {
-  width: min(650px, 100%);
-
-  margin: 28px auto;
-
-  padding: 30px;
-
-  border: 1px solid rgba(93, 134, 157, 0.28);
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(13, 28, 38, 0.8),
-      rgba(7, 15, 21, 0.9)
-    );
-
-  text-align: left;
-
-  position: relative;
-}
-
-.round-two-page .challenge-box::before {
-  content: "< / >";
-
-  position: absolute;
-
-  top: 12px;
-  right: 15px;
-
-  color: rgba(207, 158, 70, 0.3);
-
-  font-family: monospace;
-
-  font-size: 12px;
-}
-
-.round-two-page .challenge-box p {
-  margin: 0;
-
-  color: #d9e0df;
-
-  font-family: monospace;
-
-  font-size: 16px;
-
-  line-height: 1.7;
-}
-
-/* =========================================================
-   INSTRUCTION
-========================================================= */
-
-.round-two-page .instruction {
-  max-width: 600px;
-
-  margin: 20px auto 25px;
-
-  color: #77736a;
-
-  font-size: 12px;
-
-  line-height: 1.7;
-
-  position: relative;
-  z-index: 2;
-}
-
-/* =========================================================
-   ANSWER AREA
-========================================================= */
-
-.round-two-page .answer-area {
-  width: min(650px, 100%);
-
-  margin: 0 auto;
-
-  display: flex;
-
-  gap: 10px;
-
-  position: relative;
-  z-index: 2;
-}
-
-.round-two-page .answer-area input {
-  flex: 1;
-
-  min-width: 0;
-
-  height: 52px;
-
-  padding: 0 17px;
-
-  border: 1px solid rgba(204, 157, 67, 0.25);
-
-  outline: none;
-
-  background: #080e14;
-
-  color: #eee5d2;
-
-  font-size: 13px;
-
-  transition: 0.2s;
-}
-
-.round-two-page .answer-area input::placeholder {
-  color: #55534e;
-}
-
-.round-two-page .answer-area input:focus {
-  border-color: rgba(211, 164, 75, 0.65);
-
-  box-shadow:
-    0 0 0 2px rgba(211, 164, 75, 0.06);
-}
-
-.round-two-page .answer-area button {
-  height: 52px;
-
-  padding: 0 23px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-
-  border: 1px solid #c4933e;
-
-  background: linear-gradient(
-    135deg,
-    #d3a34e,
-    #a87328
-  );
-
-  color: #0b0d0e;
-
-  font-size: 11px;
-
-  font-weight: 800;
-
-  letter-spacing: 1.5px;
-
-  transition: 0.2s;
-}
-
-.round-two-page .answer-area button:hover {
-  transform: translateY(-2px);
-
-  box-shadow:
-    0 8px 25px rgba(196, 147, 62, 0.2);
-}
-
-/* =========================================================
-   FEEDBACK
-========================================================= */
-
-.round-two-page .feedback {
-  width: min(650px, 100%);
-
-  margin: 17px auto 0;
-
-  padding: 13px 16px;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  gap: 10px;
-
-  font-size: 11px;
-
-  line-height: 1.5;
-}
-
-.round-two-page .feedback.error {
-  color: #d98989;
-
-  border: 1px solid rgba(190, 70, 70, 0.25);
-
-  background: rgba(160, 50, 50, 0.06);
-}
-
-.round-two-page .feedback.warning {
-  color: #e0ad55;
-
-  border: 1px solid rgba(204, 157, 67, 0.3);
-
-  background: rgba(204, 157, 67, 0.07);
-}
-
-.round-two-page .feedback.hint-feedback {
-  color: #d9b76d;
-
-  border: 1px solid rgba(204, 157, 67, 0.22);
-
-  background: rgba(204, 157, 67, 0.05);
-}
-
-/* =========================================================
-   HINT
-========================================================= */
-
-.round-two-page .hint-area {
-  margin-top: 25px;
-
-  position: relative;
-  z-index: 2;
-}
-
-.round-two-page .hint-button {
-  padding: 11px 18px;
-
-  display: inline-flex;
-
-  align-items: center;
-
-  gap: 8px;
-
-  border: 1px solid rgba(204, 157, 67, 0.25);
-
-  background: transparent;
-
-  color: #aa8241;
-
-  font-size: 9px;
-
-  letter-spacing: 1.5px;
-
-  transition: 0.2s;
-}
-
-.round-two-page .hint-button:hover:not(:disabled) {
-  border-color: rgba(204, 157, 67, 0.6);
-
-  color: #d6a752;
-
-  background: rgba(204, 157, 67, 0.04);
-}
-
-.round-two-page .hint-button:disabled {
-  cursor: not-allowed;
-
-  opacity: 0.35;
-}
-
-/* =========================================================
-   BACK BUTTON
-========================================================= */
-
-.round-two-page .back-button {
-  display: block;
-
-  margin: 25px auto 0;
-
-  border: none;
-
-  background: transparent;
-
-  color: #55534d;
-
-  font-size: 10px;
-
-  letter-spacing: 2px;
-
-  transition: 0.2s;
-
-  position: relative;
-  z-index: 2;
-}
-
-.round-two-page .back-button:hover {
-  color: #9b7942;
-}
-
-/* =========================================================
-   QR ASSEMBLY SCREEN
-========================================================= */
-
-.round-two-page .assembly-card {
-  width: min(850px, 100%);
-
-  margin: 40px auto 0;
-
-  padding: clamp(30px, 6vw, 65px);
-
-  text-align: center;
-
-  border: 1px solid rgba(204, 157, 67, 0.3);
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(18, 27, 34, 0.98),
-      rgba(7, 12, 17, 0.98)
-    );
-
-  box-shadow:
-    0 30px 80px rgba(0, 0, 0, 0.45);
-
-  position: relative;
-  z-index: 2;
-}
-
-.round-two-page .assembly-card > svg {
-  color: #d5a64f;
-
-  margin-bottom: 20px;
-
-  filter: drop-shadow(
-    0 0 12px rgba(213, 166, 79, 0.25)
-  );
-}
-
-.round-two-page .assembly-card h2 {
-  margin: 5px 0 15px;
-
-  color: #f0e3c9;
-
-  font-family: "Cinzel", serif;
-
-  letter-spacing: 3px;
-}
-
-.round-two-page .assembly-card > p {
-  max-width: 560px;
-
-  margin: 0 auto 30px;
-
-  color: #858078;
-
-  font-size: 13px;
-
-  line-height: 1.8;
-}
-
-/* =========================================================
-   QR GRID
-========================================================= */
-
-.round-two-page .qr-grid {
-  width: min(390px, 90%);
-
-  margin: 30px auto;
-
-  display: grid;
-
-  grid-template-columns: repeat(3, 1fr);
-
-  gap: 7px;
-
-  padding: 7px;
-
-  background: #030507;
-
-  border: 1px solid rgba(204, 157, 67, 0.35);
-
-  box-shadow:
-    0 0 40px rgba(0, 0, 0, 0.4);
-}
-
-.round-two-page .qr-piece {
-  aspect-ratio: 1;
-
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: center;
-
-  justify-content: center;
-
-  gap: 7px;
-
-  background: #111820;
-
-  border: 1px solid rgba(204, 157, 67, 0.15);
-
-  color: #817b70;
-}
-
-.round-two-page .qr-piece.found {
-  color: #d4a34d;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(205, 157, 66, 0.1),
-      #0c131a
-    );
-
-  border-color: rgba(204, 157, 67, 0.4);
-}
-
-.round-two-page .qr-piece span {
-  font-size: 10px;
-
-  color: #81745e;
-
-  font-family: monospace;
-}
-
-/* =========================================================
-   ASSEMBLY MESSAGE
-========================================================= */
-
-.round-two-page .assembly-message {
-  width: min(600px, 100%);
-
-  margin: 25px auto;
-
-  padding: 15px 18px;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  gap: 10px;
-
-  color: #a9c18e;
-
-  border: 1px solid rgba(116, 155, 92, 0.25);
-
-  background: rgba(90, 130, 70, 0.05);
-
-  font-size: 11px;
-
-  line-height: 1.5;
-}
-
-.round-two-page .assembly-message svg {
-  color: #86a969;
-
-  flex-shrink: 0;
-}
-
-/* =========================================================
-   FINAL INSTRUCTION
-========================================================= */
-
-.round-two-page .final-instruction {
-  width: min(600px, 100%);
-
-  margin: 25px auto;
-
-  padding: 20px;
-
-  border-left: 2px solid #b8893b;
-
-  background: rgba(184, 137, 59, 0.045);
-
-  text-align: left;
-}
-
-.round-two-page .final-instruction strong {
-  color: #d2a14c;
-
-  font-size: 10px;
-
-  letter-spacing: 2px;
-}
-
-.round-two-page .final-instruction p {
-  margin: 8px 0 0;
-
-  color: #8b867c;
-
-  font-size: 12px;
-
-  line-height: 1.7;
-}
-
-/* =========================================================
-   FINAL BUTTON
-========================================================= */
-
-.round-two-page .primary-game-button {
-  margin-top: 15px;
-
-  padding: 15px 25px;
-
-  display: inline-flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  gap: 9px;
-
-  border: 1px solid #c79640;
-
-  background: linear-gradient(
-    135deg,
-    #d4a64e,
-    #a97529
-  );
-
-  color: #0b0d0e;
-
-  font-size: 10px;
-
-  font-weight: 800;
-
-  letter-spacing: 1.5px;
-
-  transition: 0.2s;
-}
-
-.round-two-page .primary-game-button:hover {
-  transform: translateY(-2px);
-
-  box-shadow:
-    0 10px 30px rgba(200, 150, 60, 0.2);
-}
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-
-@media (max-width: 700px) {
-  .round-two-page {
-    padding: 22px 15px 40px;
-  }
-
-  .round-two-page .game-header {
-    flex-direction: column;
-  }
-
-  .round-two-page .timer-box {
-    width: 100%;
-  }
-
-  .round-two-page .hunt-status {
-    grid-template-columns: 1fr;
-  }
-
-  .round-two-page .hunt-status > div {
-    border-right: none;
-    border-bottom: 1px solid rgba(204, 157, 67, 0.14);
-  }
-
-  .round-two-page .hunt-status > div:last-child {
-    border-bottom: none;
-  }
-
-  .round-two-page .hunt-card {
-    padding: 28px 18px;
-  }
-
-  .round-two-page .answer-area {
-    flex-direction: column;
-  }
-
-  .round-two-page .answer-area input,
-  .round-two-page .answer-area button {
-    width: 100%;
-  }
-
-  .round-two-page .answer-area button {
-    height: 48px;
-  }
-
-  .round-two-page .clue-box {
-    padding: 22px 16px;
-  }
-
-  .round-two-page .clue-box p {
-    font-size: 14px;
-  }
-
-  .round-two-page .location-warning {
-    align-items: flex-start;
-  }
-
-  .round-two-page .challenge-box {
-    padding: 24px 18px;
-  }
-
-  .round-two-page .challenge-box p {
-    font-size: 14px;
-  }
-
-  .round-two-page .assembly-card {
-    padding: 30px 18px;
-  }
-
-  .round-two-page .qr-grid {
-    width: min(320px, 100%);
-  }
-}
-
-/* =========================================================
-   ROUND 3 — FIND THE ONE PIECE
-   ========================================================= */
-
-.round-three-page {
-  min-height: 100vh;
-  box-sizing: border-box;
-  padding: 34px 6vw 60px;
-  color: #f5ead2;
-  background:
-    radial-gradient(circle at 50% 15%, rgba(190, 130, 45, 0.12), transparent 30%),
-    radial-gradient(circle at 15% 80%, rgba(20, 75, 100, 0.15), transparent 28%),
-    #060a12;
-}
-
-/* Header */
-
-.round-three-page .game-header {
-  max-width: 1180px;
-  margin: 0 auto 45px;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 30px;
-}
-
-.round-three-page .game-header h1 {
-  margin: 4px 0 8px;
-  font-family: "Cinzel", serif;
-  font-size: clamp(28px, 4vw, 48px);
-  letter-spacing: 0.08em;
-}
-
-.round-three-page .crew-label {
-  margin: 0;
-  color: #a9a39a;
-  font-size: 14px;
-}
-
-.round-three-page .eyebrow {
-  margin: 0;
-  color: #d4a72c;
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.22em;
-}
-
-/* Timer */
-
-.round-three-page .timer-box {
-  min-width: 125px;
-  padding: 14px 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  border: 1px solid rgba(212, 167, 44, 0.35);
-  background: rgba(212, 167, 44, 0.07);
-  color: #f5d879;
-  font-family: "Cinzel", serif;
-  font-size: 20px;
-  letter-spacing: 0.08em;
-}
-
-/* Intro */
-
-.final-intro {
-  max-width: 800px;
-  margin: 0 auto 55px;
-  text-align: center;
-}
-
-.final-icon {
-  width: 72px;
-  height: 72px;
-  margin: 0 auto 22px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(212, 167, 44, 0.4);
-  border-radius: 50%;
-  color: #d4a72c;
-  background: rgba(212, 167, 44, 0.07);
-}
-
-.final-intro h2 {
-  margin: 14px 0 20px;
-  font-family: "Pirata One", cursive;
-  font-size: clamp(42px, 7vw, 78px);
-  line-height: 0.95;
-  font-weight: 400;
-  color: #f5ead2;
-}
-
-.final-intro > p:last-child {
-  max-width: 650px;
-  margin: 0 auto;
-  color: #aaa49a;
-  line-height: 1.8;
-  font-size: 15px;
-}
-
-/* Section */
-
-.fragment-section,
-.assembly-final-section,
-.final-question-section {
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.section-heading {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 25px;
-}
-
-.section-heading h2 {
-  margin: 7px 0 0;
-  font-family: "Cinzel", serif;
-  font-size: 25px;
-}
-
-.fragment-counter {
-  width: 58px;
-  height: 58px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(212, 167, 44, 0.4);
-  color: #d4a72c;
-  font-family: "Cinzel", serif;
-  font-size: 18px;
-}
-
-/* Fragment Grid */
-
-.fragment-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
-  margin-bottom: 32px;
-}
-
-.fragment-card {
-  position: relative;
-  min-height: 145px;
-  padding: 18px;
-  border: 1px solid rgba(245, 234, 210, 0.12);
-  border-radius: 3px;
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255, 255, 255, 0.035),
-      rgba(255, 255, 255, 0.01)
-    );
-  color: #f5ead2;
-  text-align: left;
-  cursor: pointer;
-  transition:
-    transform 0.2s ease,
-    border-color 0.2s ease,
-    background 0.2s ease;
-}
-
-.fragment-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(212, 167, 44, 0.55);
-  background: rgba(212, 167, 44, 0.06);
-}
-
-.fragment-card.selected {
-  border-color: #d4a72c;
-  background: rgba(212, 167, 44, 0.11);
-  box-shadow: 0 0 25px rgba(212, 167, 44, 0.08);
-}
-
-.fragment-number {
-  color: #d4a72c;
-  margin-bottom: 22px;
-}
-
-.fragment-card span {
-  display: block;
-  color: #77736c;
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  margin-bottom: 7px;
-}
-
-.fragment-card strong {
-  display: block;
-  font-family: "Cinzel", serif;
-  font-size: 17px;
-  letter-spacing: 0.05em;
-}
-
-.fragment-card small {
-  display: block;
-  margin-top: 9px;
-  color: #9b968d;
-  font-size: 9px;
-  letter-spacing: 0.14em;
-}
-
-/* Main buttons */
-
-.round-three-page .primary-game-button {
-  min-height: 52px;
-  padding: 0 27px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  margin: 0 auto;
-  border: 1px solid #d4a72c;
-  border-radius: 2px;
-  background: #d4a72c;
-  color: #080a0d;
-  font-family: "Cinzel", serif;
-  font-weight: 800;
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.round-three-page .primary-game-button:hover {
-  background: #f0c957;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(212, 167, 44, 0.18);
-}
-
-/* Assembly */
-
-.assembly-final-section {
-  text-align: center;
-  padding: 30px 20px 50px;
-}
-
-.success-icon {
-  width: 75px;
-  height: 75px;
-  margin: 0 auto 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  border: 1px solid rgba(75, 180, 115, 0.45);
-  color: #72d59a;
-  background: rgba(75, 180, 115, 0.08);
-}
-
-.assembly-final-section h2 {
-  margin: 10px 0 28px;
-  font-family: "Cinzel", serif;
-  font-size: clamp(26px, 4vw, 42px);
-}
-
-.qr-placeholder {
-  width: min(330px, 80vw);
-  margin: 0 auto 25px;
-  padding: 24px;
-  box-sizing: border-box;
-  border: 1px solid rgba(212, 167, 44, 0.3);
-  background: #f3ead7;
-  color: #17130d;
-}
-
-.qr-frame {
-  width: 230px;
-  height: 230px;
-  margin: 0 auto 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #fff;
-}
-
-.qr-placeholder p {
-  margin: 0;
-  font-family: "Cinzel", serif;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-}
-
-.scan-instruction {
-  color: #99938a;
-  margin-bottom: 25px;
-  font-size: 14px;
-}
-
-/* Final Question */
-
-.final-question-section {
-  max-width: 850px;
-  text-align: center;
-  padding: 35px 20px 50px;
-}
-
-.question-icon {
-  width: 68px;
-  height: 68px;
-  margin: 0 auto 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(212, 167, 44, 0.45);
-  color: #d4a72c;
-  background: rgba(212, 167, 44, 0.07);
-  border-radius: 50%;
-}
-
-.final-question-section h2 {
-  max-width: 760px;
-  margin: 14px auto 18px;
-  font-family: "Cinzel", serif;
-  font-size: clamp(24px, 4vw, 38px);
-  line-height: 1.3;
-}
-
-.question-note {
-  color: #858078;
-  font-size: 13px;
-  margin-bottom: 30px;
-}
-
-.final-answer-area {
-  max-width: 620px;
-  margin: 0 auto;
-}
-
-.final-answer-area input {
-  width: 100%;
-  height: 58px;
-  box-sizing: border-box;
-  margin-bottom: 14px;
-  padding: 0 18px;
-  border: 1px solid rgba(245, 234, 210, 0.2);
-  outline: none;
-  background: rgba(255, 255, 255, 0.045);
-  color: #f5ead2;
-  font-size: 16px;
-  text-align: center;
-}
-
-.final-answer-area input:focus {
-  border-color: #d4a72c;
-  box-shadow: 0 0 20px rgba(212, 167, 44, 0.08);
-}
-
-.final-answer-area input::placeholder {
-  color: #66625c;
-}
-
-.final-feedback {
-  max-width: 620px;
-  margin: 20px auto 0;
-  padding: 14px 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  border: 1px solid rgba(95, 185, 120, 0.3);
-  background: rgba(95, 185, 120, 0.07);
-  color: #8ce0ad;
-  font-size: 13px;
-}
-
-.final-feedback.error {
-  border-color: rgba(220, 80, 70, 0.35);
-  background: rgba(220, 80, 70, 0.07);
-  color: #f08b82;
-}
-
-/* Final Win */
-
-.final-win-card {
-  width: min(760px, 90vw);
-  min-height: 70vh;
-  margin: 0 auto;
-  box-sizing: border-box;
-  padding: 70px 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.final-skull {
-  width: 92px;
-  height: 92px;
-  margin-bottom: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(212, 167, 44, 0.5);
-  border-radius: 50%;
-  color: #d4a72c;
-  background: rgba(212, 167, 44, 0.07);
-  box-shadow: 0 0 45px rgba(212, 167, 44, 0.08);
-}
-
-.final-win-card h1 {
-  margin: 14px 0;
-  font-family: "Pirata One", cursive;
-  font-size: clamp(55px, 10vw, 105px);
-  font-weight: 400;
-  line-height: 0.9;
-  color: #f5ead2;
-}
-
-.win-message {
-  color: #aaa49a;
-  line-height: 1.8;
-  font-size: 16px;
-}
-
-.win-message strong {
-  color: #d4a72c;
-}
-
-.final-time {
-  min-width: 230px;
-  margin: 28px 0;
-  padding: 17px 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  border: 1px solid rgba(212, 167, 44, 0.35);
-  color: #d4a72c;
-}
-
-.final-time span {
-  font-size: 10px;
-  letter-spacing: 0.15em;
-}
-
-.final-time strong {
-  font-family: "Cinzel", serif;
-  font-size: 22px;
-}
-
-.win-divider {
-  color: #d4a72c;
-  letter-spacing: 0.6em;
-  margin: 10px 0 25px;
-}
-
-.win-quote {
-  color: #77736d;
-  line-height: 1.8;
-  font-size: 13px;
-  font-style: italic;
-}
-
-/* Back */
-
-.round-three-page .back-button {
-  display: block;
-  margin: 50px auto 0;
-  border: none;
-  background: none;
-  color: #65615a;
-  font-size: 10px;
-  letter-spacing: 0.15em;
-  cursor: pointer;
-}
-
-.round-three-page .back-button:hover {
-  color: #d4a72c;
-}
-
-/* Responsive */
-
-@media (max-width: 800px) {
-  .round-three-page {
-    padding: 25px 20px 45px;
-  }
-
-  .round-three-page .game-header {
-    flex-direction: column;
-    margin-bottom: 35px;
-  }
-
-  .round-three-page .timer-box {
-    align-self: flex-start;
-  }
-
-  .fragment-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .fragment-card {
-    min-height: 130px;
-  }
-}
-
-@media (max-width: 500px) {
-  .fragment-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .final-intro h2 {
-    font-size: 50px;
-  }
-
-  .qr-frame {
-    width: 190px;
-    height: 190px;
-  }
-
-  .final-win-card h1 {
-    font-size: 65px;
-  }
-}
-
-/* =========================================================
-   HACK THE HUNT — TECHNITUDE
-   ONE PIECE / GRAND LINE THEME
-========================================================= */
-
-:root {
-  --sea-black: #04080d;
-  --sea-deep: #07121b;
-  --sea-blue: #0d2635;
-  --sea-blue-2: #12384b;
-
-  --gold-dark: #9b6d22;
-  --gold: #d6a743;
-  --gold-bright: #f1c75b;
-  --gold-soft: #e7d09a;
-
-  --parchment: #f3e7c8;
-  --cream: #eee3ca;
-
-  --muted: #958d7d;
-  --muted-dark: #625d52;
-
-  --danger: #b85b49;
-  --success: #789d65;
-
-  --border: rgba(214, 167, 67, 0.28);
-  --border-soft: rgba(214, 167, 67, 0.14);
-
-  font-family: "Cinzel", serif;
-  color: var(--cream);
-  background: var(--sea-black);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-html {
-  min-height: 100%;
-  background: var(--sea-black);
-}
-
-body {
-  margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
-  background:
-    radial-gradient(
-      circle at 50% 10%,
-      rgba(18, 56, 75, 0.22),
-      transparent 35%
-    ),
-    radial-gradient(
-      circle at 85% 85%,
-      rgba(214, 167, 67, 0.06),
-      transparent 30%
-    ),
-    var(--sea-black);
-  color: var(--cream);
-}
-
-button,
-input {
-  font: inherit;
-}
-
-button {
-  cursor: pointer;
-}
-
-#root {
-  min-height: 100vh;
-}
-
-/* =========================================================
-   SHARED
-========================================================= */
-
-.page-shell {
-  min-height: 100vh;
-  position: relative;
-  overflow: hidden;
-}
-
-.page-shell::before,
-.round-page::before,
-.round-two-page::before,
-.round-three-page::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.08;
-  background-image:
-    linear-gradient(
-      rgba(214, 167, 67, 0.25) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(214, 167, 67, 0.25) 1px,
-      transparent 1px
-    );
-  background-size: 55px 55px;
-  mask-image: linear-gradient(
-    to bottom,
-    black,
-    transparent 90%
-  );
-}
-
-/* =========================================================
-   NAVBAR
-========================================================= */
-
-.navbar {
-  height: 74px;
-  width: 100%;
-  padding: 0 5vw;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  position: relative;
-  z-index: 20;
-
-  border-bottom: 1px solid rgba(214, 167, 67, 0.18);
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(4, 8, 13, 0.98),
-      rgba(4, 8, 13, 0.88)
-    );
-
-  backdrop-filter: blur(10px);
-}
-
-.navbar-brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-
-  color: var(--gold-soft);
-  text-decoration: none;
-
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 2px;
-}
-
-.navbar-brand::before {
-  content: "☠";
-  color: var(--gold);
-  font-size: 18px;
-}
-
-.navbar-links {
-  display: flex;
-  align-items: center;
-  gap: 26px;
-}
-
-.navbar-links a {
-  color: var(--muted);
-  text-decoration: none;
-
-  font-size: 10px;
-  letter-spacing: 1.5px;
-  transition: 0.25s ease;
-}
-
-.navbar-links a:hover {
-  color: var(--gold-bright);
-}
-
-/* =========================================================
-   HOME PAGE
-========================================================= */
-
-.home-page {
-  min-height: 100vh;
-  position: relative;
-  overflow: hidden;
-
-  display: flex;
-  flex-direction: column;
-
-  background:
-    radial-gradient(
-      ellipse at center top,
-      rgba(18, 56, 75, 0.28),
-      transparent 42%
-    ),
-    radial-gradient(
-      circle at 50% 65%,
-      rgba(214, 167, 67, 0.08),
-      transparent 28%
-    ),
-    #04080d;
-}
-
-.home-page::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-
-  background:
-    radial-gradient(
-      circle at 50% 45%,
-      transparent 0,
-      transparent 30%,
-      rgba(0, 0, 0, 0.45) 80%
-    );
-
-  pointer-events: none;
-}
-
-.home-content {
-  width: min(1100px, 90%);
-  margin: auto;
-
-  position: relative;
-  z-index: 2;
-
-  text-align: center;
-  padding: 70px 0;
-}
-
-.home-eyebrow {
-  margin-bottom: 22px;
-
-  color: var(--gold);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 5px;
-}
-
-.home-title {
-  margin: 0;
-
-  color: var(--parchment);
-  font-family: "Pirata One", cursive;
-  font-size: clamp(70px, 13vw, 150px);
-  line-height: 0.8;
-  letter-spacing: 5px;
-
-  text-shadow:
-    0 2px 0 #8e6725,
-    0 0 40px rgba(214, 167, 67, 0.13);
-}
-
-.home-title span {
-  display: block;
-  color: var(--gold-bright);
-}
-
-.home-subtitle {
-  margin: 30px auto 0;
-
-  max-width: 650px;
-
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 2;
-  letter-spacing: 2px;
-}
-
-.home-divider {
-  width: 180px;
-  height: 1px;
-  margin: 32px auto;
-
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--gold),
-    transparent
-  );
-}
-
-.home-cta {
-  min-width: 230px;
-  height: 54px;
-
-  margin-top: 25px;
-  padding: 0 28px;
-
-  border: 1px solid var(--gold);
-  background:
-    linear-gradient(
-      135deg,
-      var(--gold-bright),
-      var(--gold-dark)
-    );
-
-  color: #090b0d;
-
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 2px;
-
-  box-shadow:
-    0 12px 40px rgba(214, 167, 67, 0.12),
-    inset 0 1px rgba(255, 255, 255, 0.25);
-
-  transition: 0.25s ease;
-}
-
-.home-cta:hover {
-  transform: translateY(-3px);
-
-  box-shadow:
-    0 18px 50px rgba(214, 167, 67, 0.2),
-    0 0 30px rgba(214, 167, 67, 0.08);
-}
-
-.home-legend {
-  margin-top: 50px;
-
-  color: var(--muted-dark);
-  font-size: 9px;
-  letter-spacing: 2px;
-}
-
-.home-footer {
-  padding: 22px;
-
-  position: relative;
-  z-index: 2;
-
-  border-top: 1px solid rgba(214, 167, 67, 0.12);
-
-  color: #575249;
-  text-align: center;
-
-  font-size: 8px;
-  letter-spacing: 2px;
-}
-
-/* =========================================================
-   COMMON ROUND PAGE
-========================================================= */
-
-.round-page {
-  min-height: 100vh;
-  padding: 34px 6vw 60px;
-
-  position: relative;
-  overflow-x: hidden;
-
-  color: var(--cream);
-
-  background:
-    radial-gradient(
-      circle at 50% 12%,
-      rgba(214, 167, 67, 0.09),
-      transparent 30%
-    ),
-    radial-gradient(
-      circle at 10% 80%,
-      rgba(18, 56, 75, 0.16),
-      transparent 32%
-    ),
-    var(--sea-black);
-}
-
-/* =========================================================
-   ROUND HEADER
-========================================================= */
-
-.crew-display {
-  width: min(1100px, 100%);
-  margin: 0 auto 28px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-
-  position: relative;
-  z-index: 2;
-}
-
-.crew-display span {
-  color: var(--muted);
-  font-size: 9px;
-  letter-spacing: 2px;
-}
-
-.crew-display strong {
-  color: var(--gold-soft);
-  letter-spacing: 1px;
-}
-
-.round-container {
-  width: min(900px, 100%);
-  margin: 0 auto;
-
-  position: relative;
-  z-index: 2;
-}
-
-.round-title {
-  margin: 0;
-
-  color: var(--gold-bright);
-  font-family: "Pirata One", cursive;
-  font-size: clamp(48px, 7vw, 82px);
-  line-height: 0.9;
-  letter-spacing: 2px;
-
-  text-align: center;
-
-  text-shadow: 0 0 25px rgba(214, 167, 67, 0.1);
-}
-
-.round-subtitle {
-  margin: 14px auto 30px;
-
-  color: var(--muted);
-  font-size: 10px;
-  letter-spacing: 2px;
-  text-align: center;
-}
-
-.round-stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-
-  border: 1px solid var(--border-soft);
-  background: rgba(7, 14, 20, 0.8);
-
-  margin-bottom: 24px;
-}
-
-.round-stats > div {
-  padding: 15px;
-  text-align: center;
-
-  border-right: 1px solid var(--border-soft);
-}
-
-.round-stats > div:last-child {
-  border-right: none;
-}
-
-.round-stats span {
-  display: block;
-
-  margin-bottom: 6px;
-
-  color: var(--muted-dark);
-  font-size: 8px;
-  letter-spacing: 2px;
-}
-
-.round-stats strong {
-  color: var(--gold-soft);
-  font-size: 14px;
-}
-
-/* =========================================================
-   WANTED CARD / ROUND 1
-========================================================= */
-
-.wanted-card {
-  width: min(760px, 100%);
-  margin: 0 auto;
-
-  padding: clamp(28px, 5vw, 55px);
-
-  position: relative;
-
-  border: 1px solid rgba(214, 167, 67, 0.28);
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(20, 28, 33, 0.98),
-      rgba(6, 11, 16, 0.98)
-    );
-
-  box-shadow:
-    0 25px 80px rgba(0, 0, 0, 0.42),
-    inset 0 0 50px rgba(214, 167, 67, 0.025);
-}
-
-.wanted-card::before {
-  content: "";
-  position: absolute;
-  inset: 8px;
-
-  border: 1px solid rgba(214, 167, 67, 0.07);
-
-  pointer-events: none;
-}
-
-.logo-circle {
-  width: 150px;
-  height: 150px;
-
-  margin: 0 auto 28px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 50%;
-
-  border: 1px solid rgba(214, 167, 67, 0.5);
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(255, 255, 255, 0.04),
-      rgba(7, 13, 18, 0.95)
-    );
-
-  box-shadow:
-    0 0 40px rgba(214, 167, 67, 0.07),
-    inset 0 0 30px rgba(214, 167, 67, 0.05);
-}
-
-.logo-circle img {
-  max-width: 75%;
-  max-height: 75%;
-  object-fit: contain;
-}
-
-.wanted-card h2 {
-  margin: 0 0 12px;
-
-  color: var(--parchment);
-
-  text-align: center;
-
-  font-size: 19px;
-  letter-spacing: 2px;
-}
-
-.wanted-card > p {
   margin: 0 0 25px;
-
-  color: var(--muted);
-  text-align: center;
-
-  font-size: 10px;
-  line-height: 1.8;
-}
-
-/* =========================================================
-   DIFFICULTY
-========================================================= */
-
-.difficulty-badge {
-  width: fit-content;
-  margin: 0 auto 20px;
-  padding: 6px 12px;
-
-  border: 1px solid var(--border);
-
-  color: var(--gold);
-
-  font-size: 8px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
-/* =========================================================
-   ANSWER AREA
-========================================================= */
-
-.answer-area {
-  display: flex;
-  gap: 10px;
-}
-
-.answer-area input {
-  flex: 1;
-
-  height: 48px;
-  padding: 0 15px;
-
-  outline: none;
-
-  border: 1px solid rgba(214, 167, 67, 0.22);
-  background: rgba(3, 8, 12, 0.9);
-
-  color: var(--parchment);
-
-  font-size: 11px;
-  letter-spacing: 1px;
-
-  transition: 0.2s ease;
-}
-
-.answer-area input:focus {
-  border-color: var(--gold);
-
-  box-shadow:
-    0 0 20px rgba(214, 167, 67, 0.08);
-}
-
-.answer-area input::placeholder {
-  color: #555149;
-}
-
-.answer-area button {
-  min-width: 145px;
-
-  border: 1px solid var(--gold);
-
-  background:
-    linear-gradient(
-      135deg,
-      var(--gold-bright),
-      var(--gold-dark)
-    );
-
-  color: #080b0d;
-
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-
-  transition: 0.2s ease;
-}
-
-.answer-area button:hover {
-  transform: translateY(-2px);
-}
-
-/* =========================================================
-   FEEDBACK
-========================================================= */
-
-.feedback {
-  margin-top: 18px;
-  padding: 14px;
-
-  border: 1px solid var(--border-soft);
-
-  background: rgba(214, 167, 67, 0.04);
-
-  color: var(--gold-soft);
-
-  text-align: center;
-
-  font-size: 10px;
-  letter-spacing: 1px;
-}
-
-.feedback.correct {
-  border-color: rgba(120, 157, 101, 0.35);
-  color: #9fbd8f;
-}
-
-.feedback.wrong {
-  border-color: rgba(184, 91, 73, 0.35);
-  color: #d78b79;
-}
-
-/* =========================================================
-   PENALTIES
-========================================================= */
-
-.penalty-display {
-  margin: 18px auto;
-
-  text-align: center;
-
-  color: var(--danger);
-
-  font-size: 9px;
-  letter-spacing: 1.5px;
-}
-
-.penalty {
-  color: var(--danger);
-  font-weight: 700;
-}
-
-/* =========================================================
-   HINT SYSTEM
-========================================================= */
-
-.hint-buttons {
-  margin-top: 20px;
-
-  display: flex;
-  justify-content: center;
-  gap: 9px;
-}
-
-.hint-button {
-  padding: 10px 18px;
-
-  border: 1px solid rgba(214, 167, 67, 0.35);
-
-  background: rgba(214, 167, 67, 0.04);
-
-  color: var(--gold);
-
-  font-size: 8px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-
-  transition: 0.2s ease;
-}
-
-.hint-button span {
-  display: block;
-
-  margin-top: 4px;
-
-  color: rgba(245, 224, 170, 0.4);
-
-  font-size: 7px;
-}
-
-.hint-button:hover:not(:disabled) {
-  border-color: var(--gold-bright);
-
-  background: rgba(214, 167, 67, 0.09);
-
-  box-shadow: 0 0 18px rgba(214, 167, 67, 0.08);
-}
-
-.hint-button:disabled {
-  opacity: 0.25;
-  cursor: not-allowed;
-}
-
-.hint-text {
-  margin-top: 16px;
-  padding: 13px 15px;
-
-  border: 1px solid rgba(214, 167, 67, 0.2);
-
-  background: rgba(214, 167, 67, 0.05);
-
-  color: #e8c978;
-
-  font-size: 9px;
-  line-height: 1.7;
-}
-
-/* =========================================================
-   GAME BUTTONS
-========================================================= */
-
-.primary-game-button {
-  min-height: 48px;
-  padding: 0 22px;
-
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 9px;
-
-  border: 1px solid var(--gold);
-
-  background:
-    linear-gradient(
-      135deg,
-      var(--gold-bright),
-      var(--gold-dark)
-    );
-
-  color: #080b0d;
-
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-
-  transition: 0.2s ease;
-}
-
-.primary-game-button:hover {
-  transform: translateY(-2px);
-
-  box-shadow:
-    0 10px 30px rgba(214, 167, 67, 0.18);
-}
-
-.secondary-game-button {
-  min-height: 44px;
-  padding: 0 18px;
-
-  border: 1px solid rgba(214, 167, 67, 0.25);
-
-  background: rgba(214, 167, 67, 0.03);
-
-  color: var(--gold-soft);
-
-  font-size: 9px;
-  letter-spacing: 1.3px;
-
-  transition: 0.2s ease;
-}
-
-.secondary-game-button:hover {
-  border-color: var(--gold);
-  background: rgba(214, 167, 67, 0.07);
-}
-
-.skip-button {
-  min-height: 44px;
-  padding: 0 18px;
-
-  border: 1px solid rgba(214, 167, 67, 0.18);
-
-  background: transparent;
-
-  color: var(--muted);
-
-  font-size: 8px;
-  letter-spacing: 1px;
-}
-
-.skip-button:hover {
-  color: var(--gold-soft);
-  border-color: rgba(214, 167, 67, 0.4);
-}
-
-.give-up-button {
-  min-height: 44px;
-  padding: 0 18px;
-
-  border: 1px solid rgba(184, 91, 73, 0.3);
-
-  background: rgba(184, 91, 73, 0.035);
-
-  color: #b87869;
-
-  font-size: 8px;
-  font-weight: 700;
-  letter-spacing: 1.2px;
-
-  transition: 0.2s ease;
-}
-
-.give-up-button:hover {
-  border-color: rgba(184, 91, 73, 0.7);
-  background: rgba(184, 91, 73, 0.08);
-  color: #d38b7b;
-}
-
-/* =========================================================
-   BACK BUTTON
-========================================================= */
-
-.back-button {
-  margin-top: 25px;
-
-  border: none;
-  background: transparent;
-
-  color: #55534d;
-
-  font-size: 9px;
-  letter-spacing: 2px;
-
-  transition: 0.2s ease;
-}
-
-.back-button:hover {
-  color: var(--gold);
-}
-
-/* =========================================================
-   ROUND COMPLETE
-========================================================= */
-
-.round-complete {
-  padding: 45px 25px;
-
-  text-align: center;
-
-  border: 1px solid var(--border);
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(17, 27, 33, 0.98),
-      rgba(5, 10, 14, 0.98)
-    );
-}
-
-.round-complete h2 {
-  margin: 0 0 15px;
-
-  color: var(--gold-bright);
-
+  color: #f1d28a;
   font-family: "Pirata One", cursive;
-  font-size: 48px;
-  letter-spacing: 2px;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  font-weight: 400;
+  letter-spacing: 0.06em;
 }
 
-.round-complete p {
-  color: var(--muted);
-  font-size: 10px;
-  line-height: 1.8;
-}
-
-/* =========================================================
-   ROUND 2 — GRAND LINE HUNT
-========================================================= */
-
-.round-two-page {
-  min-height: 100vh;
-  padding: 35px 6vw 60px;
-
+.clue-text {
   position: relative;
-  overflow-x: hidden;
-
-  color: #eee4ce;
-
-  background:
-    radial-gradient(
-      circle at 50% 15%,
-      rgba(214, 167, 67, 0.1),
-      transparent 32%
-    ),
-    radial-gradient(
-      circle at 15% 80%,
-      rgba(20, 70, 90, 0.14),
-      transparent 30%
-    ),
-    #05090e;
-}
-
-.round-two-page .game-header {
-  width: min(1100px, 100%);
-  margin: 0 auto 30px;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 20px;
-
-  position: relative;
-  z-index: 2;
-}
-
-.round-two-page .game-header h1 {
-  margin: 0;
-
-  color: var(--gold-bright);
-
-  font-family: "Pirata One", cursive;
-  font-size: clamp(48px, 7vw, 78px);
-  line-height: 0.9;
-  letter-spacing: 2px;
-
-  text-shadow: 0 4px 20px rgba(214, 167, 67, 0.12);
-}
-
-.round-two-page .game-header p {
-  margin: 13px 0 0;
-
-  color: var(--muted);
-
-  font-size: 10px;
-  letter-spacing: 1px;
-}
-
-.round-two-page .game-header p strong {
-  color: var(--gold-soft);
-}
-
-/* TIMER */
-
-.round-two-page .timer-box {
-  min-width: 130px;
-  padding: 15px 22px;
-
-  border: 1px solid rgba(214, 167, 67, 0.35);
-
-  background: rgba(8, 14, 20, 0.92);
-
-  text-align: center;
-
-  box-shadow:
-    inset 0 0 25px rgba(214, 167, 67, 0.03);
-}
-
-.round-two-page .timer-box span {
-  display: block;
-
-  margin-bottom: 6px;
-
-  color: #6e6b63;
-
-  font-size: 8px;
-  letter-spacing: 3px;
-}
-
-.round-two-page .timer-box strong {
-  color: var(--gold-bright);
-  font-size: 23px;
-}
-
-/* STATUS */
-
-.round-two-page .hunt-status {
-  width: min(900px, 100%);
-  margin: 0 auto 22px;
-
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-
-  border: 1px solid rgba(214, 167, 67, 0.22);
-
-  background: rgba(7, 13, 19, 0.88);
-
-  position: relative;
-  z-index: 2;
-}
-
-.round-two-page .hunt-status > div {
-  padding: 15px 10px;
-
-  text-align: center;
-
-  border-right: 1px solid rgba(214, 167, 67, 0.14);
-}
-
-.round-two-page .hunt-status > div:last-child {
-  border-right: none;
-}
-
-.round-two-page .hunt-status span {
-  display: block;
-
-  margin-bottom: 6px;
-
-  color: #66645e;
-
-  font-size: 8px;
-  letter-spacing: 2px;
-}
-
-.round-two-page .hunt-status strong {
-  color: var(--gold-soft);
-
-  font-size: 13px;
-  letter-spacing: 1px;
-}
-
-/* HUNT CARD */
-
-.round-two-page .hunt-card {
-  width: min(900px, 100%);
+  max-width: 700px;
   margin: 0 auto;
-
-  padding: clamp(28px, 5vw, 55px);
-
-  position: relative;
-  z-index: 2;
-
-  border: 1px solid rgba(214, 167, 67, 0.28);
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(18, 27, 34, 0.98),
-      rgba(7, 12, 17, 0.98)
-    );
-
-  box-shadow:
-    0 30px 80px rgba(0, 0, 0, 0.45),
-    inset 0 0 60px rgba(214, 167, 67, 0.02);
-}
-
-.round-two-page .stage-icon {
-  width: 58px;
-  height: 58px;
-
-  margin: 0 auto 20px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border: 1px solid rgba(214, 167, 67, 0.35);
-
-  color: var(--gold-bright);
-
-  background: rgba(214, 167, 67, 0.04);
-
-  box-shadow: 0 0 25px rgba(214, 167, 67, 0.06);
-}
-
-.round-two-page .hunt-card h2 {
-  margin: 0 0 12px;
-
-  color: var(--parchment);
-
-  font-size: 18px;
-  letter-spacing: 2px;
-
-  text-align: center;
-}
-
-.round-two-page .hunt-card > p {
-  color: var(--muted);
-
-  font-size: 10px;
-  line-height: 1.8;
-
-  text-align: center;
-}
-
-/* CLUE */
-
-.round-two-page .clue-box {
-  margin: 28px 0;
-  padding: 30px;
-
-  border: 1px solid rgba(214, 167, 67, 0.28);
-
-  background:
-    radial-gradient(
-      circle at center,
-      rgba(214, 167, 67, 0.07),
-      transparent 70%
-    );
-
-  text-align: center;
-}
-
-.round-two-page .clue-box span {
-  display: block;
-
-  margin-bottom: 15px;
-
-  color: var(--gold);
-
-  font-size: 8px;
-  letter-spacing: 3px;
-}
-
-.round-two-page .clue-box p {
-  margin: 0;
-
-  color: var(--parchment);
-
-  font-size: 15px;
+  color: rgba(247, 231, 197, 0.85);
+  font-family: "Cinzel", serif;
+  font-size: clamp(1rem, 2vw, 1.25rem);
   line-height: 1.9;
+  letter-spacing: 0.03em;
 }
 
-/* LOCATION WARNING */
-
-.round-two-page .location-warning {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-
-  margin-top: 20px;
-  padding: 14px;
-
-  border-left: 2px solid var(--gold-dark);
-
-  background: rgba(214, 167, 67, 0.035);
-
-  color: var(--muted);
-
-  font-size: 9px;
-  line-height: 1.7;
+.clue-text strong {
+  color: #e4b94f;
 }
-
-/* INSTRUCTIONS */
 
 .hunt-instructions {
-  margin-top: 30px;
+  width: min(850px, 100%);
+  margin: 25px auto 0;
+  padding: 28px 30px;
+  border: 1px solid rgba(220, 169, 62, 0.18);
+  background: rgba(4, 9, 16, 0.65);
 }
 
 .hunt-instructions h3 {
-  margin: 0 0 15px;
-
-  color: var(--gold-soft);
-
-  font-size: 10px;
-  letter-spacing: 2px;
+  margin: 0 0 20px;
+  color: #dca93e;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
 }
 
 .instruction-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  gap: 14px;
 }
 
-.instruction-grid > div {
-  padding: 17px;
-
-  border: 1px solid rgba(214, 167, 67, 0.12);
-
-  background: rgba(214, 167, 67, 0.025);
+.instruction-item {
+  padding: 18px 12px;
+  border: 1px solid rgba(220, 169, 62, 0.13);
+  background: rgba(220, 169, 62, 0.025);
 }
 
-.instruction-grid strong {
+.instruction-item span {
   display: block;
-
-  margin-bottom: 7px;
-
-  color: var(--gold);
-
-  font-size: 9px;
-  letter-spacing: 1px;
+  margin-bottom: 8px;
+  color: #dca93e;
+  font-family: "Pirata One", cursive;
+  font-size: 1.6rem;
 }
 
-.instruction-grid span {
-  color: var(--muted);
+.instruction-item strong {
+  display: block;
+  margin-bottom: 7px;
+  color: #ead49e;
+  font-size: 0.67rem;
+  letter-spacing: 0.1em;
+}
 
-  font-size: 8px;
+.instruction-item p {
+  margin: 0;
+  color: rgba(245, 224, 170, 0.45);
+  font-size: 0.6rem;
   line-height: 1.6;
 }
 
 .round-note {
-  margin-top: 22px;
-  padding: 13px 15px;
-
-  border: 1px solid rgba(214, 167, 67, 0.12);
-
-  color: #716c62;
-
-  font-size: 8px;
+  width: min(700px, 100%);
+  margin: 25px auto 0;
+  color: rgba(245, 224, 170, 0.42);
+  font-size: 0.62rem;
   line-height: 1.7;
+  letter-spacing: 0.05em;
+}
+
+.round-note strong {
+  color: rgba(220, 169, 62, 0.7);
+}
+
+.give-up-button {
+  margin-top: 25px;
+  padding: 11px 22px;
+  border: 1px solid rgba(180, 74, 55, 0.4);
+  color: rgba(224, 132, 112, 0.75);
+  background: rgba(120, 42, 29, 0.08);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  transition: 0.2s ease;
+}
+
+.give-up-button:hover {
+  border-color: rgba(210, 91, 68, 0.75);
+  color: #e6a08e;
+  background: rgba(120, 42, 29, 0.16);
 }
 
 /* =========================================================
-   ROUND 2 BUTTONS
-========================================================= */
-
-.round-two-page .primary-game-button {
-  margin-top: 28px;
-  width: 100%;
-}
-
-.round-two-page .back-button {
-  display: block;
-  margin: 22px auto 0;
-}
-
-/* =========================================================
-   ROUND 3
-========================================================= */
-
-.round-three-page {
-  min-height: 100vh;
-  padding: 34px 6vw 60px;
-
-  position: relative;
-  overflow-x: hidden;
-
-  color: var(--parchment);
-
-  background:
-    radial-gradient(
-      circle at 50% 15%,
-      rgba(214, 167, 67, 0.12),
-      transparent 30%
-    ),
-    radial-gradient(
-      circle at 15% 80%,
-      rgba(20, 75, 100, 0.15),
-      transparent 28%
-    ),
-    #060a12;
-}
-
-.round-three-page .game-header {
-  width: min(1100px, 100%);
-  margin: 0 auto 40px;
-
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 30px;
-
-  position: relative;
-  z-index: 2;
-}
-
-.round-three-page .game-header h1 {
-  margin: 4px 0 8px;
-
-  color: var(--gold-bright);
-
-  font-family: "Pirata One", cursive;
-  font-size: clamp(48px, 7vw, 78px);
-  line-height: 0.9;
-  letter-spacing: 2px;
-}
-
-.round-three-page .game-header p {
-  margin: 0;
-
-  color: var(--muted);
-
-  font-size: 9px;
-  letter-spacing: 2px;
-}
-
-.round-three-page .timer-box {
-  min-width: 125px;
-  padding: 15px 20px;
-
-  border: 1px solid rgba(214, 167, 67, 0.35);
-
-  background: rgba(7, 13, 19, 0.9);
-
-  text-align: center;
-}
-
-.round-three-page .timer-box span {
-  display: block;
-
-  margin-bottom: 6px;
-
-  color: var(--muted-dark);
-
-  font-size: 8px;
-  letter-spacing: 2px;
-}
-
-.round-three-page .timer-box strong {
-  color: var(--gold-bright);
-  font-size: 22px;
-}
-
-/* FINAL TREASURE CARD */
+   ROUND 3 — ASSEMBLE THE ONE PIECE
+   ========================================================= */
 
 .final-treasure-card {
   width: min(900px, 100%);
-  margin: 0 auto;
-
-  padding: clamp(30px, 6vw, 65px);
-
+  margin: 35px auto 0;
   position: relative;
-  z-index: 2;
-
-  text-align: center;
-
-  border: 1px solid rgba(214, 167, 67, 0.3);
-
+  overflow: hidden;
+  border: 1px solid rgba(220, 169, 62, 0.45);
   background:
-    linear-gradient(
-      145deg,
-      rgba(18, 27, 34, 0.98),
-      rgba(7, 12, 17, 0.98)
-    );
-
+    radial-gradient(
+      circle at 50% 20%,
+      rgba(220, 169, 62, 0.08),
+      transparent 42%
+    ),
+    rgba(6, 11, 18, 0.96);
   box-shadow:
-    0 30px 80px rgba(0, 0, 0, 0.45),
-    inset 0 0 50px rgba(214, 167, 67, 0.025);
+    0 30px 80px rgba(0, 0, 0, 0.5),
+    inset 0 0 70px rgba(220, 169, 62, 0.025);
 }
 
-.final-treasure-card > svg {
-  margin-bottom: 18px;
-
-  color: var(--gold-bright);
-
-  filter: drop-shadow(
-    0 0 14px rgba(214, 167, 67, 0.2)
-  );
+.final-treasure-card::before {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border: 1px solid rgba(220, 169, 62, 0.12);
+  pointer-events: none;
 }
 
-.final-treasure-card h2 {
-  margin: 5px 0 15px;
-
-  color: var(--parchment);
-
-  font-family: "Cinzel", serif;
-
-  font-size: clamp(22px, 4vw, 32px);
-  letter-spacing: 3px;
+.final-treasure-content {
+  position: relative;
+  padding: 50px 55px;
 }
 
-.final-treasure-card > p {
-  max-width: 600px;
-  margin: 0 auto 30px;
-
-  color: var(--muted);
-
-  font-size: 10px;
-  line-height: 1.9;
-}
-
-/* QR ASSEMBLY */
-
-.qr-assembly-display {
-  width: min(420px, 100%);
-  margin: 30px auto;
-
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 5px;
-
-  padding: 7px;
-
-  border: 1px solid rgba(214, 167, 67, 0.32);
-
-  background: #020507;
-
-  box-shadow:
-    0 0 35px rgba(0, 0, 0, 0.5);
-}
-
-.qr-assembly-display > div {
-  aspect-ratio: 1;
-
+.final-treasure-icon {
+  width: 75px;
+  height: 75px;
+  margin: 0 auto 25px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 1px solid rgba(220, 169, 62, 0.4);
+  border-radius: 50%;
+  color: #dca93e;
+  background: rgba(220, 169, 62, 0.04);
+  box-shadow: 0 0 30px rgba(220, 169, 62, 0.08);
+}
 
-  border: 1px solid rgba(214, 167, 67, 0.1);
+.final-treasure-content h2 {
+  margin: 0;
+  color: #f0dfb5;
+  font-family: "Pirata One", cursive;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 400;
+  letter-spacing: 0.05em;
+}
 
+.final-treasure-content > p {
+  max-width: 650px;
+  margin: 18px auto 0;
+  color: rgba(245, 224, 170, 0.58);
+  font-size: 0.72rem;
+  line-height: 1.8;
+  letter-spacing: 0.08em;
+}
+
+.qr-assembly-display {
+  width: min(430px, 80vw);
+  aspect-ratio: 1;
+  margin: 40px auto;
+  padding: 18px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  border: 1px solid rgba(220, 169, 62, 0.28);
   background:
-    radial-gradient(
-      circle,
-      rgba(214, 167, 67, 0.06),
-      #0c131a
+    linear-gradient(
+      135deg,
+      rgba(220, 169, 62, 0.07),
+      rgba(3, 7, 13, 0.95)
     );
-
-  color: #6f685c;
-
-  font-size: 10px;
+  box-shadow:
+    0 0 45px rgba(220, 169, 62, 0.06),
+    inset 0 0 30px rgba(0, 0, 0, 0.5);
 }
 
-.qr-assembly-display > div.found {
-  border-color: rgba(214, 167, 67, 0.4);
-  color: var(--gold);
+.qr-assembly-display .qr-piece {
+  min-width: 0;
+  min-height: 0;
+  border: 1px dashed rgba(220, 169, 62, 0.22);
+  background:
+    repeating-linear-gradient(
+      45deg,
+      rgba(220, 169, 62, 0.035) 0,
+      rgba(220, 169, 62, 0.035) 2px,
+      transparent 2px,
+      transparent 7px
+    );
 }
-
-/* FINAL STEPS */
 
 .final-steps {
+  width: min(760px, 100%);
+  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-
-  gap: 10px;
-
-  margin: 30px auto;
-
-  max-width: 760px;
+  gap: 12px;
 }
 
 .final-step {
-  padding: 18px 10px;
-
-  border: 1px solid rgba(214, 167, 67, 0.12);
-
-  background: rgba(214, 167, 67, 0.025);
+  padding: 20px 10px;
+  border: 1px solid rgba(220, 169, 62, 0.15);
+  background: rgba(220, 169, 62, 0.025);
 }
 
 .step-icon {
-  width: 34px;
-  height: 34px;
-
-  margin: 0 auto 10px;
-
+  width: 38px;
+  height: 38px;
+  margin: 0 auto 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  border: 1px solid rgba(214, 167, 67, 0.25);
-
-  color: var(--gold);
+  border: 1px solid rgba(220, 169, 62, 0.3);
+  border-radius: 50%;
+  color: #dca93e;
 }
 
 .final-step strong {
   display: block;
-
-  margin-bottom: 6px;
-
-  color: var(--gold-soft);
-
-  font-size: 8px;
-  letter-spacing: 1px;
+  color: #e7ca83;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
 }
 
 .final-step span {
-  color: var(--muted);
-
-  font-size: 7px;
+  display: block;
+  margin-top: 6px;
+  color: rgba(245, 224, 170, 0.38);
+  font-size: 0.55rem;
   line-height: 1.5;
 }
 
-/* FINAL ROUND BUTTONS */
-
-.round-three-page .primary-game-button {
-  margin-top: 15px;
+.final-treasure-warning {
+  width: min(650px, 100%);
+  margin: 28px auto 0;
+  padding: 14px 18px;
+  border: 1px solid rgba(220, 169, 62, 0.16);
+  color: rgba(245, 224, 170, 0.48);
+  background: rgba(220, 169, 62, 0.035);
+  font-size: 0.6rem;
+  line-height: 1.7;
+  letter-spacing: 0.04em;
 }
 
-.round-three-page .give-up-button {
-  margin-left: 8px;
+.final-treasure-warning strong {
+  color: rgba(220, 169, 62, 0.75);
 }
 
-/* =========================================================
-   FINAL QUESTION
-========================================================= */
-
-.final-question-page {
-  min-height: 100vh;
-  padding: 60px 6vw;
-
+.final-actions {
   display: flex;
-  align-items: center;
   justify-content: center;
-
-  position: relative;
-  overflow: hidden;
-
-  background:
-    radial-gradient(
-      circle at center,
-      rgba(214, 167, 67, 0.12),
-      transparent 35%
-    ),
-    radial-gradient(
-      circle at 20% 80%,
-      rgba(20, 75, 100, 0.12),
-      transparent 30%
-    ),
-    var(--sea-black);
+  gap: 12px;
+  margin-top: 30px;
 }
 
-.final-question-card {
-  width: min(700px, 100%);
-  padding: clamp(30px, 6vw, 60px);
-
-  position: relative;
-  z-index: 2;
-
-  text-align: center;
-
-  border: 1px solid rgba(214, 167, 67, 0.35);
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(17, 27, 33, 0.98),
-      rgba(5, 10, 14, 0.98)
-    );
-
-  box-shadow:
-    0 30px 100px rgba(0, 0, 0, 0.5),
-    inset 0 0 50px rgba(214, 167, 67, 0.025);
-}
-
-.final-question-card h1 {
-  margin: 0 0 12px;
-
-  color: var(--gold-bright);
-
-  font-family: "Pirata One", cursive;
-  font-size: clamp(48px, 8vw, 80px);
-  line-height: 0.9;
-}
-
-.final-question-card .question-label {
-  margin-bottom: 30px;
-
-  color: var(--muted);
-
-  font-size: 9px;
-  letter-spacing: 3px;
-}
-
-.final-question-card .question {
-  margin-bottom: 28px;
-
-  color: var(--parchment);
-
-  font-size: 16px;
-  line-height: 1.8;
-}
-
-.final-question-card input {
-  width: 100%;
-  height: 50px;
-
-  padding: 0 16px;
-
-  outline: none;
-
-  border: 1px solid rgba(214, 167, 67, 0.25);
-
-  background: rgba(3, 8, 12, 0.9);
-
-  color: var(--parchment);
-
-  text-align: center;
-
-  font-size: 11px;
-  letter-spacing: 1px;
-}
-
-.final-question-card input:focus {
-  border-color: var(--gold);
-
-  box-shadow: 0 0 20px rgba(214, 167, 67, 0.08);
-}
-
-.final-question-card button {
-  width: 100%;
-  height: 50px;
-
-  margin-top: 12px;
-
-  border: 1px solid var(--gold);
-
-  background:
-    linear-gradient(
-      135deg,
-      var(--gold-bright),
-      var(--gold-dark)
-    );
-
-  color: #080b0d;
-
-  font-size: 9px;
+.final-action-button {
+  padding: 13px 25px;
+  border: 1px solid #dca93e;
+  color: #171109;
+  background: #dca93e;
+  font-size: 0.65rem;
   font-weight: 800;
-  letter-spacing: 2px;
-
+  letter-spacing: 0.12em;
   transition: 0.2s ease;
 }
 
-.final-question-card button:hover {
+.final-action-button:hover {
+  background: #f0c761;
   transform: translateY(-2px);
-
-  box-shadow:
-    0 12px 30px rgba(214, 167, 67, 0.18);
 }
 
 /* =========================================================
-   SUCCESS / FAILURE
-========================================================= */
+   TIMER / ROUND CONTROLS
+   ========================================================= */
 
-.final-win-card {
-  width: min(720px, 100%);
-  margin: 0 auto;
-  padding: 60px 30px;
+.timer-warning {
+  color: #df9c55 !important;
+}
 
+.timer-danger {
+  color: #d8674d !important;
+  text-shadow: 0 0 12px rgba(216, 103, 77, 0.2);
+}
+
+.round-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.secondary-button {
+  padding: 12px 20px;
+  border: 1px solid rgba(220, 169, 62, 0.28);
+  color: rgba(245, 224, 170, 0.6);
+  background: rgba(220, 169, 62, 0.025);
+  font-size: 0.63rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  transition: 0.2s ease;
+}
+
+.secondary-button:hover {
+  color: #e7c66f;
+  border-color: rgba(220, 169, 62, 0.65);
+  background: rgba(220, 169, 62, 0.07);
+}
+
+/* =========================================================
+   ROUND COMPLETE / FINAL STATE
+   ========================================================= */
+
+.round-complete {
+  width: min(780px, calc(100% - 40px));
+  margin: 80px auto;
+  padding: 60px 40px;
   text-align: center;
+  border: 1px solid rgba(220, 169, 62, 0.35);
+  background: rgba(5, 10, 17, 0.9);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.45);
+}
 
-  border: 1px solid rgba(120, 157, 101, 0.35);
+.round-complete-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(220, 169, 62, 0.4);
+  border-radius: 50%;
+  color: #dca93e;
+}
 
+.round-complete h2 {
+  margin: 0;
+  color: #f0dfb5;
+  font-family: "Pirata One", cursive;
+  font-size: clamp(2.8rem, 7vw, 5rem);
+  font-weight: 400;
+}
+
+.round-complete p {
+  color: rgba(245, 224, 170, 0.55);
+  font-size: 0.75rem;
+  line-height: 1.8;
+  letter-spacing: 0.08em;
+}
+
+.final-time {
+  margin: 30px 0;
+}
+
+.final-time small {
+  display: block;
+  color: rgba(245, 224, 170, 0.4);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+}
+
+.final-time strong {
+  display: block;
+  margin-top: 8px;
+  color: #e5b74e;
+  font-size: 2.5rem;
+  letter-spacing: 0.08em;
+}
+/* =========================================================
+   FINAL QUESTION PAGE
+   ========================================================= */
+
+.final-question-card {
+  width: min(900px, 92vw);
+  margin: 55px auto;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(220, 169, 62, 0.45);
   background:
     radial-gradient(
-      circle at center,
-      rgba(120, 157, 101, 0.08),
-      transparent 65%
+      circle at 50% 15%,
+      rgba(220, 169, 62, 0.08),
+      transparent 45%
     ),
-    rgba(6, 12, 14, 0.96);
+    rgba(5, 10, 17, 0.96);
+  box-shadow:
+    0 30px 90px rgba(0, 0, 0, 0.5),
+    inset 0 0 70px rgba(220, 169, 62, 0.025);
 }
 
-.final-win-card h1 {
-  margin: 0 0 15px;
-
-  color: #a9c596;
-
-  font-family: "Pirata One", cursive;
-  font-size: clamp(50px, 8vw, 90px);
+.final-question-card::before {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border: 1px solid rgba(220, 169, 62, 0.12);
+  pointer-events: none;
 }
 
-.final-win-card p {
+.final-question-content {
+  position: relative;
+  padding: 3.5rem 4rem;
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.final-question-label {
+  margin-bottom: 12px;
+  color: #dca93e;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+}
+
+.final-question-content h2 {
+  max-width: 750px;
+  margin: 1.5rem auto;
+  color: #f2dfae;
+  font-family: "Cinzel", serif;
+  font-size: clamp(1.8rem, 3vw, 2.7rem);
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.03em;
+}
+
+.final-question-content code {
+  padding: 0.15em 0.35em;
+  border-radius: 6px;
+  color: #e8bd58;
+  background: rgba(220, 169, 62, 0.08);
+  font-family: "Courier New", monospace;
+  font-size: 0.9em;
+}
+
+.final-question-description {
+  max-width: 600px;
+  margin: 0 auto 28px;
+  color: rgba(245, 224, 170, 0.5);
+  font-size: 0.68rem;
+  line-height: 1.8;
+  letter-spacing: 0.05em;
+}
+
+.final-answer-form {
+  width: min(620px, 100%);
+  margin-top: 15px;
+}
+
+.final-answer-form input {
+  width: 100%;
+  padding: 17px 20px;
+  border: 1px solid rgba(220, 169, 62, 0.35);
+  outline: none;
+  color: #f4e4bd;
+  background: rgba(2, 6, 12, 0.9);
+  text-align: center;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  transition: 0.2s ease;
+}
+
+.final-answer-form input::placeholder {
+  color: rgba(245, 224, 170, 0.28);
+}
+
+.final-answer-form input:focus {
+  border-color: #dca93e;
+  box-shadow: 0 0 20px rgba(220, 169, 62, 0.1);
+}
+
+.final-submit-button {
+  width: 100%;
+  margin-top: 12px;
+  padding: 16px 25px;
+  border: 1px solid #dca93e;
+  color: #171109;
+  background: linear-gradient(
+    135deg,
+    #c58b29,
+    #edc55f,
+    #c58b29
+  );
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  transition: 0.2s ease;
+}
+
+.final-submit-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(220, 169, 62, 0.15);
+}
+
+.final-submit-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.final-warning {
+  max-width: 600px;
+  margin: 22px auto 0;
+  color: rgba(245, 224, 170, 0.35);
+  font-size: 0.58rem;
+  line-height: 1.6;
+  letter-spacing: 0.04em;
+}
+
+/* =========================================================
+   FINAL QUESTION — CORRECT
+   ========================================================= */
+
+.final-success {
+  width: min(760px, calc(100% - 40px));
+  margin: 70px auto;
+  padding: 65px 40px;
+  text-align: center;
+  border: 1px solid rgba(143, 185, 88, 0.4);
+  background:
+    radial-gradient(
+      circle at 50% 20%,
+      rgba(111, 160, 68, 0.08),
+      transparent 45%
+    ),
+    rgba(5, 13, 10, 0.94);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+}
+
+.final-success-icon {
+  width: 85px;
+  height: 85px;
+  margin: 0 auto 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(143, 185, 88, 0.5);
+  border-radius: 50%;
+  color: #a5ce6d;
+  box-shadow: 0 0 35px rgba(143, 185, 88, 0.08);
+}
+
+.final-success h2 {
   margin: 0;
+  color: #e6efcf;
+  font-family: "Pirata One", cursive;
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  font-weight: 400;
+}
 
-  color: var(--muted);
+.final-success h3 {
+  margin: 15px 0;
+  color: #b9d98a;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+}
 
-  font-size: 10px;
+.final-success p {
+  margin: 15px auto;
+  color: rgba(224, 240, 202, 0.5);
+  font-size: 0.68rem;
+  line-height: 1.8;
+  letter-spacing: 0.05em;
+}
+
+/* =========================================================
+   FINAL QUESTION — WRONG
+   ========================================================= */
+
+.final-error {
+  width: min(760px, calc(100% - 40px));
+  margin: 70px auto;
+  padding: 65px 40px;
+  text-align: center;
+  border: 1px solid rgba(190, 83, 62, 0.4);
+  background:
+    radial-gradient(
+      circle at 50% 20%,
+      rgba(155, 55, 38, 0.08),
+      transparent 45%
+    ),
+    rgba(14, 7, 7, 0.94);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+}
+
+.final-error-icon {
+  width: 85px;
+  height: 85px;
+  margin: 0 auto 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(190, 83, 62, 0.5);
+  border-radius: 50%;
+  color: #d87862;
+}
+
+.final-error h2 {
+  margin: 0;
+  color: #edc0b4;
+  font-family: "Pirata One", cursive;
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  font-weight: 400;
+}
+
+.final-error h3 {
+  margin: 15px 0;
+  color: #d9826e;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+}
+
+.final-error p {
+  margin: 15px auto;
+  color: rgba(240, 204, 194, 0.5);
+  font-size: 0.68rem;
   line-height: 1.8;
 }
 
 /* =========================================================
-   RESPONSIVE — TABLET
-========================================================= */
+   LOADING / SUBMIT STATE
+   ========================================================= */
 
-@media (max-width: 800px) {
+.loading-text {
+  color: rgba(245, 224, 170, 0.5);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  animation: pulseText 1.4s ease-in-out infinite;
+}
+
+@keyframes pulseText {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* =========================================================
+   DEVELOPMENT BUTTONS
+   KEEPING HOME DESIGN UNCHANGED
+   ========================================================= */
+
+.dev-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.dev-buttons button {
+  padding: 7px 12px;
+  border: 1px solid rgba(220, 169, 62, 0.25);
+  color: rgba(245, 224, 170, 0.35);
+  background: rgba(220, 169, 62, 0.025);
+  font-size: 0.5rem;
+  letter-spacing: 0.08em;
+}
+
+.dev-buttons button:hover {
+  color: #dca93e;
+  border-color: rgba(220, 169, 62, 0.5);
+}
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid rgba(220, 169, 62, 0.75);
+  outline-offset: 3px;
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
   .navbar {
-    padding: 0 20px;
+    padding: 0 30px;
   }
 
-  .navbar-links {
-    gap: 12px;
+  .round-container {
+    width: min(100% - 30px, 850px);
+    padding-top: 50px;
   }
 
-  .navbar-links a {
-    font-size: 8px;
+  .treasure-clue-card {
+    padding: 40px 35px;
   }
 
-  .home-content {
-    padding: 55px 0;
+  .final-treasure-content {
+    padding: 45px 35px;
   }
 
-  .instruction-grid {
-    grid-template-columns: 1fr;
+  .final-question-content {
+    padding: 3rem 2.5rem;
   }
 
   .final-steps {
     grid-template-columns: repeat(2, 1fr);
   }
-
-  .round-three-page .game-header {
-    flex-direction: column;
-  }
-
-  .round-three-page .timer-box {
-    width: 100%;
-  }
 }
 
 /* =========================================================
-   RESPONSIVE — MOBILE
-========================================================= */
+   MOBILE — MAIN
+   ========================================================= */
 
 @media (max-width: 600px) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
+  .app {
+    min-height: 100svh;
+  }
+
+  /* ---------------- HOME ---------------- */
+
   .navbar {
     height: 65px;
+    padding: 0 16px;
   }
 
-  .navbar-brand {
-    font-size: 9px;
-    letter-spacing: 1px;
+  .brand {
+    gap: 7px;
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
   }
 
-  .navbar-links {
-    display: none;
+  .brand-icon {
+    font-size: 1rem;
   }
 
-  .home-content {
-    width: 92%;
-    padding: 50px 0;
+  .nav-status {
+    font-size: 0.48rem;
+    letter-spacing: 0.08em;
   }
 
-  .home-title {
-    font-size: clamp(58px, 18vw, 95px);
+  .status-dot {
+    width: 5px;
+    height: 5px;
   }
 
-  .home-subtitle {
-    font-size: 9px;
+  .hero {
+    min-height: calc(100svh - 65px);
+    padding: 35px 15px 80px;
+  }
+
+  .compass {
+    width: 46px;
+    height: 46px;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+  }
+
+  .eyebrow {
+    margin-bottom: 13px;
+    font-size: 0.52rem;
+    letter-spacing: 0.18em;
+  }
+
+  .hero h1 {
+    font-size: clamp(4rem, 20vw, 6rem);
+    line-height: 0.78;
+  }
+
+  .hero h1 span {
+    margin-top: 12px;
+  }
+
+  .divider {
+    margin: 25px auto 20px;
+  }
+
+  .hero h2 {
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    text-indent: 0.25em;
+  }
+
+  .description {
+    max-width: 340px;
+    margin: 18px 0 27px;
+    font-size: 0.62rem;
     line-height: 1.8;
   }
 
-  .round-page,
-  .round-two-page,
-  .round-three-page {
-    padding: 25px 15px 45px;
+  .sail-button {
+    width: min(230px, 85vw);
+    min-width: 0;
+    padding: 14px 20px;
+    gap: 20px;
+    font-size: 0.62rem;
   }
 
-  .crew-display {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .round-title {
-    font-size: 52px;
-  }
-
-  .round-stats {
+  .legend {
+    width: 100%;
+    margin-top: 45px;
     grid-template-columns: 1fr;
   }
 
-  .round-stats > div {
+  .legend div {
+    padding: 11px 8px;
     border-right: none;
-    border-bottom: 1px solid var(--border-soft);
+    border-bottom: 1px solid rgba(220, 169, 62, 0.12);
+    font-size: 0.48rem;
   }
 
-  .round-stats > div:last-child {
+  .legend div:last-child {
     border-bottom: none;
   }
 
+  footer {
+    bottom: 10px;
+    padding: 0 12px;
+    gap: 8px;
+    font-size: 0.42rem;
+    letter-spacing: 0.1em;
+    text-align: center;
+  }
+
+  /* ---------------- SHARED ROUNDS ---------------- */
+
+  .round-container {
+    width: calc(100% - 24px);
+    padding: 35px 0 40px;
+  }
+
+  .round-title {
+    font-size: clamp(2.7rem, 15vw, 4.5rem);
+  }
+
+  .round-title span {
+    margin-top: 10px;
+    font-size: 0.43em;
+  }
+
+  .round-subtitle {
+    margin: 15px auto 25px;
+    font-size: 0.62rem;
+    line-height: 1.6;
+  }
+
+  .round-stats {
+    grid-template-columns: repeat(3, 1fr);
+    margin-bottom: 20px;
+  }
+
+  .round-stats > div {
+    padding: 12px 5px;
+  }
+
+  .round-stats small {
+    margin-bottom: 5px;
+    font-size: 0.47rem;
+    letter-spacing: 0.08em;
+  }
+
+  .round-stats strong {
+    font-size: 0.75rem;
+  }
+
+  /* ---------------- ROUND 1 ---------------- */
+
   .wanted-card {
-    padding: 30px 18px;
+    width: 100%;
+  }
+
+  .wanted-header {
+    padding: 12px;
+    font-size: 1.25rem;
+  }
+
+  .logo-area {
+    padding: 35px 15px 25px;
   }
 
   .logo-circle {
-    width: 125px;
-    height: 125px;
+    width: 145px;
+    height: 145px;
+    margin-bottom: 20px;
+  }
+
+  .logo-question {
+    font-size: 0.58rem;
+    line-height: 1.5;
   }
 
   .answer-area {
+    width: calc(100% - 30px);
     flex-direction: column;
   }
 
-  .answer-area input,
-  .answer-area button {
+  .answer-area input {
     width: 100%;
-    min-width: 0;
+    padding: 14px;
+    font-size: 0.68rem;
+  }
+
+  .submit-button {
+    width: 100%;
+    min-height: 45px;
+    padding: 12px;
+  }
+
+  .hint-section {
+    width: calc(100% - 30px);
   }
 
   .hint-buttons {
@@ -6118,132 +1622,350 @@ button {
     width: 100%;
   }
 
-  .round-two-page .game-header {
+  .round-controls {
     flex-direction: column;
   }
 
-  .round-two-page .timer-box {
+  .round-controls button {
     width: 100%;
   }
 
-  .round-two-page .hunt-status {
+  /* ---------------- ROUND 2 ---------------- */
+
+  .treasure-clue-card {
+    width: 100%;
+    margin-top: 25px;
+    padding: 32px 20px;
+  }
+
+  .treasure-clue-card::before {
+    inset: 6px;
+  }
+
+  .clue-label {
+    font-size: 0.52rem;
+    letter-spacing: 0.17em;
+  }
+
+  .clue-number {
+    margin-bottom: 18px;
+    font-size: 2.3rem;
+  }
+
+  .clue-text {
+    font-size: 0.8rem;
+    line-height: 1.8;
+  }
+
+  .hunt-instructions {
+    padding: 22px 15px;
+  }
+
+  .hunt-instructions h3 {
+    font-size: 0.58rem;
+  }
+
+  .instruction-grid {
     grid-template-columns: 1fr;
+    gap: 8px;
   }
 
-  .round-two-page .hunt-status > div {
-    border-right: none;
-    border-bottom: 1px solid rgba(214, 167, 67, 0.14);
+  .instruction-item {
+    padding: 14px 10px;
   }
 
-  .round-two-page .hunt-status > div:last-child {
-    border-bottom: none;
+  .instruction-item span {
+    font-size: 1.35rem;
   }
 
-  .round-two-page .hunt-card {
-    padding: 28px 18px;
+  .instruction-item strong {
+    font-size: 0.58rem;
   }
 
-  .round-two-page .clue-box {
-    padding: 22px 16px;
+  .instruction-item p {
+    font-size: 0.52rem;
   }
 
-  .round-two-page .clue-box p {
-    font-size: 13px;
+  .round-note {
+    font-size: 0.54rem;
   }
 
-  .round-three-page .game-header {
-    flex-direction: column;
-  }
-
-  .round-three-page .timer-box {
+  .give-up-button {
     width: 100%;
   }
+
+  /* ---------------- ROUND 3 ---------------- */
 
   .final-treasure-card {
+    width: 100%;
+    margin-top: 25px;
+  }
+
+  .final-treasure-content {
     padding: 35px 18px;
   }
 
+  .final-treasure-content h2 {
+    font-size: clamp(2.3rem, 13vw, 3.5rem);
+  }
+
+  .final-treasure-content > p {
+    font-size: 0.6rem;
+    line-height: 1.7;
+  }
+
+  .final-treasure-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 18px;
+  }
+
   .qr-assembly-display {
-    width: min(330px, 100%);
+    width: min(300px, 82vw);
+    padding: 12px;
+    gap: 3px;
+    margin: 30px auto;
   }
 
   .final-steps {
     grid-template-columns: 1fr 1fr;
+    gap: 8px;
   }
 
-  .round-three-page .give-up-button {
-    margin: 10px 0 0;
+  .final-step {
+    padding: 15px 7px;
   }
 
-  .final-question-page {
-    padding: 30px 15px;
+  .step-icon {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 8px;
   }
+
+  .final-step strong {
+    font-size: 0.52rem;
+  }
+
+  .final-step span {
+    font-size: 0.47rem;
+  }
+
+  .final-treasure-warning {
+    font-size: 0.52rem;
+    padding: 12px;
+  }
+
+  .final-actions {
+    flex-direction: column;
+  }
+
+  .final-action-button {
+    width: 100%;
+  }
+
+  /* ---------------- FINAL QUESTION ---------------- */
 
   .final-question-card {
-    padding: 35px 20px;
+    width: calc(100% - 24px);
+    margin: 30px auto;
+  }
+
+  .final-question-card::before {
+    inset: 6px;
+  }
+
+  .final-question-content {
+    min-height: 0;
+    padding: 40px 20px;
+  }
+
+  .final-question-label {
+    font-size: 0.52rem;
+    letter-spacing: 0.17em;
+  }
+
+  .final-question-content h2 {
+    margin: 18px auto;
+    font-size: clamp(1.25rem, 6vw, 1.8rem);
+    line-height: 1.5;
+  }
+
+  .final-question-description {
+    font-size: 0.55rem;
+    line-height: 1.7;
+  }
+
+  .final-answer-form {
+    width: 100%;
+  }
+
+  .final-answer-form input {
+    padding: 15px 12px;
+    font-size: 0.68rem;
+  }
+
+  .final-submit-button {
+    padding: 14px;
+    font-size: 0.6rem;
+  }
+
+  .final-warning {
+    font-size: 0.48rem;
+  }
+
+  /* ---------------- SUCCESS / ERROR ---------------- */
+
+  .final-success,
+  .final-error {
+    width: calc(100% - 24px);
+    margin: 40px auto;
+    padding: 45px 20px;
+  }
+
+  .final-success-icon,
+  .final-error-icon {
+    width: 65px;
+    height: 65px;
+    margin-bottom: 20px;
+  }
+
+  .final-success h2,
+  .final-error h2 {
+    font-size: clamp(2.7rem, 14vw, 4rem);
+  }
+
+  .final-success h3,
+  .final-error h3 {
+    font-size: 0.62rem;
+    letter-spacing: 0.13em;
+  }
+
+  .final-success p,
+  .final-error p {
+    font-size: 0.56rem;
+    line-height: 1.7;
+  }
+
+  /* ---------------- ROUND COMPLETE ---------------- */
+
+  .round-complete {
+    width: calc(100% - 24px);
+    margin: 40px auto;
+    padding: 45px 20px;
+  }
+
+  .round-complete-icon {
+    width: 65px;
+    height: 65px;
+  }
+
+  .round-complete h2 {
+    font-size: clamp(2.7rem, 14vw, 4rem);
+  }
+
+  .round-complete p {
+    font-size: 0.58rem;
+  }
+
+  .final-time strong {
+    font-size: 2rem;
+  }
+
+  /* ---------------- DEVELOPMENT BUTTONS ---------------- */
+
+  .dev-buttons {
+    width: 100%;
+    gap: 5px;
+  }
+
+  .dev-buttons button {
+    font-size: 0.42rem;
+    padding: 6px 8px;
   }
 }
 
 /* =========================================================
-   VERY SMALL DEVICES
-========================================================= */
+   SMALL PHONES
+   ========================================================= */
 
 @media (max-width: 380px) {
-  .home-title {
-    font-size: 54px;
+  .navbar {
+    padding: 0 11px;
   }
 
-  .round-title {
-    font-size: 45px;
+  .brand {
+    font-size: 0.48rem;
+  }
+
+  .nav-status {
+    font-size: 0.4rem;
+  }
+
+  .hero h1 {
+    font-size: 3.6rem;
+  }
+
+  .hero h2 {
+    font-size: 0.62rem;
+  }
+
+  .round-stats small {
+    font-size: 0.42rem;
+  }
+
+  .round-stats strong {
+    font-size: 0.67rem;
+  }
+
+  .qr-assembly-display {
+    width: 260px;
   }
 
   .final-steps {
     grid-template-columns: 1fr;
   }
 
-  .logo-circle {
-    width: 110px;
-    height: 110px;
+  .final-question-content {
+    padding: 32px 15px;
+  }
+
+  .final-question-content h2 {
+    font-size: 1.2rem;
   }
 }
 
 /* =========================================================
-   ACCESSIBILITY
-========================================================= */
+   REDUCED MOTION
+   ========================================================= */
 
-button:focus-visible,
-input:focus-visible,
-a:focus-visible {
-  outline: 1px solid var(--gold-bright);
-  outline-offset: 3px;
-}
-
-/* =========================================================
-   SELECTION
-========================================================= */
-
-::selection {
-  background: rgba(214, 167, 67, 0.25);
-  color: var(--parchment);
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* =========================================================
    SCROLLBAR
-========================================================= */
+   ========================================================= */
 
 ::-webkit-scrollbar {
   width: 7px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #03070b;
+  background: #050911;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #5e461d;
+  background: #79561e;
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--gold-dark);
+  background: #a97529;
 }
