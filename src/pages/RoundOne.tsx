@@ -1,8 +1,7 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { ComponentType, KeyboardEvent } from "react";
 
 import {
-  
   SiDocker,
   SiFirebase,
   SiGithub,
@@ -21,210 +20,331 @@ import {
 type RoundOneProps = {
   crewName: string;
   elapsedTime: number;
-  onComplete: () => void;
+  onComplete: (penaltySeconds: number) => void;
   onBack: () => void;
+  onGiveUp: () => void;
 };
+
+type Difficulty = "Easy" | "Medium" | "Hard";
 
 type Question = {
   name: string;
   aliases: string[];
   Icon: ComponentType<{ size?: number }>;
+  difficulty: Difficulty;
+  hints: [string, string];
 };
 
 const logoPool: Question[] = [
+  // EASY
   {
     name: "Docker",
     aliases: ["docker"],
     Icon: SiDocker,
-  },
-  {
-    name: "Kubernetes",
-    aliases: ["kubernetes", "k8s"],
-    Icon: SiKubernetes,
-  },
-  {
-    name: "GitHub",
-    aliases: ["github", "git hub"],
-    Icon: SiGithub,
-  },
-  {
-    name: "React",
-    aliases: ["react", "reactjs", "react.js"],
-    Icon: SiReact,
+    difficulty: "Easy",
+    hints: [
+      "This technology is widely used for containers.",
+      "Its famous logo is a whale carrying containers.",
+    ],
   },
   {
     name: "Python",
     aliases: ["python"],
     Icon: SiPython,
+    difficulty: "Easy",
+    hints: [
+      "It is a popular programming language.",
+      "Its logo contains two snakes.",
+    ],
   },
-  
+  {
+    name: "React",
+    aliases: ["react", "reactjs", "react.js"],
+    Icon: SiReact,
+    difficulty: "Easy",
+    hints: [
+      "It is a JavaScript library used to build user interfaces.",
+      "Its logo looks like an atom.",
+    ],
+  },
+  {
+    name: "GitHub",
+    aliases: ["github", "git hub"],
+    Icon: SiGithub,
+    difficulty: "Easy",
+    hints: [
+      "Developers use this platform to host and collaborate on code.",
+      "Its famous logo resembles a cat.",
+    ],
+  },
   {
     name: "JavaScript",
     aliases: ["javascript", "js"],
     Icon: SiJavascript,
-  },
-  {
-    name: "MongoDB",
-    aliases: ["mongodb", "mongo db", "mongo"],
-    Icon: SiMongodb,
-  },
-  {
-    name: "MySQL",
-    aliases: ["mysql", "my sql"],
-    Icon: SiMysql,
-  },
-  {
-    name: "Firebase",
-    aliases: ["firebase"],
-    Icon: SiFirebase,
-  },
-  {
-    name: "Node.js",
-    aliases: ["node", "nodejs", "node.js"],
-    Icon: SiNodedotjs,
+    difficulty: "Easy",
+    hints: [
+      "It is widely used to make websites interactive.",
+      "Its logo is a yellow square containing JS.",
+    ],
   },
   {
     name: "Linux",
     aliases: ["linux"],
     Icon: SiLinux,
+    difficulty: "Easy",
+    hints: [
+      "It is an open-source operating system/kernel.",
+      "Its mascot is a penguin named Tux.",
+    ],
+  },
+
+  // MEDIUM
+  {
+    name: "Kubernetes",
+    aliases: ["kubernetes", "k8s"],
+    Icon: SiKubernetes,
+    difficulty: "Medium",
+    hints: [
+      "It is used to manage containerized applications.",
+      "Its logo resembles a ship wheel.",
+    ],
+  },
+  {
+    name: "MongoDB",
+    aliases: ["mongodb", "mongo db", "mongo"],
+    Icon: SiMongodb,
+    difficulty: "Medium",
+    hints: [
+      "It is a NoSQL database.",
+      "Its logo is a green leaf.",
+    ],
+  },
+  {
+    name: "MySQL",
+    aliases: ["mysql", "my sql"],
+    Icon: SiMysql,
+    difficulty: "Medium",
+    hints: [
+      "It is a relational database.",
+      "Its logo contains a dolphin.",
+    ],
+  },
+  {
+    name: "Firebase",
+    aliases: ["firebase"],
+    Icon: SiFirebase,
+    difficulty: "Medium",
+    hints: [
+      "It is a Google-backed platform for app development.",
+      "Its logo is an orange/yellow flame.",
+    ],
+  },
+  {
+    name: "Node.js",
+    aliases: ["node", "nodejs", "node.js"],
+    Icon: SiNodedotjs,
+    difficulty: "Medium",
+    hints: [
+      "It allows JavaScript to run outside the browser.",
+      "Its logo is a green hexagon.",
+    ],
   },
   {
     name: "Git",
     aliases: ["git"],
     Icon: SiGit,
+    difficulty: "Medium",
+    hints: [
+      "It is a distributed version control system.",
+      "Its logo is an orange diamond-like shape.",
+    ],
   },
+
+  // HARD
   {
     name: "TypeScript",
     aliases: ["typescript", "ts"],
     Icon: SiTypescript,
+    difficulty: "Hard",
+    hints: [
+      "It is a typed superset of JavaScript.",
+      "Its logo is a blue square containing TS.",
+    ],
+  },
+  {
+    name: "Kubernetes",
+    aliases: ["kubernetes", "k8s"],
+    Icon: SiKubernetes,
+    difficulty: "Hard",
+    hints: [
+      "Its name is derived from a Greek word related to steering.",
+      "It orchestrates containers at scale.",
+    ],
+  },
+  {
+    name: "MongoDB",
+    aliases: ["mongodb", "mongo db", "mongo"],
+    Icon: SiMongodb,
+    difficulty: "Hard",
+    hints: [
+      "It stores data in document-oriented form.",
+      "Its name contains the word 'Mongo'.",
+    ],
+  },
+  {
+    name: "Firebase",
+    aliases: ["firebase"],
+    Icon: SiFirebase,
+    difficulty: "Hard",
+    hints: [
+      "It provides backend services for applications.",
+      "Google acquired it in 2014.",
+    ],
+  },
+  {
+    name: "Git",
+    aliases: ["git"],
+    Icon: SiGit,
+    difficulty: "Hard",
+    hints: [
+      "It tracks changes in source code.",
+      "It was created by Linus Torvalds.",
+    ],
+  },
+  {
+    name: "Node.js",
+    aliases: ["node", "nodejs", "node.js"],
+    Icon: SiNodedotjs,
+    difficulty: "Hard",
+    hints: [
+      "It is based on Google's V8 JavaScript engine.",
+      "It is commonly used for backend JavaScript.",
+    ],
   },
 ];
 
-const hints: Record<string, [string, string]> = {
-  Docker: [
-    "This technology is widely used for containers.",
-    "Its famous logo is a whale carrying containers.",
-  ],
-
-  Kubernetes: [
-    "It is used to manage containerized applications.",
-    "Its logo is a ship wheel.",
-  ],
-
-  GitHub: [
-    "Developers use this platform to host and collaborate on code.",
-    "Its famous logo resembles a cat.",
-  ],
-
-  React: [
-    "It is a JavaScript library used to build user interfaces.",
-    "Its logo looks like an atom.",
-  ],
-
-  Python: [
-    "It is a programming language.",
-    "Its logo contains two snakes.",
-  ],
-
-  AWS: [
-    "It is a major cloud computing platform.",
-    "Its name starts with Amazon.",
-  ],
-
-  JavaScript: [
-    "It is one of the most popular languages used on the web.",
-    "Its logo is a yellow square containing JS.",
-  ],
-
-  MongoDB: [
-    "It is a NoSQL database.",
-    "Its logo is a green leaf.",
-  ],
-
-  MySQL: [
-    "It is a relational database.",
-    "Its logo contains a dolphin.",
-  ],
-
-  Firebase: [
-    "It is a Google-backed platform for app development.",
-    "Its logo is an orange/yellow flame.",
-  ],
-
-  "Node.js": [
-    "It allows JavaScript to run outside the browser.",
-    "Its logo is a green hexagon.",
-  ],
-
-  Linux: [
-    "It is an open-source operating system/kernel.",
-    "Its mascot is a penguin named Tux.",
-  ],
-
-  Git: [
-    "It is a distributed version control system.",
-    "Its logo is an orange diamond-like shape.",
-  ],
-
-  TypeScript: [
-    "It is a typed superset of JavaScript.",
-    "Its logo is a blue square containing TS.",
-  ],
-};
-
-function shuffle<T>(items: T[]) {
+function shuffle<T>(items: T[]): T[] {
   return [...items].sort(() => Math.random() - 0.5);
 }
 
-function normalizeAnswer(value: string) {
+function normalizeAnswer(value: string): string {
   return value
     .trim()
     .toLowerCase()
     .replace(/\s+/g, " ");
 }
 
-function formatTime(seconds: number) {
-  const minutes = Math.floor(seconds / 60);
-  const remainingSeconds = seconds % 60;
+function formatTime(seconds: number): string {
+  const safeSeconds = Math.max(0, Math.floor(seconds));
+
+  const minutes = Math.floor(safeSeconds / 60);
+  const remainingSeconds = safeSeconds % 60;
 
   return `${String(minutes).padStart(2, "0")}:${String(
     remainingSeconds
   ).padStart(2, "0")}`;
 }
 
+const ROUND_TIME_LIMIT = 10 * 60;
+
 function RoundOne({
   crewName,
   elapsedTime,
   onComplete,
   onBack,
+  onGiveUp,
 }: RoundOneProps) {
   /*
-   * Select exactly 6 random logos when Round 1 starts.
+   * Every team gets:
+   * 3 Easy + 4 Medium + 3 Hard = 10 logos.
+   * The final order is randomized.
    */
-  const questions = useMemo(
-    () => shuffle(logoPool).slice(0, 6),
-    []
-  );
+  const questions = useMemo(() => {
+    const easy = shuffle(
+      logoPool.filter((question) => question.difficulty === "Easy")
+    ).slice(0, 3);
+
+    const medium = shuffle(
+      logoPool.filter((question) => question.difficulty === "Medium")
+    ).slice(0, 4);
+
+    const hard = shuffle(
+      logoPool.filter((question) => question.difficulty === "Hard")
+    ).slice(0, 3);
+
+    return shuffle([...easy, ...medium, ...hard]);
+  }, []);
 
   const [currentIndex, setCurrentIndex] = useState(0);
+
   const [answer, setAnswer] = useState("");
-  const [score, setScore] = useState(0);
+
+  /*
+   * 0 = no wrong answer yet
+   * 1 = first wrong answer already happened
+   */
+  const [wrongAttempts, setWrongAttempts] = useState(0);
+
+  const [penaltySeconds, setPenaltySeconds] = useState(0);
+
+  const [skipsUsed, setSkipsUsed] = useState(0);
+
+  /*
+   * Two hints TOTAL for the entire round.
+   */
+  const [hintsUsed, setHintsUsed] = useState(0);
+
+  const [revealedHints, setRevealedHints] = useState<number[]>([]);
 
   const [feedback, setFeedback] = useState<
-    "correct" | "wrong" | null
+    "correct" | "wrong" | "skipped" | null
   >(null);
 
-  // TOTAL hints used in this round
-  const [usedHints, setUsedHints] = useState(0);
-
-  // Which hints have been revealed for current question
-  const [revealedHints, setRevealedHints] = useState<number[]>([]);
+  const [roundFinished, setRoundFinished] = useState(false);
 
   const currentQuestion = questions[currentIndex];
   const Logo = currentQuestion.Icon;
 
+  /*
+   * The actual timer remains the actual elapsed time.
+   * Penalties are tracked separately.
+   */
+  useEffect(() => {
+    if (roundFinished) return;
+
+    if (elapsedTime >= ROUND_TIME_LIMIT) {
+      setRoundFinished(true);
+      onComplete(penaltySeconds);
+    }
+  }, [
+    elapsedTime,
+    roundFinished,
+    penaltySeconds,
+    onComplete,
+  ]);
+
+  const finishOrNext = (additionalPenalty: number) => {
+    const totalPenalty = penaltySeconds + additionalPenalty;
+
+    if (additionalPenalty > 0) {
+      setPenaltySeconds(totalPenalty);
+    }
+
+    if (currentIndex === questions.length - 1) {
+      setRoundFinished(true);
+      onComplete(totalPenalty);
+      return;
+    }
+
+    setCurrentIndex((previous) => previous + 1);
+    setAnswer("");
+    setWrongAttempts(0);
+    setRevealedHints([]);
+    setFeedback(null);
+  };
+
   const submitAnswer = () => {
-    if (!answer.trim() || feedback === "correct") return;
+    if (!answer.trim() || roundFinished) return;
 
     const normalized = normalizeAnswer(answer);
 
@@ -233,57 +353,92 @@ function RoundOne({
     );
 
     if (correct) {
-      setScore((previous) => previous + 100);
       setFeedback("correct");
-    } else {
-      setFeedback("wrong");
-    }
-  };
 
-  const useHint = () => {
-    // Maximum 2 hints for the entire round
-    if (usedHints >= 2 || feedback === "correct") {
+      /*
+       * Correct = 0 penalty.
+       * Automatically move to the next logo.
+       */
+      window.setTimeout(() => {
+        finishOrNext(0);
+      }, 450);
+
       return;
     }
 
-    const availableHintIndex = [0, 1].find(
-      (index) => !revealedHints.includes(index)
-    );
+    /*
+     * FIRST WRONG:
+     * +5 seconds
+     * One more attempt.
+     */
+    if (wrongAttempts === 0) {
+      setWrongAttempts(1);
+      setPenaltySeconds((previous) => previous + 5);
+      setFeedback("wrong");
+      setAnswer("");
+      return;
+    }
 
-    if (availableHintIndex === undefined) return;
+    /*
+     * SECOND WRONG:
+     * +10 seconds
+     * Automatically next.
+     *
+     * Total for this logo = +15 seconds.
+     */
+    setFeedback("wrong");
 
-    setUsedHints((previous) => previous + 1);
+    window.setTimeout(() => {
+      finishOrNext(10);
+    }, 700);
+  };
+
+  const useHint = (hintIndex: number) => {
+    if (roundFinished) return;
+
+    if (hintsUsed >= 2) return;
+
+    if (revealedHints.includes(hintIndex)) return;
+
+    /*
+     * Every hint = +10 seconds.
+     */
+    setHintsUsed((previous) => previous + 1);
+    setPenaltySeconds((previous) => previous + 10);
 
     setRevealedHints((previous) => [
       ...previous,
-      availableHintIndex,
+      hintIndex,
     ]);
   };
 
-  const nextQuestion = () => {
-    if (currentIndex === questions.length - 1) {
-      onComplete();
-      return;
-    }
+  const skipQuestion = () => {
+    if (roundFinished) return;
 
-    setCurrentIndex((previous) => previous + 1);
+    if (skipsUsed >= 2) return;
 
-    setAnswer("");
-    setFeedback(null);
-    setRevealedHints([]);
+    setSkipsUsed((previous) => previous + 1);
+
+    /*
+     * Skip = +20 seconds.
+     */
+    finishOrNext(20);
   };
 
   const handleKeyDown = (
     event: KeyboardEvent<HTMLInputElement>
   ) => {
     if (event.key === "Enter") {
-      if (feedback === "correct") {
-        nextQuestion();
-      } else {
-        submitAnswer();
-      }
+      submitAnswer();
     }
   };
+
+  const actualTime = Math.min(
+    elapsedTime,
+    ROUND_TIME_LIMIT
+  );
+
+  const adjustedTime = actualTime + penaltySeconds;
 
   return (
     <div className="app round-page">
@@ -298,87 +453,84 @@ function RoundOne({
         </div>
 
         <div className="global-timer">
-          ⏱ {formatTime(elapsedTime)}
+          ⏱ {formatTime(actualTime)}
         </div>
       </header>
 
       <main className="round-container">
-
         <p className="eyebrow">
-          ⚔ ROUND 01 — FASTEST FINGER ⚔
+          ⚔ ROUND 01 — LOGO PEHCHAANO ⚔
         </p>
 
         <h1 className="round-title">
-          WANTED:
-          <span>IDENTIFY THE TECH</span>
+          FASTEST
+          <span>FINGER FIRST</span>
         </h1>
 
         <p className="round-subtitle">
-          Six technologies. Two hints. One crew.
+          Identify all 10 technical logos as fast as possible.
         </p>
 
-        {/* STATS */}
+        {/* ================= STATS ================= */}
 
         <div className="round-stats">
-
           <div>
-            <small>BOUNTY</small>
+            <small>LOGOS</small>
 
             <strong>
-              {String(score).padStart(3, "0")}
-            </strong>
-          </div>
-
-          <div>
-            <small>CHALLENGE</small>
-
-            <strong>
-              {String(currentIndex + 1).padStart(2, "0")} / 06
+              {String(currentIndex + 1).padStart(2, "0")} / 10
             </strong>
           </div>
 
           <div>
             <small>TIME</small>
 
-            <strong>
-              {formatTime(elapsedTime)}
-            </strong>
+            <strong>{formatTime(actualTime)}</strong>
+          </div>
+
+          <div>
+            <small>PENALTY</small>
+
+            <strong>+{penaltySeconds}s</strong>
           </div>
 
           <div>
             <small>HINTS</small>
 
-            <strong>
-              {2 - usedHints} / 2
-            </strong>
+            <strong>{2 - hintsUsed} / 2</strong>
           </div>
 
+          <div>
+            <small>SKIPS</small>
+
+            <strong>{2 - skipsUsed} / 2</strong>
+          </div>
         </div>
 
-        {/* WANTED CARD */}
+        {/* ================= WANTED CARD ================= */}
 
         <div className="wanted-card">
-
           <div className="wanted-header">
-            ☠ WANTED TECHNOLOGY ☠
+            ☠ IDENTIFY THE LOGO ☠
           </div>
 
           <div className="logo-area">
-
             <div className="logo-circle">
               <Logo size={125} />
+            </div>
+
+            <div className="difficulty-badge">
+              {currentQuestion.difficulty.toUpperCase()}
             </div>
 
             <p className="logo-question">
               WHICH TECHNOLOGY IS THIS?
             </p>
-
           </div>
 
-          {/* ANSWER */}
+          {/* ================= ANSWER ================= */}
 
           <div className="answer-area">
-
             <input
               type="text"
               value={answer}
@@ -392,77 +544,67 @@ function RoundOne({
               onKeyDown={handleKeyDown}
               placeholder="IDENTIFY THIS TECHNOLOGY..."
               autoFocus
-              disabled={feedback === "correct"}
+              disabled={roundFinished}
             />
 
-            {feedback === "correct" ? (
-              <button
-                className="submit-button next-button"
-                onClick={nextQuestion}
-              >
-                NEXT →
-              </button>
-            ) : (
-              <button
-                className="submit-button"
-                onClick={submitAnswer}
-              >
-                SUBMIT
-              </button>
-            )}
-
+            <button
+              className="submit-button"
+              onClick={submitAnswer}
+              disabled={
+                roundFinished || !answer.trim()
+              }
+            >
+              SUBMIT
+            </button>
           </div>
 
-          {/* FEEDBACK */}
+          {/* ================= FEEDBACK ================= */}
 
           {feedback === "correct" && (
             <div className="answer-feedback correct">
-              ✓ CORRECT! +100 BOUNTY
+              ✓ CORRECT — NEXT LOGO
             </div>
           )}
 
-          {feedback === "wrong" && (
+          {feedback === "wrong" && wrongAttempts === 1 && (
             <div className="answer-feedback wrong">
-              ✕ WRONG ANSWER — TRY AGAIN
+              ✕ WRONG — +5 SEC — ONE MORE ATTEMPT
             </div>
           )}
 
-          {/* HINT SYSTEM */}
+          {/* ================= HINTS ================= */}
 
           <div className="hint-section">
-
             <div className="hint-title">
-              💡 HINTS — {2 - usedHints} REMAINING
+              💡 HINTS — {2 - hintsUsed} REMAINING
             </div>
 
             <div className="hint-buttons">
-
               <button
                 className="hint-button"
-                onClick={useHint}
+                onClick={() => useHint(0)}
                 disabled={
-                  usedHints >= 2 ||
-                  revealedHints.includes(0) ||
-                  feedback === "correct"
+                  roundFinished ||
+                  hintsUsed >= 2 ||
+                  revealedHints.includes(0)
                 }
               >
                 HINT 1
-                <span>−3 SEC</span>
+                <span>+10 SEC</span>
               </button>
 
               <button
                 className="hint-button"
-                onClick={useHint}
+                onClick={() => useHint(1)}
                 disabled={
-                  usedHints >= 2 ||
-                  revealedHints.includes(1) ||
-                  feedback === "correct"
+                  roundFinished ||
+                  hintsUsed >= 2 ||
+                  revealedHints.includes(1)
                 }
               >
                 HINT 2
-                <span>−3 SEC</span>
+                <span>+10 SEC</span>
               </button>
-
             </div>
 
             {revealedHints.map((hintIndex) => (
@@ -470,12 +612,72 @@ function RoundOne({
                 className="hint-text"
                 key={hintIndex}
               >
-                💡 {hints[currentQuestion.name][hintIndex]}
+                💡 {currentQuestion.hints[hintIndex]}
               </div>
             ))}
-
           </div>
 
+          {/* ================= ACTIONS ================= */}
+
+          <div className="round-actions">
+            <button
+              className="skip-button"
+              onClick={skipQuestion}
+              disabled={
+                roundFinished || skipsUsed >= 2
+              }
+            >
+              SKIP
+              <span>+20 SEC</span>
+            </button>
+
+            <button
+              className="give-up-button"
+              onClick={onGiveUp}
+              disabled={roundFinished}
+            >
+              ⚑ GIVE UP
+            </button>
+          </div>
+
+          {/* ================= PENALTY INFO ================= */}
+
+          <div className="penalty-info">
+            <span>1st wrong: +5 sec</span>
+            <span>2nd wrong: +10 sec</span>
+            <span>Hint: +10 sec</span>
+            <span>Skip: +20 sec</span>
+          </div>
+        </div>
+
+        {/* ================= TIME SUMMARY ================= */}
+
+        <div className="time-summary">
+          <div>
+            <span>ACTUAL TIME</span>
+
+            <strong>
+              {formatTime(actualTime)}
+            </strong>
+          </div>
+
+          <div className="summary-plus">+</div>
+
+          <div>
+            <span>PENALTIES</span>
+
+            <strong>+{penaltySeconds}s</strong>
+          </div>
+
+          <div className="summary-equals">=</div>
+
+          <div>
+            <span>ADJUSTED TIME</span>
+
+            <strong>
+              {formatTime(adjustedTime)}
+            </strong>
+          </div>
         </div>
 
         <button
@@ -484,7 +686,6 @@ function RoundOne({
         >
           ← RETURN TO CREW
         </button>
-
       </main>
     </div>
   );

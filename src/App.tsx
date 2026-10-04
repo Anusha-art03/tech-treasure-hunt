@@ -4,6 +4,8 @@ import "./App.css";
 import RoundOne from "./pages/RoundOne";
 import RoundTwo from "./pages/RoundTwo";
 import RoundThree from "./pages/RoundThree";
+import FinalQuestion from "./pages/FinalQuestion";
+
 
 type GameScreen =
   | "home"
@@ -13,8 +15,10 @@ type GameScreen =
   | "final";
 
 function formatTime(seconds: number) {
-  const minutes = Math.floor(seconds / 60);
-  const remainingSeconds = seconds % 60;
+  const safeSeconds = Math.max(0, Math.floor(seconds));
+
+  const minutes = Math.floor(safeSeconds / 60);
+  const remainingSeconds = safeSeconds % 60;
 
   return `${String(minutes).padStart(2, "0")}:${String(
     remainingSeconds
@@ -25,13 +29,26 @@ function App() {
   const [screen, setScreen] =
     useState<GameScreen>("home");
 
+  // ================================
   // GLOBAL GAME TIMER
+  // ================================
+
   const [elapsedTime, setElapsedTime] = useState(0);
 
   const [gameStarted, setGameStarted] =
     useState(false);
 
-  // FINAL TIME AFTER ANSWER SUBMISSION
+  // ================================
+  // TOTAL PENALTIES
+  // ================================
+
+  const [totalPenaltySeconds, setTotalPenaltySeconds] =
+    useState(0);
+
+  // ================================
+  // FINAL TIME
+  // ================================
+
   const [finalTime, setFinalTime] =
     useState<number | null>(null);
 
@@ -58,7 +75,9 @@ function App() {
 
   const startGame = () => {
     setElapsedTime(0);
+    setTotalPenaltySeconds(0);
     setFinalTime(null);
+
     setGameStarted(true);
     setScreen("round1");
   };
@@ -70,7 +89,27 @@ function App() {
   const goHome = () => {
     setGameStarted(false);
     setElapsedTime(0);
+    setTotalPenaltySeconds(0);
     setFinalTime(null);
+
+    setScreen("home");
+  };
+
+  // ================================
+  // GIVE UP
+  // ================================
+
+  const handleGiveUp = () => {
+    const confirmed = window.confirm(
+      "Are you sure you want to give up?\n\nYour crew will leave the current voyage."
+    );
+
+    if (!confirmed) return;
+
+    setGameStarted(false);
+    setFinalTime(null);
+    setElapsedTime(0);
+    setTotalPenaltySeconds(0);
     setScreen("home");
   };
 
@@ -78,7 +117,10 @@ function App() {
   // ROUND 1 COMPLETE
   // ================================
 
-  const handleRoundOneComplete = () => {
+  const handleRoundOneComplete = (
+    penaltySeconds: number
+  ) => {
+    setTotalPenaltySeconds(penaltySeconds);
     setScreen("round2");
   };
 
@@ -96,16 +138,24 @@ function App() {
 
   const handleStopTimer = () => {
     setGameStarted(false);
-    setFinalTime(elapsedTime);
+
+    const adjustedFinalTime =
+      elapsedTime + totalPenaltySeconds;
+
+    setFinalTime(adjustedFinalTime);
   };
 
   // ================================
-  // ROUND 3 COMPLETE
+  // FINAL COMPLETE
   // ================================
 
   const handleFinalComplete = () => {
     setScreen("final");
   };
+
+    if (window.location.pathname === "/final") {
+    return <FinalQuestion crewName={crewName} />;
+  }
 
   // ================================
   // HOME
@@ -150,7 +200,8 @@ function App() {
             Gather your crew. Follow the clues. Solve
             the challenges.
             <br />
-            Find the <strong>ONE PIECE</strong> hidden at the end of the Grand Line.
+            Find the <strong>ONE PIECE</strong> hidden at
+            the end of the Grand Line.
           </p>
 
           <button
@@ -167,6 +218,7 @@ function App() {
             <button
               onClick={() => {
                 setElapsedTime(0);
+                setTotalPenaltySeconds(0);
                 setFinalTime(null);
                 setGameStarted(true);
                 setScreen("round1");
@@ -178,6 +230,7 @@ function App() {
             <button
               onClick={() => {
                 setElapsedTime(0);
+                setTotalPenaltySeconds(0);
                 setFinalTime(null);
                 setGameStarted(true);
                 setScreen("round2");
@@ -189,6 +242,7 @@ function App() {
             <button
               onClick={() => {
                 setElapsedTime(0);
+                setTotalPenaltySeconds(0);
                 setFinalTime(null);
                 setGameStarted(true);
                 setScreen("round3");
@@ -218,7 +272,7 @@ function App() {
 
         <footer>
           <span>☠</span>
-          ONE PIECE × TECHNOLOGY
+          TECHNITUDE • SHAIDS COMMITTEE • ONE PIECE
           <span>☠</span>
         </footer>
       </div>
@@ -236,6 +290,7 @@ function App() {
         elapsedTime={elapsedTime}
         onComplete={handleRoundOneComplete}
         onBack={goHome}
+        onGiveUp={handleGiveUp}
       />
     );
   }
@@ -251,6 +306,7 @@ function App() {
         elapsedTime={elapsedTime}
         onComplete={handleRoundTwoComplete}
         onBack={goHome}
+        onGiveUp={handleGiveUp}
       />
     );
   }
@@ -276,6 +332,9 @@ function App() {
   // ================================
 
   if (screen === "final") {
+    const displayedFinalTime =
+      finalTime ?? elapsedTime + totalPenaltySeconds;
+
     return (
       <div className="app round-page">
         <div className="ocean-glow" />
@@ -287,7 +346,7 @@ function App() {
           </div>
 
           <div className="global-timer">
-            ⏱ {formatTime(finalTime ?? elapsedTime)}
+            ⏱ {formatTime(displayedFinalTime)}
           </div>
         </header>
 
@@ -318,7 +377,7 @@ function App() {
               </div>
 
               <p className="logo-question">
-                {formatTime(finalTime ?? elapsedTime)}
+                {formatTime(displayedFinalTime)}
               </p>
 
               <p className="description">
@@ -340,7 +399,7 @@ function App() {
 
         <footer>
           <span>☠</span>
-          ONE PIECE × TECHNOLOGY
+          TECHNITUDE • SHAIDS COMMITTEE • ONE PIECE
           <span>☠</span>
         </footer>
       </div>
