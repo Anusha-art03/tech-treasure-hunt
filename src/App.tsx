@@ -23,6 +23,16 @@ type Team = {
   members: string[];
 };
 
+type GameSession = {
+  team: Team;
+  startedAt: number;
+  penaltySeconds: number;
+  stopped: boolean;
+  finalTime: number | null;
+};
+
+const SESSION_KEY = "technitude_game_session";
+
 function formatTime(seconds: number) {
   const safeSeconds = Math.max(0, Math.floor(seconds));
 
@@ -65,7 +75,89 @@ function App() {
   // TEAM DETAILS
   // ================================
 
-  const [team, setTeam] = useState<Team | null>(null);
+  const [team, setTeam] =
+    useState<Team | null>(null);
+
+  // ================================
+  // RESTORE SAVED SESSION
+  // ================================
+
+  useEffect(() => {
+    const savedSession =
+      localStorage.getItem(SESSION_KEY);
+
+    if (!savedSession) {
+      return;
+    }
+
+    try {
+      const session: GameSession =
+        JSON.parse(savedSession);
+
+      if (!session.team?.id) {
+        localStorage.removeItem(SESSION_KEY);
+        return;
+      }
+
+      setTeam(session.team);
+
+      setTotalPenaltySeconds(
+        session.penaltySeconds || 0
+      );
+
+      // =================================
+      // FINAL ALREADY SUBMITTED
+      // =================================
+
+      if (session.stopped) {
+        const savedFinalTime =
+          session.finalTime ?? 0;
+
+        setElapsedTime(
+          Math.max(
+            0,
+            savedFinalTime -
+              (session.penaltySeconds || 0)
+          )
+        );
+
+        setFinalTime(savedFinalTime);
+        setGameStarted(false);
+
+        return;
+      }
+
+      // =================================
+      // CALCULATE CURRENT ELAPSED TIME
+      // =================================
+
+      const currentElapsed = Math.floor(
+        (Date.now() - session.startedAt) /
+          1000
+      );
+
+      setElapsedTime(
+        Math.max(0, currentElapsed)
+      );
+
+      // =================================
+      // QR → /final
+      // =================================
+
+      if (
+        window.location.pathname === "/final"
+      ) {
+        setGameStarted(true);
+      }
+    } catch (error) {
+      console.error(
+        "Could not restore game session:",
+        error
+      );
+
+      localStorage.removeItem(SESSION_KEY);
+    }
+  }, []);
 
   // ================================
   // GLOBAL TIMER
@@ -75,7 +167,33 @@ function App() {
     if (!gameStarted) return;
 
     const timer = setInterval(() => {
-      setElapsedTime((previous) => previous + 1);
+      const savedSession =
+        localStorage.getItem(SESSION_KEY);
+
+      if (!savedSession) return;
+
+      try {
+        const session: GameSession =
+          JSON.parse(savedSession);
+
+        if (session.stopped) {
+          return;
+        }
+
+        const currentElapsed = Math.floor(
+          (Date.now() - session.startedAt) /
+            1000
+        );
+
+        setElapsedTime(
+          Math.max(0, currentElapsed)
+        );
+      } catch (error) {
+        console.error(
+          "Timer error:",
+          error
+        );
+      }
     }, 1000);
 
     return () => clearInterval(timer);
@@ -90,6 +208,9 @@ function App() {
     setTotalPenaltySeconds(0);
     setFinalTime(null);
     setGameStarted(false);
+    setTeam(null);
+
+    localStorage.removeItem(SESSION_KEY);
 
     setScreen("teamDetails");
   };
@@ -98,7 +219,24 @@ function App() {
   // TEAM DETAILS → ROUND 1
   // ================================
 
-  const handleTeamStart = (teamDetails: Team) => {
+  const handleTeamStart = (
+    teamDetails: Team
+  ) => {
+    const startedAt = Date.now();
+
+    const session: GameSession = {
+      team: teamDetails,
+      startedAt,
+      penaltySeconds: 0,
+      stopped: false,
+      finalTime: null,
+    };
+
+    localStorage.setItem(
+      SESSION_KEY,
+      JSON.stringify(session)
+    );
+
     setTeam(teamDetails);
 
     setElapsedTime(0);
@@ -118,8 +256,9 @@ function App() {
     setElapsedTime(0);
     setTotalPenaltySeconds(0);
     setFinalTime(null);
-
     setTeam(null);
+
+    localStorage.removeItem(SESSION_KEY);
 
     setScreen("home");
   };
@@ -136,11 +275,12 @@ function App() {
     if (!confirmed) return;
 
     setGameStarted(false);
-    setFinalTime(null);
     setElapsedTime(0);
+    setFinalTime(null);
     setTotalPenaltySeconds(0);
-
     setTeam(null);
+
+    localStorage.removeItem(SESSION_KEY);
 
     setScreen("home");
   };
@@ -149,103 +289,232 @@ function App() {
   // ROUND 1 COMPLETE
   // ================================
 
- const handleRoundOneComplete = async (
-  penaltySeconds: number
-) => {
-  setTotalPenaltySeconds(penaltySeconds);
+  const handleRoundOneComplete = async (
+    penaltySeconds: number
+  ) => {
+    setTotalPenaltySeconds(
+      penaltySeconds
+    );
 
-  if (team?.id) {
-    const { error } = await supabase
-      .from("teams")
-      .update({
-        round_1_completed_at: new Date().toISOString(),
-        round_1_penalty_seconds: penaltySeconds,
-        status: "round_2",
-      })
-      .eq("id", team.id);
+    // Save penalty locally
+    const savedSession =
+      localStorage.getItem(SESSION_KEY);
 
-    if (error) {
-      console.error("Round 1 update error:", error);
-      alert("Round 1 could not be saved. Please try again.");
-      return;
+    if (savedSession) {
+      try {
+        const session: GameSession =
+          JSON.parse(savedSession);
+
+        session.penaltySeconds =
+          penaltySeconds;
+
+        localStorage.setItem(
+          SESSION_KEY,
+          JSON.stringify(session)
+        );
+      } catch (error) {
+        console.error(
+          "Could not save penalty:",
+          error
+        );
+      }
     }
-  }
 
-  setScreen("round2");
-};
+    if (team?.id) {
+      const { error } = await supabase
+        .from("teams")
+        .update({
+          round_1_completed_at:
+            new Date().toISOString(),
+
+          round_1_penalty_seconds:
+            penaltySeconds,
+
+          status: "round_2",
+        })
+        .eq("id", team.id);
+
+      if (error) {
+        console.error(
+          "Round 1 update error:",
+          error
+        );
+
+        alert(
+          "Round 1 could not be saved. Please try again."
+        );
+
+        return;
+      }
+    }
+
+    setScreen("round2");
+  };
 
   // ================================
   // ROUND 2 COMPLETE
   // ================================
 
-  const handleRoundTwoComplete = async () => {
-  if (team?.id) {
-    const { error } = await supabase
-      .from("teams")
-      .update({
-        round_2_completed_at: new Date().toISOString(),
-        status: "round_3",
-      })
-      .eq("id", team.id);
+  const handleRoundTwoComplete =
+    async () => {
+      if (team?.id) {
+        const { error } =
+          await supabase
+            .from("teams")
+            .update({
+              round_2_completed_at:
+                new Date().toISOString(),
 
-    if (error) {
-      console.error("Round 2 update error:", error);
-      alert("Round 2 could not be saved. Please try again.");
-      return;
-    }
-  }
+              status: "round_3",
+            })
+            .eq("id", team.id);
 
-  setScreen("round3");
-};
+        if (error) {
+          console.error(
+            "Round 2 update error:",
+            error
+          );
+
+          alert(
+            "Round 2 could not be saved. Please try again."
+          );
+
+          return;
+        }
+      }
+
+      setScreen("round3");
+    };
 
   // ================================
   // STOP TIMER
   // ================================
 
   const handleStopTimer = () => {
-    setGameStarted(false);
+    const savedSession =
+      localStorage.getItem(SESSION_KEY);
 
+    if (savedSession) {
+      try {
+        const session: GameSession =
+          JSON.parse(savedSession);
+
+        // Exact time since START VOYAGE
+        const currentElapsed =
+          Math.floor(
+            (Date.now() -
+              session.startedAt) /
+              1000
+          );
+
+        // Add Round 1 penalties
+        const adjustedFinalTime =
+          currentElapsed +
+          (session.penaltySeconds || 0);
+
+        // Freeze React timer
+        setElapsedTime(
+          currentElapsed
+        );
+
+        setFinalTime(
+          adjustedFinalTime
+        );
+
+        setGameStarted(false);
+
+        // Permanently mark session stopped
+        session.stopped = true;
+        session.finalTime =
+          adjustedFinalTime;
+
+        localStorage.setItem(
+          SESSION_KEY,
+          JSON.stringify(session)
+        );
+
+        console.log(
+          "FINAL TIMER STOPPED:",
+          adjustedFinalTime,
+          "seconds"
+        );
+
+        return;
+      } catch (error) {
+        console.error(
+          "Could not stop timer:",
+          error
+        );
+      }
+    }
+
+    // Fallback
     const adjustedFinalTime =
-      elapsedTime + totalPenaltySeconds;
+      elapsedTime +
+      totalPenaltySeconds;
 
-    setFinalTime(adjustedFinalTime);
+    setFinalTime(
+      adjustedFinalTime
+    );
+
+    setGameStarted(false);
   };
 
   // ================================
   // FINAL COMPLETE
   // ================================
-const handleFinalComplete = async () => {
-  if (team?.id) {
-    const { error } = await supabase
-      .from("teams")
-      .update({
-        round_3_completed_at: new Date().toISOString(),
-        status: "final",
-      })
-      .eq("id", team.id);
 
-    if (error) {
-      console.error("Round 3 update error:", error);
-      alert("Round 3 could not be saved. Please try again.");
-      return;
-    }
-  }
+  const handleFinalComplete =
+    async () => {
+      if (team?.id) {
+        const { error } =
+          await supabase
+            .from("teams")
+            .update({
+              round_3_completed_at:
+                new Date().toISOString(),
 
-  setScreen("final");
-};
+              status: "final",
+            })
+            .eq("id", team.id);
+
+        if (error) {
+          console.error(
+            "Round 3 update error:",
+            error
+          );
+
+          alert(
+            "Round 3 could not be saved. Please try again."
+          );
+
+          return;
+        }
+      }
+
+      setScreen("final");
+    };
 
   // ================================
   // FINAL QUESTION ROUTE
   // ================================
 
- if (window.location.pathname === "/final") {
-  return (
-    <FinalQuestion
-      crewName={team?.teamName ?? "Tech Pirates"}
-      teamId={team?.id ?? null}
-    />
-  );
-
+  if (
+    window.location.pathname === "/final"
+  ) {
+    return (
+      <FinalQuestion
+        crewName={
+          team?.teamName ??
+          "Tech Pirates"
+        }
+        teamId={team?.id ?? null}
+        elapsedTime={elapsedTime}
+        onStopTimer={
+          handleStopTimer
+        }
+      />
+    );
   }
 
   // ================================
@@ -271,8 +540,13 @@ const handleFinalComplete = async () => {
 
         <header className="navbar">
           <div className="brand">
-            <span className="brand-icon">☠</span>
-            <span>TECHNITUDE × GRAND LINE</span>
+            <span className="brand-icon">
+              ☠
+            </span>
+
+            <span>
+              TECHNITUDE × GRAND LINE
+            </span>
           </div>
 
           <div className="nav-status">
@@ -282,7 +556,9 @@ const handleFinalComplete = async () => {
         </header>
 
         <main className="hero">
-          <div className="compass">✦</div>
+          <div className="compass">
+            ✦
+          </div>
 
           <p className="eyebrow">
             ⚓ TECHNITUDE PRESENTS ⚓
@@ -300,11 +576,11 @@ const handleFinalComplete = async () => {
           <h2>HACK THE HUNT</h2>
 
           <p className="description">
-            Gather your crew. Follow the clues. Solve
-            the challenges.
+            Gather your crew. Follow the clues.
+            Solve the challenges.
             <br />
-            Find the <strong>ONE PIECE</strong> hidden at
-            the end of the Grand Line.
+            Find the <strong>ONE PIECE</strong>{" "}
+            hidden at the end of the Grand Line.
           </p>
 
           <button
@@ -312,48 +588,11 @@ const handleFinalComplete = async () => {
             onClick={startGame}
           >
             <span>SET SAIL</span>
-            <span className="arrow">→</span>
+
+            <span className="arrow">
+              →
+            </span>
           </button>
-
-          {/* TEMPORARY DEVELOPMENT BUTTONS */}
-
-          <div className="dev-buttons">
-            <button
-              onClick={() => {
-                setElapsedTime(0);
-                setTotalPenaltySeconds(0);
-                setFinalTime(null);
-                setGameStarted(true);
-                setScreen("round1");
-              }}
-            >
-              TEST ROUND 1
-            </button>
-
-            <button
-              onClick={() => {
-                setElapsedTime(0);
-                setTotalPenaltySeconds(0);
-                setFinalTime(null);
-                setGameStarted(true);
-                setScreen("round2");
-              }}
-            >
-              TEST ROUND 2
-            </button>
-
-            <button
-              onClick={() => {
-                setElapsedTime(0);
-                setTotalPenaltySeconds(0);
-                setFinalTime(null);
-                setGameStarted(true);
-                setScreen("round3");
-              }}
-            >
-              TEST ROUND 3
-            </button>
-          </div>
 
           <div className="legend">
             <div>
@@ -375,7 +614,9 @@ const handleFinalComplete = async () => {
 
         <footer>
           <span>☠</span>
+
           TECHNITUDE • SHAIDS COMMITTEE • ONE PIECE
+
           <span>☠</span>
         </footer>
       </div>
@@ -389,11 +630,20 @@ const handleFinalComplete = async () => {
   if (screen === "round1") {
     return (
       <RoundOne
-        crewName={team?.teamName ?? "Tech Pirates"}
+        crewName={
+          team?.teamName ??
+          "Tech Pirates"
+        }
         elapsedTime={elapsedTime}
-        onComplete={handleRoundOneComplete}
-        onBack={() => setScreen("teamDetails")}
-        onGiveUp={handleGiveUp}
+        onComplete={
+          handleRoundOneComplete
+        }
+        onBack={() =>
+          setScreen("teamDetails")
+        }
+        onGiveUp={
+          handleGiveUp
+        }
       />
     );
   }
@@ -405,11 +655,20 @@ const handleFinalComplete = async () => {
   if (screen === "round2") {
     return (
       <RoundTwo
-        crewName={team?.teamName ?? "Tech Pirates"}
+        crewName={
+          team?.teamName ??
+          "Tech Pirates"
+        }
         elapsedTime={elapsedTime}
-        onComplete={handleRoundTwoComplete}
-        onBack={() => setScreen("round1")}
-        onGiveUp={handleGiveUp}
+        onComplete={
+          handleRoundTwoComplete
+        }
+        onBack={() =>
+          setScreen("round1")
+        }
+        onGiveUp={
+          handleGiveUp
+        }
       />
     );
   }
@@ -421,11 +680,20 @@ const handleFinalComplete = async () => {
   if (screen === "round3") {
     return (
       <RoundThree
-        crewName={team?.teamName ?? "Tech Pirates"}
+        crewName={
+          team?.teamName ??
+          "Tech Pirates"
+        }
         elapsedTime={elapsedTime}
-        onBack={() => setScreen("round2")}
-        onComplete={handleFinalComplete}
-        onStopTimer={handleStopTimer}
+        onBack={() =>
+          setScreen("round2")
+        }
+        onComplete={
+          handleFinalComplete
+        }
+        onStopTimer={
+          handleStopTimer
+        }
       />
     );
   }
@@ -436,7 +704,9 @@ const handleFinalComplete = async () => {
 
   if (screen === "final") {
     const displayedFinalTime =
-      finalTime ?? elapsedTime + totalPenaltySeconds;
+      finalTime ??
+      elapsedTime +
+        totalPenaltySeconds;
 
     return (
       <div className="app round-page">
@@ -444,12 +714,18 @@ const handleFinalComplete = async () => {
 
         <header className="navbar">
           <div className="brand">
-            <span className="brand-icon">☠</span>
+            <span className="brand-icon">
+              ☠
+            </span>
+
             <span>GRAND LINE</span>
           </div>
 
           <div className="global-timer">
-            ⏱ {formatTime(displayedFinalTime)}
+            ⏱{" "}
+            {formatTime(
+              displayedFinalTime
+            )}
           </div>
         </header>
 
@@ -465,7 +741,9 @@ const handleFinalComplete = async () => {
 
           <p className="round-subtitle">
             Congratulations,{" "}
-            {team?.teamName ?? "Tech Pirates"}.
+            {team?.teamName ??
+              "Tech Pirates"}
+            .
             <br />
             You have conquered the Grand Line.
           </p>
@@ -481,7 +759,9 @@ const handleFinalComplete = async () => {
               </div>
 
               <p className="logo-question">
-                {formatTime(displayedFinalTime)}
+                {formatTime(
+                  displayedFinalTime
+                )}
               </p>
 
               <p className="description">
@@ -496,14 +776,21 @@ const handleFinalComplete = async () => {
             className="sail-button"
             onClick={goHome}
           >
-            <span>RETURN TO MAP</span>
-            <span className="arrow">→</span>
+            <span>
+              RETURN TO MAP
+            </span>
+
+            <span className="arrow">
+              →
+            </span>
           </button>
         </main>
 
         <footer>
           <span>☠</span>
+
           TECHNITUDE • SHAIDS COMMITTEE • ONE PIECE
+
           <span>☠</span>
         </footer>
       </div>

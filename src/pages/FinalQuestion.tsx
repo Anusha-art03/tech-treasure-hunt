@@ -5,6 +5,8 @@ import { supabase } from "../lib/supabase";
 type FinalQuestionProps = {
   crewName: string;
   teamId: number | null;
+  elapsedTime: number;
+  onStopTimer: () => void;
 };
 
 type SubmissionResult = {
@@ -16,6 +18,9 @@ type SubmissionResult = {
 function FinalQuestion({
   crewName,
   teamId,
+  elapsedTime,
+  onStopTimer,
+
 }: FinalQuestionProps) {
   const [answer, setAnswer] = useState("");
   const [result, setResult] =
@@ -95,7 +100,7 @@ function FinalQuestion({
           );
         }
       }
-
+       onStopTimer();
       setResult(data);
     } catch (error) {
       console.error(error);
