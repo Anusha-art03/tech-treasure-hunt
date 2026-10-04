@@ -1,10 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Pirata+One&display=swap");
 
 /* =========================================================
-   GLOBAL
+   GRAND LINE — GLOBAL
    ========================================================= */
 
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -16,10 +18,12 @@ body,
 }
 
 body {
-  margin: 0;
-  background: #050911;
-  color: #f4e4bd;
+  background:
+    radial-gradient(circle at 50% 20%, rgba(212, 167, 42, 0.08), transparent 30%),
+    linear-gradient(180deg, #07101c 0%, #050911 50%, #03060b 100%);
+  color: #f4ead3;
   font-family: "Cinzel", serif;
+  overflow-x: hidden;
 }
 
 button,
@@ -31,552 +35,658 @@ button {
   cursor: pointer;
 }
 
+input {
+  outline: none;
+}
+
 /* =========================================================
-   HOME / STARTING PAGE
-   UNCHANGED
+   GLOBAL TEXT
+   ========================================================= */
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Pirata One", cursive;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+p,
+span,
+label,
+button,
+input {
+  font-family: "Cinzel", serif;
+}
+
+/* =========================================================
+   HOME PAGE
    ========================================================= */
 
 .app {
-  min-height: 100vh;
   position: relative;
+  min-height: 100vh;
   overflow: hidden;
+
   background:
-    radial-gradient(circle at 50% 25%, rgba(24, 57, 82, 0.5), transparent 35%),
-    radial-gradient(circle at 20% 80%, rgba(134, 86, 27, 0.12), transparent 30%),
-    linear-gradient(180deg, #07111c 0%, #050a12 55%, #03070d 100%);
+    radial-gradient(
+      circle at 50% 35%,
+      rgba(212, 167, 42, 0.08),
+      transparent 35%
+    ),
+    linear-gradient(
+      180deg,
+      #08111f 0%,
+      #050a13 55%,
+      #03060b 100%
+    );
 }
 
-.ocean-glow {
-  position: absolute;
-  width: 700px;
-  height: 700px;
-  left: 50%;
-  top: 30%;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(
-    circle,
-    rgba(38, 103, 139, 0.16),
-    transparent 68%
-  );
-  pointer-events: none;
-}
+/* Grand Line grid */
 
 .app::before {
   content: "";
   position: absolute;
   inset: 0;
+
   background-image:
-    linear-gradient(rgba(220, 169, 62, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(220, 169, 62, 0.035) 1px, transparent 1px);
-  background-size: 55px 55px;
+    linear-gradient(
+      rgba(212, 167, 42, 0.045) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(212, 167, 42, 0.045) 1px,
+      transparent 1px
+    );
+
+  background-size: 80px 80px;
   pointer-events: none;
 }
+
+/* Ocean glow */
+
+.ocean-glow {
+  position: absolute;
+  width: 650px;
+  height: 650px;
+  border-radius: 50%;
+
+  background: rgba(16, 82, 118, 0.16);
+  filter: blur(100px);
+
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   NAVBAR
+   ========================================================= */
 
 .navbar {
   position: relative;
   z-index: 10;
-  width: 100%;
+
   height: 78px;
-  padding: 0 55px;
+  width: 100%;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid rgba(220, 169, 62, 0.18);
-  background: rgba(3, 8, 14, 0.7);
-  backdrop-filter: blur(10px);
+
+  padding: 0 7%;
+
+  border-bottom: 1px solid rgba(212, 167, 42, 0.2);
+
+  background: rgba(3, 7, 13, 0.72);
+  backdrop-filter: blur(12px);
 }
 
 .brand {
   display: flex;
   align-items: center;
-  gap: 13px;
-  color: #e6b84d;
-  font-family: "Cinzel", serif;
-  font-size: 0.85rem;
+  gap: 12px;
+
+  color: #f1d58b;
+  font-size: 15px;
   font-weight: 700;
-  letter-spacing: 0.18em;
-}
-
-.brand-icon {
-  font-size: 1.35rem;
-  color: #e1b348;
-  text-shadow: 0 0 12px rgba(225, 179, 72, 0.4);
-}
-
-.nav-status {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  color: rgba(244, 228, 189, 0.5);
-  font-size: 0.62rem;
-  letter-spacing: 0.14em;
+  letter-spacing: 2px;
 }
 
 .status-dot {
-  width: 7px;
-  height: 7px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  background: #dca93e;
-  box-shadow: 0 0 10px rgba(220, 169, 62, 0.8);
+
+  background: #d4a72c;
+  box-shadow: 0 0 14px rgba(212, 167, 42, 0.8);
 }
+
+/* =========================================================
+   HOME HERO
+   ========================================================= */
 
 .hero {
   position: relative;
   z-index: 2;
+
   min-height: calc(100vh - 78px);
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
   text-align: center;
-  padding: 50px 20px 100px;
+  padding: 70px 20px 100px;
 }
 
 .compass {
-  width: 58px;
-  height: 58px;
+  position: relative;
+
+  width: 110px;
+  height: 110px;
+
+  margin-bottom: 28px;
+
+  border: 1px solid rgba(212, 167, 42, 0.55);
+  border-radius: 50%;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 25px;
-  border: 1px solid rgba(220, 169, 62, 0.45);
-  border-radius: 50%;
-  color: #e0b34b;
-  font-size: 1.4rem;
+
+  color: #d4a72c;
+
   box-shadow:
-    0 0 25px rgba(220, 169, 62, 0.08),
-    inset 0 0 20px rgba(220, 169, 62, 0.05);
+    0 0 30px rgba(212, 167, 42, 0.08),
+    inset 0 0 30px rgba(212, 167, 42, 0.05);
 }
 
 .compass::before,
 .compass::after {
   content: "";
   position: absolute;
-  width: 75px;
+
+  background: rgba(212, 167, 42, 0.5);
+}
+
+.compass::before {
+  width: 1px;
+  height: 100%;
+}
+
+.compass::after {
+  width: 100%;
   height: 1px;
-  background: rgba(220, 169, 62, 0.18);
 }
 
 .eyebrow {
-  margin: 0 0 17px;
-  color: #c99a38;
-  font-family: "Cinzel", serif;
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.28em;
-  text-shadow: 0 0 12px rgba(220, 169, 62, 0.15);
+  color: #d4a72c;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
 }
 
 .hero h1 {
-  margin: 0;
-  font-family: "Pirata One", cursive;
-  font-size: clamp(5rem, 13vw, 10rem);
-  font-weight: 400;
-  line-height: 0.75;
-  letter-spacing: 0.025em;
-  color: #f2e4c3;
+  margin-top: 16px;
+
+  font-size: clamp(65px, 10vw, 145px);
+  line-height: 0.9;
+
+  color: #f2e2bc;
+
   text-shadow:
-    0 3px 0 rgba(0, 0, 0, 0.5),
-    0 0 35px rgba(232, 183, 75, 0.08);
+    0 2px 0 #7f5b16,
+    0 5px 20px rgba(0, 0, 0, 0.6);
 }
 
-.hero h1 span {
-  display: block;
-  margin-top: 18px;
-  color: #dba83d;
-  font-size: 0.55em;
-  letter-spacing: 0.14em;
-  text-shadow: 0 0 25px rgba(220, 169, 62, 0.2);
-}
-
-.divider {
-  width: min(400px, 70vw);
-  margin: 32px auto 25px;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  color: #dca93e;
-}
-
-.divider::before,
-.divider::after {
-  content: "";
-  flex: 1;
+.hero-divider {
+  width: 160px;
   height: 1px;
+
+  margin: 28px auto;
+
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(220, 169, 62, 0.55)
-  );
-}
-
-.divider::after {
-  background: linear-gradient(
-    90deg,
-    rgba(220, 169, 62, 0.55),
+    #d4a72c,
     transparent
   );
 }
 
-.divider span {
-  font-size: 1.2rem;
-  text-shadow: 0 0 15px rgba(220, 169, 62, 0.4);
+.hero-subtitle {
+  color: #d4a72c;
+
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 5px;
+
+  text-transform: uppercase;
 }
 
-.hero h2 {
-  margin: 0;
-  color: #ead19a;
-  font-family: "Cinzel", serif;
-  font-size: clamp(1rem, 2vw, 1.35rem);
-  font-weight: 600;
-  letter-spacing: 0.38em;
-  text-indent: 0.38em;
+.hero-description {
+  max-width: 600px;
+
+  margin: 18px auto 30px;
+
+  color: rgba(244, 234, 211, 0.68);
+
+  font-size: 13px;
+  line-height: 1.9;
 }
 
-.description {
-  margin: 24px 0 35px;
-  color: rgba(244, 228, 189, 0.58);
-  font-family: "Cinzel", serif;
-  font-size: 0.78rem;
-  line-height: 2;
-  letter-spacing: 0.05em;
-}
+/* =========================================================
+   GOLD PIRATE BUTTON
+   ========================================================= */
 
-.sail-button {
-  min-width: 210px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 28px;
-  padding: 16px 25px;
-  border: 1px solid #dca93e;
-  color: #15100a;
-  background: linear-gradient(
-    135deg,
-    #c58b29,
-    #edc55f,
-    #c58b29
-  );
-  font-family: "Cinzel", serif;
-  font-size: 0.72rem;
+.sail-button,
+.primary-game-button {
+  position: relative;
+
+  border: 1px solid #d4a72c;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f0d47c,
+      #c99520 50%,
+      #8b6415
+    );
+
+  color: #171006;
+
+  padding: 14px 34px;
+
   font-weight: 800;
-  letter-spacing: 0.16em;
-  box-shadow: 0 8px 30px rgba(220, 169, 62, 0.12);
+  letter-spacing: 2px;
+
+  box-shadow:
+    0 8px 30px rgba(212, 167, 42, 0.18),
+    inset 0 1px rgba(255, 255, 255, 0.45);
+
   transition:
     transform 0.25s ease,
     box-shadow 0.25s ease;
 }
 
-.sail-button:hover {
+.sail-button:hover,
+.primary-game-button:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 35px rgba(220, 169, 62, 0.25);
+
+  box-shadow:
+    0 12px 40px rgba(212, 167, 42, 0.3),
+    inset 0 1px rgba(255, 255, 255, 0.5);
 }
 
-.sail-button .arrow {
-  font-size: 1.2rem;
-  transition: transform 0.2s ease;
+/* =========================================================
+   ROUND LEGEND
+   ========================================================= */
+
+.round-legend {
+  display: flex;
+  gap: 26px;
+
+  margin-top: 38px;
+
+  color: rgba(244, 234, 211, 0.55);
+
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
-.sail-button:hover .arrow {
-  transform: translateX(5px);
+.round-legend div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.legend {
-  width: min(850px, 90vw);
-  margin-top: 70px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  border-top: 1px solid rgba(220, 169, 62, 0.18);
-  border-bottom: 1px solid rgba(220, 169, 62, 0.18);
+.round-legend span {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #d4a72c;
 }
 
-.legend div {
-  padding: 18px 12px;
-  color: rgba(244, 228, 189, 0.45);
-  font-family: "Cinzel", serif;
-  font-size: 0.58rem;
-  letter-spacing: 0.12em;
-  border-right: 1px solid rgba(220, 169, 62, 0.12);
-}
-
-.legend div:last-child {
-  border-right: none;
-}
-
-.legend span {
-  margin-right: 9px;
-  color: #dca93e;
-  font-weight: 700;
-}
+/* =========================================================
+   FOOTER
+   ========================================================= */
 
 footer {
   position: absolute;
-  z-index: 5;
   bottom: 18px;
   left: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 14px;
-  color: rgba(244, 228, 189, 0.28);
-  font-size: 0.55rem;
-  letter-spacing: 0.2em;
-}
 
-footer span {
-  color: rgba(220, 169, 62, 0.5);
+  width: 100%;
+
+  text-align: center;
+
+  color: rgba(244, 234, 211, 0.32);
+
+  font-size: 9px;
+  letter-spacing: 3px;
 }
 
 /* =========================================================
-   SHARED ROUND
+   ROUND 01 — WANTED POSTER
    ========================================================= */
 
 .round-page {
+  position: relative;
+
   min-height: 100vh;
+  padding: 55px 6% 70px;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 50% 20%,
+      rgba(212, 167, 42, 0.1),
+      transparent 30%
+    ),
+    linear-gradient(
+      180deg,
+      #07111e,
+      #040912
+    );
+}
+
+.round-page::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background-image:
+    linear-gradient(
+      rgba(212, 167, 42, 0.035) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(212, 167, 42, 0.035) 1px,
+      transparent 1px
+    );
+
+  background-size: 70px 70px;
+
+  pointer-events: none;
 }
 
 .crew-display {
-  color: rgba(245, 224, 170, 0.75);
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
-}
+  position: relative;
+  z-index: 2;
 
-.crew-display strong {
-  color: #e8b84b;
-  margin-left: 6px;
-}
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-.round-container {
-  width: min(1100px, calc(100% - 40px));
-  margin: 0 auto;
-  padding: 70px 0 50px;
-  text-align: center;
+  color: #d4a72c;
+
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
 }
 
 .round-title {
-  margin: 12px 0 8px;
-  font-family: "Pirata One", cursive;
-  font-size: clamp(3rem, 7vw, 6rem);
-  font-weight: 400;
-  line-height: 0.9;
-  color: #f4e4bd;
-}
+  position: relative;
+  z-index: 2;
 
-.round-title span {
-  display: block;
-  color: #dca93e;
-  font-size: 0.48em;
   margin-top: 15px;
-  letter-spacing: 0.14em;
+
+  text-align: center;
+
+  font-size: clamp(48px, 7vw, 85px);
+
+  color: #f1dfb4;
+
+  text-shadow:
+    0 3px 0 #795615,
+    0 10px 30px rgba(0, 0, 0, 0.6);
 }
 
 .round-subtitle {
-  color: rgba(245, 231, 199, 0.65);
-  font-size: 0.9rem;
-  letter-spacing: 0.08em;
-  margin: 20px auto 35px;
+  position: relative;
+  z-index: 2;
+
+  margin-top: 5px;
+
+  text-align: center;
+
+  color: rgba(244, 234, 211, 0.55);
+
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
 }
 
 .round-stats {
-  width: min(800px, 100%);
-  margin: 0 auto 30px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  border: 1px solid rgba(214, 165, 61, 0.25);
-  background: rgba(5, 10, 18, 0.72);
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  justify-content: center;
+  gap: 45px;
+
+  margin: 28px 0;
 }
 
-.round-stats > div {
-  padding: 18px 12px;
-  border-right: 1px solid rgba(214, 165, 61, 0.2);
-}
-
-.round-stats > div:last-child {
-  border-right: none;
-}
-
-.round-stats small {
-  display: block;
-  color: rgba(245, 224, 170, 0.5);
-  font-size: 0.65rem;
-  letter-spacing: 0.15em;
-  margin-bottom: 7px;
+.round-stats div {
+  text-align: center;
 }
 
 .round-stats strong {
-  color: #e5b74e;
-  font-size: 1.15rem;
-  letter-spacing: 0.08em;
+  display: block;
+
+  color: #d4a72c;
+
+  font-size: 24px;
+}
+
+.round-stats span {
+  color: rgba(244, 234, 211, 0.4);
+
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
 /* =========================================================
-   ROUND 1 — LOGO GAME
+   WANTED CARD
    ========================================================= */
 
 .wanted-card {
-  width: min(760px, 100%);
-  margin: 0 auto;
-  padding: 0 0 30px;
   position: relative;
-  overflow: hidden;
-  border: 2px solid rgba(206, 158, 55, 0.65);
-  background: linear-gradient(
-    135deg,
-    rgba(43, 30, 16, 0.95),
-    rgba(14, 17, 23, 0.98)
-  );
+  z-index: 2;
+
+  width: min(620px, 94vw);
+
+  margin: 35px auto;
+
+  padding: 42px 35px;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(255, 241, 196, 0.95),
+      rgba(214, 187, 123, 0.95)
+    );
+
+  color: #261b0c;
+
+  border: 8px double #8d671d;
+
   box-shadow:
-    0 20px 70px rgba(0, 0, 0, 0.45),
-    inset 0 0 60px rgba(205, 157, 51, 0.04);
+    0 25px 70px rgba(0, 0, 0, 0.5),
+    inset 0 0 50px rgba(74, 45, 9, 0.18);
+
+  text-align: center;
 }
 
 .wanted-card::before {
   content: "";
+
   position: absolute;
-  inset: 8px;
-  border: 1px solid rgba(231, 188, 91, 0.2);
+  inset: 12px;
+
+  border: 1px solid rgba(91, 61, 14, 0.5);
+
   pointer-events: none;
 }
 
 .wanted-header {
   position: relative;
-  padding: 15px;
-  color: #17120b;
-  background: linear-gradient(
-    90deg,
-    #b67b20,
-    #f0c761,
-    #b67b20
-  );
-  font-family: "Pirata One", cursive;
-  font-size: 1.6rem;
-  letter-spacing: 0.12em;
-}
+  z-index: 2;
 
-.logo-area {
-  position: relative;
-  padding: 55px 20px 35px;
+  font-family: "Pirata One", cursive;
+
+  font-size: 42px;
+  letter-spacing: 4px;
+
+  color: #201508;
 }
 
 .logo-circle {
-  width: 190px;
-  height: 190px;
-  margin: 0 auto 25px;
+  position: relative;
+  z-index: 2;
+
+  width: 145px;
+  height: 145px;
+
+  margin: 28px auto;
+
+  border-radius: 50%;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  color: #e8bd58;
-  border: 1px solid rgba(226, 178, 75, 0.45);
-  background: radial-gradient(
-    circle,
-    rgba(229, 180, 69, 0.13),
-    rgba(4, 8, 14, 0.8) 70%
-  );
+
+  background: rgba(255, 248, 221, 0.65);
+
+  border: 4px solid #684b13;
+
   box-shadow:
-    0 0 40px rgba(211, 159, 47, 0.12),
-    inset 0 0 35px rgba(211, 159, 47, 0.08);
+    0 5px 20px rgba(0, 0, 0, 0.25),
+    inset 0 0 20px rgba(89, 58, 8, 0.15);
 }
 
+.logo-circle img,
 .logo-circle svg {
-  filter: drop-shadow(0 0 15px rgba(232, 189, 88, 0.25));
+  width: 75%;
+  height: 75%;
+  object-fit: contain;
 }
 
-.logo-question {
-  margin: 0;
-  color: rgba(246, 229, 190, 0.65);
-  font-size: 0.75rem;
-  letter-spacing: 0.2em;
-}
-
-.answer-area {
+.wanted-card label {
   position: relative;
-  width: min(580px, calc(100% - 40px));
-  margin: 0 auto;
-  display: flex;
-  gap: 10px;
+  z-index: 2;
+
+  display: block;
+
+  margin-bottom: 9px;
+
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
-.answer-area input {
-  flex: 1;
-  min-width: 0;
-  padding: 16px 18px;
-  border: 1px solid rgba(219, 172, 71, 0.4);
-  outline: none;
-  color: #f4e4bd;
-  background: rgba(3, 7, 13, 0.9);
-  font-size: 0.78rem;
-  letter-spacing: 0.08em;
-}
+.answer-input {
+  position: relative;
+  z-index: 2;
 
-.answer-area input::placeholder {
-  color: rgba(245, 224, 170, 0.35);
-}
+  width: min(400px, 80%);
 
-.answer-area input:focus {
-  border-color: #dca93e;
-  box-shadow: 0 0 18px rgba(220, 169, 62, 0.12);
-}
+  padding: 13px 15px;
 
-.submit-button {
-  padding: 0 25px;
-  border: 1px solid #dca93e;
-  color: #171109;
-  background: #dca93e;
+  border: 2px solid #725016;
+
+  background: rgba(255, 249, 223, 0.72);
+
+  color: #211609;
+
+  text-align: center;
+
   font-weight: 700;
-  font-size: 0.7rem;
-  letter-spacing: 0.12em;
+}
+
+.answer-input:focus {
+  border-color: #3f2a08;
+
+  box-shadow:
+    0 0 0 3px rgba(212, 167, 42, 0.2);
+}
+
+.wanted-card button {
+  position: relative;
+  z-index: 2;
+
+  margin-top: 15px;
+
+  padding: 12px 25px;
+
+  border: 1px solid #62450e;
+
+  background: #30200b;
+
+  color: #f5dfaa;
+
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+
   transition: 0.2s ease;
 }
 
-.submit-button:hover {
-  background: #f0c761;
-  transform: translateY(-1px);
-}
+.wanted-card button:hover {
+  background: #4b330b;
 
-.next-button {
-  min-width: 120px;
-}
-
-.answer-feedback {
-  position: relative;
-  margin: 22px auto 0;
-  width: fit-content;
-  padding: 10px 18px;
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
-}
-
-.answer-feedback.correct {
-  color: #d9e9c5;
-  border: 1px solid rgba(134, 185, 87, 0.5);
-  background: rgba(81, 120, 45, 0.15);
-}
-
-.answer-feedback.wrong {
-  color: #e9b4a5;
-  border: 1px solid rgba(189, 82, 58, 0.5);
-  background: rgba(120, 43, 30, 0.15);
+  transform: translateY(-2px);
 }
 
 /* =========================================================
-   ROUND 1 — HINTS
+   FEEDBACK
+   ========================================================= */
+
+.feedback {
+  position: relative;
+  z-index: 2;
+
+  margin-top: 20px;
+
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.feedback.correct {
+  color: #356b38;
+}
+
+.feedback.wrong {
+  color: #7c2c22;
+}
+
+/* =========================================================
+   HINTS
    ========================================================= */
 
 .hint-section {
   position: relative;
-  width: min(580px, calc(100% - 40px));
-  margin: 28px auto 0;
-  padding-top: 22px;
-  border-top: 1px solid rgba(220, 169, 62, 0.16);
-}
+  z-index: 3;
 
-.hint-title {
-  margin-bottom: 14px;
-  color: rgba(245, 224, 170, 0.5);
-  font-size: 0.62rem;
-  letter-spacing: 0.16em;
+  margin: 30px auto;
+
+  text-align: center;
 }
 
 .hint-buttons {
@@ -586,784 +696,2011 @@ footer span {
 }
 
 .hint-button {
-  min-width: 130px;
-  padding: 10px 18px;
-  border: 1px solid rgba(220, 169, 62, 0.35);
-  color: #dca93e;
-  background: rgba(220, 169, 62, 0.04);
-  font-family: "Cinzel", serif;
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
+  padding: 9px 15px;
+
+  border: 1px solid rgba(212, 167, 42, 0.45);
+
+  background: rgba(7, 14, 23, 0.8);
+
+  color: #d4a72c;
+
+  font-size: 9px;
+  letter-spacing: 1px;
+
   transition: 0.2s ease;
 }
 
-.hint-button span {
-  display: block;
-  margin-top: 4px;
-  color: rgba(245, 224, 170, 0.4);
-  font-size: 0.55rem;
-}
+.hint-button:hover {
+  background: rgba(212, 167, 42, 0.12);
 
-.hint-button:hover:not(:disabled) {
-  border-color: #dca93e;
-  background: rgba(220, 169, 62, 0.1);
-  box-shadow: 0 0 18px rgba(220, 169, 62, 0.08);
-}
-
-.hint-button:disabled {
-  cursor: not-allowed;
-  opacity: 0.25;
+  border-color: #d4a72c;
 }
 
 .hint-text {
-  margin-top: 16px;
-  padding: 12px 15px;
-  color: #e8c978;
-  border: 1px solid rgba(220, 169, 62, 0.2);
-  background: rgba(220, 169, 62, 0.05);
-  font-size: 0.68rem;
-  line-height: 1.6;
-  letter-spacing: 0.04em;
+  max-width: 480px;
+
+  margin: 15px auto;
+
+  color: rgba(244, 234, 211, 0.65);
+
+  font-size: 11px;
+  line-height: 1.7;
 }
 
+/* =========================================================
+   BACK BUTTON
+   ========================================================= */
+
 .back-button {
-  margin-top: 30px;
-  padding: 10px 18px;
-  border: 1px solid rgba(220, 169, 62, 0.3);
-  color: rgba(245, 224, 170, 0.55);
+  position: relative;
+  z-index: 5;
+
+  display: block;
+
+  margin: 30px auto 0;
+
+  border: none;
+
   background: transparent;
-  font-size: 0.65rem;
-  letter-spacing: 0.12em;
+
+  color: rgba(244, 234, 211, 0.5);
+
+  font-size: 10px;
+  letter-spacing: 2px;
+
   transition: 0.2s ease;
 }
 
 .back-button:hover {
-  color: #e5b74e;
-  border-color: rgba(220, 169, 62, 0.7);
+  color: #d4a72c;
 }
 /* =========================================================
-   ROUND 2 — PHYSICAL TREASURE HUNT
+   ROUND 02 — GRAND LINE TREASURE HUNT
    ========================================================= */
 
-.treasure-clue-card {
-  width: min(850px, 100%);
-  margin: 35px auto 0;
-  padding: 45px 50px;
+.round-page {
   position: relative;
-  border: 1px solid rgba(220, 169, 62, 0.45);
+
+  min-height: 100vh;
+
+  padding: 24px 5% 55px;
+
+  overflow: hidden;
+
   background:
+    radial-gradient(
+      circle at 50% 20%,
+      rgba(212, 167, 42, 0.09),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 10% 80%,
+      rgba(19, 78, 104, 0.13),
+      transparent 35%
+    ),
     linear-gradient(
-      145deg,
-      rgba(29, 23, 15, 0.96),
-      rgba(7, 12, 19, 0.98)
+      180deg,
+      #07111e 0%,
+      #050a13 55%,
+      #03060b 100%
     );
-  box-shadow:
-    0 25px 70px rgba(0, 0, 0, 0.45),
-    inset 0 0 50px rgba(220, 169, 62, 0.035);
 }
 
-.treasure-clue-card::before {
+/* Grand Line navigation grid */
+
+.round-page::before {
   content: "";
+
   position: absolute;
-  inset: 9px;
-  border: 1px solid rgba(220, 169, 62, 0.12);
+  inset: 0;
+
+  background-image:
+    linear-gradient(
+      rgba(212, 167, 42, 0.035) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(212, 167, 42, 0.035) 1px,
+      transparent 1px
+    );
+
+  background-size: 70px 70px;
+
   pointer-events: none;
 }
 
-.clue-label {
+/* Ocean glow */
+
+.round-page::after {
+  content: "";
+
+  position: absolute;
+
+  width: 650px;
+  height: 650px;
+
+  left: 50%;
+  top: 35%;
+
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background: rgba(15, 76, 104, 0.11);
+
+  filter: blur(110px);
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   TOP BAR
+   ========================================================= */
+
+.round-topbar {
   position: relative;
-  margin-bottom: 18px;
-  color: #dca93e;
-  font-size: 0.65rem;
+  z-index: 5;
+
+  width: min(1250px, 100%);
+
+  margin: 0 auto;
+
+  min-height: 58px;
+
+  display: grid;
+
+  grid-template-columns: 1fr auto 1fr;
+
+  align-items: center;
+
+  border-bottom: 1px solid rgba(212, 167, 42, 0.18);
+
+  padding-bottom: 16px;
+}
+
+/* Back */
+
+.round-topbar .back-button {
+  justify-self: start;
+
+  margin: 0;
+
+  padding: 8px 0;
+
+  color: rgba(244, 234, 211, 0.5);
+
+  font-size: 9px;
+
+  letter-spacing: 2px;
+
+  border: none;
+
+  background: transparent;
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.round-topbar .back-button:hover {
+  color: #d4a72c;
+
+  transform: translateX(-3px);
+}
+
+/* Brand */
+
+.round-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  color: #d4a72c;
+
+  font-size: 10px;
+  font-weight: 800;
+
+  letter-spacing: 3px;
+}
+
+.brand-divider {
+  color: rgba(244, 234, 211, 0.3);
+
+  font-family: "Pirata One", cursive;
+
+  font-size: 18px;
+}
+
+/* Timer */
+
+.round-timer {
+  justify-self: end;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 8px 14px;
+
+  border: 1px solid rgba(212, 167, 42, 0.3);
+
+  background: rgba(3, 8, 14, 0.7);
+
+  box-shadow:
+    0 0 25px rgba(212, 167, 42, 0.04);
+}
+
+.timer-label {
+  color: rgba(244, 234, 211, 0.4);
+
+  font-size: 8px;
+  letter-spacing: 2px;
+}
+
+.round-timer strong {
+  color: #f0d27b;
+
+  font-size: 17px;
+
+  letter-spacing: 1px;
+
+  font-variant-numeric: tabular-nums;
+}
+
+/* =========================================================
+   ROUND HEADER
+   ========================================================= */
+
+.round-header {
+  position: relative;
+  z-index: 2;
+
+  width: min(850px, 100%);
+
+  margin: 55px auto 35px;
+
+  text-align: center;
+}
+
+.round-eyebrow {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  color: #d4a72c;
+
+  font-size: 9px;
+  font-weight: 800;
+
+  letter-spacing: 3px;
+
+  text-transform: uppercase;
+}
+
+.round-eyebrow svg {
+  filter:
+    drop-shadow(
+      0 0 7px rgba(212, 167, 42, 0.35)
+    );
+}
+
+.eyebrow-divider {
+  color: rgba(244, 234, 211, 0.25);
+}
+
+.round-header h1 {
+  margin-top: 14px;
+
+  color: #f2dfad;
+
+  font-size: clamp(52px, 8vw, 92px);
+
+  line-height: 0.9;
+
+  text-shadow:
+    0 3px 0 #735314,
+    0 12px 35px rgba(0, 0, 0, 0.65);
+}
+
+.round-header h1 span {
+  display: block;
+
+  color: #d4a72c;
+
+  font-family: "Pirata One", cursive;
+
+  font-weight: 400;
+}
+
+.round-header p {
+  max-width: 650px;
+
+  margin: 22px auto 0;
+
+  color: rgba(244, 234, 211, 0.5);
+
+  font-size: 11px;
+
+  line-height: 1.9;
+}
+
+/* =========================================================
+   STATS
+   ========================================================= */
+
+.round-stats {
+  position: relative;
+  z-index: 3;
+
+  width: min(1000px, 100%);
+
+  margin: 0 auto 30px;
+
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 10px;
+}
+
+.stat-card {
+  position: relative;
+
+  padding: 15px 12px;
+
+  text-align: center;
+
+  border: 1px solid rgba(212, 167, 42, 0.17);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(14, 23, 34, 0.85),
+      rgba(4, 9, 15, 0.9)
+    );
+
+  box-shadow:
+    inset 0 0 20px rgba(212, 167, 42, 0.015);
+}
+
+.stat-card::before {
+  content: "✦";
+
+  position: absolute;
+
+  top: 6px;
+  left: 8px;
+
+  color: rgba(212, 167, 42, 0.3);
+
+  font-size: 8px;
+}
+
+.stat-label {
+  display: block;
+
+  color: rgba(244, 234, 211, 0.35);
+
+  font-size: 7px;
+
+  font-weight: 800;
+
+  letter-spacing: 2px;
+}
+
+.stat-card strong {
+  display: block;
+
+  margin-top: 6px;
+
+  color: #e8d39c;
+
+  font-size: 14px;
+
   font-weight: 700;
-  letter-spacing: 0.25em;
+}
+
+/* =========================================================
+   MAIN TREASURE CLUE
+   ========================================================= */
+
+.treasure-clue-card {
+  position: relative;
+  z-index: 3;
+
+  width: min(850px, 100%);
+
+  margin: 0 auto;
+
+  padding: 0;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      #d9c18a 0%,
+      #c6a963 50%,
+      #ad8744 100%
+    );
+
+  color: #281a08;
+
+  border: 7px double #65460e;
+
+  box-shadow:
+    0 30px 90px rgba(0, 0, 0, 0.55),
+    inset 0 0 70px rgba(80, 48, 7, 0.15);
+}
+
+/* Aged parchment texture */
+
+.treasure-clue-card::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(65, 42, 8, 0.025) 0,
+      rgba(65, 42, 8, 0.025) 2px,
+      transparent 2px,
+      transparent 5px
+    );
+
+  pointer-events: none;
+}
+
+/* Corner compass */
+
+.treasure-clue-card::after {
+  content: "N";
+
+  position: absolute;
+
+  top: 18px;
+  right: 25px;
+
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(74, 48, 8, 0.45);
+
+  border-radius: 50%;
+
+  color: rgba(74, 48, 8, 0.6);
+
+  font-size: 10px;
+  font-weight: 800;
+}
+
+/* =========================================================
+   CLUE TOP
+   ========================================================= */
+
+.wanted-card-top {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 18px 25px;
+
+  border-bottom: 1px solid rgba(79, 51, 8, 0.3);
+}
+
+.wanted-stamp {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  color: #62430b;
+
+  font-size: 8px;
+  font-weight: 800;
+
+  letter-spacing: 2px;
 }
 
 .clue-number {
+  color: rgba(57, 37, 7, 0.55);
+
+  font-size: 9px;
+  font-weight: 800;
+
+  letter-spacing: 2px;
+}
+
+/* =========================================================
+   CLUE ICON
+   ========================================================= */
+
+.clue-icon {
   position: relative;
-  margin: 0 0 25px;
-  color: #f1d28a;
+  z-index: 2;
+
+  width: 78px;
+  height: 78px;
+
+  margin: 32px auto 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  border: 2px solid #62430b;
+
+  background: rgba(245, 220, 157, 0.4);
+
+  color: #5b3e0b;
+
+  box-shadow:
+    0 5px 20px rgba(75, 45, 5, 0.15);
+}
+
+/* =========================================================
+   CLUE CONTENT
+   ========================================================= */
+
+.clue-content {
+  position: relative;
+  z-index: 2;
+
+  text-align: center;
+
+  padding: 0 35px;
+}
+
+.clue-kicker {
+  color: #69490d;
+
+  font-size: 8px;
+
+  font-weight: 800;
+
+  letter-spacing: 3px;
+
+  text-transform: uppercase;
+}
+
+.clue-content h2 {
+  margin-top: 12px;
+
+  color: #291a07;
+
   font-family: "Pirata One", cursive;
-  font-size: clamp(2rem, 5vw, 3.4rem);
+
+  font-size: clamp(36px, 5vw, 55px);
+
+  line-height: 1.05;
+
   font-weight: 400;
-  letter-spacing: 0.06em;
 }
 
-.clue-text {
+.clue-content > p {
+  margin-top: 22px;
+
+  color: rgba(45, 29, 7, 0.72);
+
+  font-family: "Pirata One", cursive;
+
+  font-size: 20px;
+
+  line-height: 1.55;
+}
+
+/* =========================================================
+   CLUE FOOTER
+   ========================================================= */
+
+.clue-footer {
   position: relative;
-  max-width: 700px;
-  margin: 0 auto;
-  color: rgba(247, 231, 197, 0.85);
-  font-family: "Cinzel", serif;
-  font-size: clamp(1rem, 2vw, 1.25rem);
-  line-height: 1.9;
-  letter-spacing: 0.03em;
+  z-index: 2;
+
+  margin-top: 30px;
+
+  padding: 24px 30px 28px;
+
+  background: rgba(80, 51, 7, 0.07);
+
+  border-top: 1px solid rgba(79, 51, 8, 0.25);
 }
 
-.clue-text strong {
-  color: #e4b94f;
+.clue-warning {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  gap: 9px;
+
+  color: #62430b;
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+
+  text-transform: uppercase;
 }
+
+.clue-rule {
+  width: 100px;
+  height: 1px;
+
+  margin: 16px auto;
+
+  background: rgba(79, 51, 8, 0.3);
+}
+
+.clue-instruction {
+  text-align: center;
+
+  color: rgba(45, 29, 7, 0.55);
+
+  font-size: 9px;
+
+  line-height: 1.7;
+}
+
+/* =========================================================
+   RULES OF THE HUNT
+   ========================================================= */
 
 .hunt-instructions {
+  position: relative;
+  z-index: 3;
+
   width: min(850px, 100%);
-  margin: 25px auto 0;
-  padding: 28px 30px;
-  border: 1px solid rgba(220, 169, 62, 0.18);
-  background: rgba(4, 9, 16, 0.65);
+
+  margin: 35px auto 0;
+
+  padding: 25px;
+
+  border: 1px solid rgba(212, 167, 42, 0.2);
+
+  background:
+    rgba(5, 11, 18, 0.7);
 }
 
-.hunt-instructions h3 {
-  margin: 0 0 20px;
-  color: #dca93e;
-  font-size: 0.72rem;
-  letter-spacing: 0.2em;
+.instruction-heading {
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  padding-bottom: 14px;
+
+  border-bottom: 1px solid rgba(212, 167, 42, 0.15);
+
+  color: #d4a72c;
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: 3px;
 }
 
 .instruction-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 15px;
+
+  margin-top: 20px;
 }
 
 .instruction-item {
-  padding: 18px 12px;
-  border: 1px solid rgba(220, 169, 62, 0.13);
-  background: rgba(220, 169, 62, 0.025);
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 10px;
 }
 
-.instruction-item span {
-  display: block;
-  margin-bottom: 8px;
-  color: #dca93e;
-  font-family: "Pirata One", cursive;
-  font-size: 1.6rem;
+.instruction-number {
+  flex-shrink: 0;
+
+  width: 27px;
+  height: 27px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(212, 167, 42, 0.35);
+
+  color: #d4a72c;
+
+  font-size: 8px;
+
+  font-weight: 800;
 }
 
 .instruction-item strong {
   display: block;
-  margin-bottom: 7px;
-  color: #ead49e;
-  font-size: 0.67rem;
-  letter-spacing: 0.1em;
+
+  color: #ead7a6;
+
+  font-size: 9px;
+
+  letter-spacing: 1.5px;
 }
 
 .instruction-item p {
-  margin: 0;
-  color: rgba(245, 224, 170, 0.45);
-  font-size: 0.6rem;
+  margin-top: 5px;
+
+  color: rgba(244, 234, 211, 0.4);
+
+  font-size: 8px;
+
+  line-height: 1.5;
+}
+
+/* =========================================================
+   IMPORTANT NOTE
+   ========================================================= */
+
+.round-note {
+  position: relative;
+  z-index: 3;
+
+  width: min(850px, 100%);
+
+  margin: 18px auto;
+
+  padding: 13px 17px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  border-left: 2px solid #d4a72c;
+
+  background: rgba(212, 167, 42, 0.045);
+
+  color: rgba(244, 234, 211, 0.55);
+
+  font-size: 8px;
+
   line-height: 1.6;
 }
 
-.round-note {
-  width: min(700px, 100%);
-  margin: 25px auto 0;
-  color: rgba(245, 224, 170, 0.42);
-  font-size: 0.62rem;
-  line-height: 1.7;
-  letter-spacing: 0.05em;
+.round-note svg {
+  flex-shrink: 0;
+
+  color: #d4a72c;
 }
 
 .round-note strong {
-  color: rgba(220, 169, 62, 0.7);
+  color: #d4a72c;
+
+  letter-spacing: 1px;
+}
+
+/* =========================================================
+   ACTIONS
+   ========================================================= */
+
+.round-actions {
+  position: relative;
+  z-index: 3;
+
+  width: min(850px, 100%);
+
+  margin: 30px auto 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 15px;
 }
 
 .give-up-button {
-  margin-top: 25px;
-  padding: 11px 22px;
-  border: 1px solid rgba(180, 74, 55, 0.4);
-  color: rgba(224, 132, 112, 0.75);
-  background: rgba(120, 42, 29, 0.08);
-  font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 0.13em;
+  min-height: 46px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  padding: 0 22px;
+
+  border: 1px solid rgba(170, 70, 55, 0.45);
+
+  background: rgba(90, 28, 23, 0.15);
+
+  color: rgba(221, 123, 103, 0.8);
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: 2px;
+
   transition: 0.2s ease;
 }
 
 .give-up-button:hover {
-  border-color: rgba(210, 91, 68, 0.75);
-  color: #e6a08e;
-  background: rgba(120, 42, 29, 0.16);
+  border-color: #a84d3e;
+
+  background: rgba(130, 42, 31, 0.2);
+
+  color: #d77a68;
 }
 
-/* =========================================================
-   ROUND 3 — ASSEMBLE THE ONE PIECE
-   ========================================================= */
+.primary-action-button {
+  min-height: 46px;
 
-.final-treasure-card {
-  width: min(900px, 100%);
-  margin: 35px auto 0;
-  position: relative;
-  overflow: hidden;
-  border: 1px solid rgba(220, 169, 62, 0.45);
-  background:
-    radial-gradient(
-      circle at 50% 20%,
-      rgba(220, 169, 62, 0.08),
-      transparent 42%
-    ),
-    rgba(6, 11, 18, 0.96);
-  box-shadow:
-    0 30px 80px rgba(0, 0, 0, 0.5),
-    inset 0 0 70px rgba(220, 169, 62, 0.025);
-}
+  padding: 0 28px;
 
-.final-treasure-card::before {
-  content: "";
-  position: absolute;
-  inset: 10px;
-  border: 1px solid rgba(220, 169, 62, 0.12);
-  pointer-events: none;
-}
+  border: 1px solid #d4a72c;
 
-.final-treasure-content {
-  position: relative;
-  padding: 50px 55px;
-}
-
-.final-treasure-icon {
-  width: 75px;
-  height: 75px;
-  margin: 0 auto 25px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(220, 169, 62, 0.4);
-  border-radius: 50%;
-  color: #dca93e;
-  background: rgba(220, 169, 62, 0.04);
-  box-shadow: 0 0 30px rgba(220, 169, 62, 0.08);
-}
-
-.final-treasure-content h2 {
-  margin: 0;
-  color: #f0dfb5;
-  font-family: "Pirata One", cursive;
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
-  font-weight: 400;
-  letter-spacing: 0.05em;
-}
-
-.final-treasure-content > p {
-  max-width: 650px;
-  margin: 18px auto 0;
-  color: rgba(245, 224, 170, 0.58);
-  font-size: 0.72rem;
-  line-height: 1.8;
-  letter-spacing: 0.08em;
-}
-
-.qr-assembly-display {
-  width: min(430px, 80vw);
-  aspect-ratio: 1;
-  margin: 40px auto;
-  padding: 18px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 4px;
-  border: 1px solid rgba(220, 169, 62, 0.28);
   background:
     linear-gradient(
       135deg,
-      rgba(220, 169, 62, 0.07),
-      rgba(3, 7, 13, 0.95)
+      #e4c45f,
+      #c39424 55%,
+      #8a6315
     );
+
+  color: #1b1205;
+
+  font-size: 9px;
+
+  font-weight: 900;
+
+  letter-spacing: 2px;
+
   box-shadow:
-    0 0 45px rgba(220, 169, 62, 0.06),
-    inset 0 0 30px rgba(0, 0, 0, 0.5);
+    0 8px 25px rgba(212, 167, 42, 0.14);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-.qr-assembly-display .qr-piece {
-  min-width: 0;
-  min-height: 0;
-  border: 1px dashed rgba(220, 169, 62, 0.22);
+.primary-action-button:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 13px 35px rgba(212, 167, 42, 0.24);
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.round-footer {
+  position: relative;
+  z-index: 3;
+
+  width: 100%;
+
+  margin-top: 50px;
+
+  display: flex;
+
+  justify-content: center;
+
+  gap: 12px;
+
+  color: rgba(244, 234, 211, 0.25);
+
+  font-size: 7px;
+
+  font-weight: 700;
+
+  letter-spacing: 2px;
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 800px) {
+  .round-topbar {
+    grid-template-columns: 1fr auto;
+
+    gap: 15px;
+  }
+
+  .round-brand {
+    display: none;
+  }
+
+  .round-timer {
+    justify-self: end;
+  }
+
+  .round-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .instruction-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .treasure-clue-card {
+    width: 100%;
+  }
+}
+
+@media (max-width: 550px) {
+  .round-page {
+    padding: 18px 14px 40px;
+  }
+
+  .round-topbar {
+    min-height: 48px;
+
+    padding-bottom: 12px;
+  }
+
+  .round-topbar .back-button {
+    font-size: 7px;
+  }
+
+  .timer-label {
+    display: none;
+  }
+
+  .round-timer {
+    padding: 7px 10px;
+  }
+
+  .round-timer strong {
+    font-size: 14px;
+  }
+
+  .round-header {
+    margin-top: 40px;
+  }
+
+  .round-eyebrow {
+    flex-wrap: wrap;
+
+    font-size: 7px;
+
+    letter-spacing: 2px;
+  }
+
+  .round-header h1 {
+    font-size: 56px;
+  }
+
+  .round-header p {
+    font-size: 9px;
+  }
+
+  .round-stats {
+    gap: 7px;
+  }
+
+  .stat-card {
+    padding: 12px 7px;
+  }
+
+  .stat-card strong {
+    font-size: 11px;
+  }
+
+  .stat-label {
+    font-size: 6px;
+  }
+
+  .treasure-clue-card {
+    border-width: 5px;
+  }
+
+  .wanted-card-top {
+    padding: 14px 15px;
+  }
+
+  .clue-icon {
+    width: 65px;
+    height: 65px;
+
+    margin-top: 25px;
+  }
+
+  .clue-content {
+    padding: 0 18px;
+  }
+
+  .clue-content h2 {
+    font-size: 36px;
+  }
+
+  .clue-content > p {
+    font-size: 17px;
+  }
+
+  .clue-footer {
+    padding: 20px 16px;
+  }
+
+  .hunt-instructions {
+    padding: 18px 15px;
+  }
+
+  .instruction-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .round-note {
+    align-items: flex-start;
+  }
+
+  .round-actions {
+    flex-direction: column-reverse;
+  }
+
+  .give-up-button,
+  .primary-action-button {
+    width: 100%;
+  }
+
+  .round-footer {
+    flex-wrap: wrap;
+
+    gap: 7px;
+  }
+}
+/* =========================================================
+   TREASURE HUNT CARD
+   ========================================================= */
+
+.hunt-card {
+  position: relative;
+  z-index: 2;
+
+  width: min(800px, 94vw);
+
+  margin: auto;
+
+  padding: 45px 40px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(210, 179, 111, 0.97),
+      rgba(177, 141, 67, 0.96)
+    );
+
+  color: #24180a;
+
+  border: 7px double #694912;
+
+  box-shadow:
+    0 25px 80px rgba(0, 0, 0, 0.5),
+    inset 0 0 60px rgba(76, 47, 8, 0.15);
+}
+
+.hunt-card::after {
+  content: "✦";
+
+  position: absolute;
+  top: 16px;
+  right: 22px;
+
+  color: rgba(73, 45, 7, 0.35);
+
+  font-size: 28px;
+}
+
+.stage-icon {
+  width: 62px;
+  height: 62px;
+
+  margin: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  border: 2px solid #6a4a0d;
+
+  background: rgba(255, 236, 177, 0.55);
+
+  font-size: 25px;
+}
+
+.hunt-card .eyebrow {
+  margin-top: 20px;
+
+  color: #62450e;
+
+  text-align: center;
+}
+
+.hunt-card h1 {
+  margin-top: 8px;
+
+  text-align: center;
+
+  font-size: clamp(40px, 6vw, 70px);
+
+  color: #26190a;
+}
+
+.hunt-card > p {
+  margin-top: 7px;
+
+  text-align: center;
+
+  color: rgba(38, 25, 10, 0.65);
+
+  font-size: 11px;
+}
+
+/* =========================================================
+   CLUE BOX
+   ========================================================= */
+
+.clue-box {
+  position: relative;
+
+  margin-top: 30px;
+
+  padding: 28px;
+
+  border: 2px solid rgba(89, 58, 9, 0.5);
+
   background:
     repeating-linear-gradient(
-      45deg,
-      rgba(220, 169, 62, 0.035) 0,
-      rgba(220, 169, 62, 0.035) 2px,
+      0deg,
+      rgba(91, 60, 12, 0.025),
+      rgba(91, 60, 12, 0.025) 2px,
       transparent 2px,
-      transparent 7px
-    );
-}
-
-.final-steps {
-  width: min(760px, 100%);
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-}
-
-.final-step {
-  padding: 20px 10px;
-  border: 1px solid rgba(220, 169, 62, 0.15);
-  background: rgba(220, 169, 62, 0.025);
-}
-
-.step-icon {
-  width: 38px;
-  height: 38px;
-  margin: 0 auto 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(220, 169, 62, 0.3);
-  border-radius: 50%;
-  color: #dca93e;
-}
-
-.final-step strong {
-  display: block;
-  color: #e7ca83;
-  font-size: 0.62rem;
-  letter-spacing: 0.12em;
-}
-
-.final-step span {
-  display: block;
-  margin-top: 6px;
-  color: rgba(245, 224, 170, 0.38);
-  font-size: 0.55rem;
-  line-height: 1.5;
-}
-
-.final-treasure-warning {
-  width: min(650px, 100%);
-  margin: 28px auto 0;
-  padding: 14px 18px;
-  border: 1px solid rgba(220, 169, 62, 0.16);
-  color: rgba(245, 224, 170, 0.48);
-  background: rgba(220, 169, 62, 0.035);
-  font-size: 0.6rem;
-  line-height: 1.7;
-  letter-spacing: 0.04em;
-}
-
-.final-treasure-warning strong {
-  color: rgba(220, 169, 62, 0.75);
-}
-
-.final-actions {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  margin-top: 30px;
-}
-
-.final-action-button {
-  padding: 13px 25px;
-  border: 1px solid #dca93e;
-  color: #171109;
-  background: #dca93e;
-  font-size: 0.65rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  transition: 0.2s ease;
-}
-
-.final-action-button:hover {
-  background: #f0c761;
-  transform: translateY(-2px);
-}
-
-/* =========================================================
-   TIMER / ROUND CONTROLS
-   ========================================================= */
-
-.timer-warning {
-  color: #df9c55 !important;
-}
-
-.timer-danger {
-  color: #d8674d !important;
-  text-shadow: 0 0 12px rgba(216, 103, 77, 0.2);
-}
-
-.round-controls {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 30px;
-}
-
-.secondary-button {
-  padding: 12px 20px;
-  border: 1px solid rgba(220, 169, 62, 0.28);
-  color: rgba(245, 224, 170, 0.6);
-  background: rgba(220, 169, 62, 0.025);
-  font-size: 0.63rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  transition: 0.2s ease;
-}
-
-.secondary-button:hover {
-  color: #e7c66f;
-  border-color: rgba(220, 169, 62, 0.65);
-  background: rgba(220, 169, 62, 0.07);
-}
-
-/* =========================================================
-   ROUND COMPLETE / FINAL STATE
-   ========================================================= */
-
-.round-complete {
-  width: min(780px, calc(100% - 40px));
-  margin: 80px auto;
-  padding: 60px 40px;
-  text-align: center;
-  border: 1px solid rgba(220, 169, 62, 0.35);
-  background: rgba(5, 10, 17, 0.9);
-  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.45);
-}
-
-.round-complete-icon {
-  width: 80px;
-  height: 80px;
-  margin: 0 auto 25px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(220, 169, 62, 0.4);
-  border-radius: 50%;
-  color: #dca93e;
-}
-
-.round-complete h2 {
-  margin: 0;
-  color: #f0dfb5;
-  font-family: "Pirata One", cursive;
-  font-size: clamp(2.8rem, 7vw, 5rem);
-  font-weight: 400;
-}
-
-.round-complete p {
-  color: rgba(245, 224, 170, 0.55);
-  font-size: 0.75rem;
-  line-height: 1.8;
-  letter-spacing: 0.08em;
-}
-
-.final-time {
-  margin: 30px 0;
-}
-
-.final-time small {
-  display: block;
-  color: rgba(245, 224, 170, 0.4);
-  font-size: 0.6rem;
-  letter-spacing: 0.15em;
-}
-
-.final-time strong {
-  display: block;
-  margin-top: 8px;
-  color: #e5b74e;
-  font-size: 2.5rem;
-  letter-spacing: 0.08em;
-}
-/* =========================================================
-   FINAL QUESTION PAGE
-   ========================================================= */
-
-.final-question-card {
-  width: min(900px, 92vw);
-  margin: 55px auto;
-  position: relative;
-  overflow: hidden;
-  border: 1px solid rgba(220, 169, 62, 0.45);
-  background:
-    radial-gradient(
-      circle at 50% 15%,
-      rgba(220, 169, 62, 0.08),
-      transparent 45%
+      transparent 5px
     ),
-    rgba(5, 10, 17, 0.96);
-  box-shadow:
-    0 30px 90px rgba(0, 0, 0, 0.5),
-    inset 0 0 70px rgba(220, 169, 62, 0.025);
-}
+    rgba(255, 232, 170, 0.32);
 
-.final-question-card::before {
-  content: "";
-  position: absolute;
-  inset: 10px;
-  border: 1px solid rgba(220, 169, 62, 0.12);
-  pointer-events: none;
-}
-
-.final-question-content {
-  position: relative;
-  padding: 3.5rem 4rem;
-  min-height: 420px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   text-align: center;
 }
 
-.final-question-label {
+.clue-box::before {
+  content: "CLUE";
+
+  display: block;
+
   margin-bottom: 12px;
-  color: #dca93e;
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.25em;
-}
 
-.final-question-content h2 {
-  max-width: 750px;
-  margin: 1.5rem auto;
-  color: #f2dfae;
-  font-family: "Cinzel", serif;
-  font-size: clamp(1.8rem, 3vw, 2.7rem);
-  font-weight: 600;
-  line-height: 1.4;
-  letter-spacing: 0.03em;
-}
+  color: #66480d;
 
-.final-question-content code {
-  padding: 0.15em 0.35em;
-  border-radius: 6px;
-  color: #e8bd58;
-  background: rgba(220, 169, 62, 0.08);
-  font-family: "Courier New", monospace;
-  font-size: 0.9em;
-}
-
-.final-question-description {
-  max-width: 600px;
-  margin: 0 auto 28px;
-  color: rgba(245, 224, 170, 0.5);
-  font-size: 0.68rem;
-  line-height: 1.8;
-  letter-spacing: 0.05em;
-}
-
-.final-answer-form {
-  width: min(620px, 100%);
-  margin-top: 15px;
-}
-
-.final-answer-form input {
-  width: 100%;
-  padding: 17px 20px;
-  border: 1px solid rgba(220, 169, 62, 0.35);
-  outline: none;
-  color: #f4e4bd;
-  background: rgba(2, 6, 12, 0.9);
-  text-align: center;
-  font-size: 0.82rem;
-  letter-spacing: 0.08em;
-  transition: 0.2s ease;
-}
-
-.final-answer-form input::placeholder {
-  color: rgba(245, 224, 170, 0.28);
-}
-
-.final-answer-form input:focus {
-  border-color: #dca93e;
-  box-shadow: 0 0 20px rgba(220, 169, 62, 0.1);
-}
-
-.final-submit-button {
-  width: 100%;
-  margin-top: 12px;
-  padding: 16px 25px;
-  border: 1px solid #dca93e;
-  color: #171109;
-  background: linear-gradient(
-    135deg,
-    #c58b29,
-    #edc55f,
-    #c58b29
-  );
-  font-size: 0.7rem;
+  font-size: 9px;
   font-weight: 800;
-  letter-spacing: 0.15em;
-  transition: 0.2s ease;
+  letter-spacing: 4px;
 }
 
-.final-submit-button:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(220, 169, 62, 0.15);
+.clue-box p {
+  color: #30200d;
+
+  font-family: "Pirata One", cursive;
+
+  font-size: clamp(20px, 3vw, 30px);
+
+  line-height: 1.35;
 }
 
-.final-submit-button:disabled {
-  cursor: not-allowed;
-  opacity: 0.45;
-}
+/* =========================================================
+   LOCATION WARNING
+   ========================================================= */
 
-.final-warning {
-  max-width: 600px;
-  margin: 22px auto 0;
-  color: rgba(245, 224, 170, 0.35);
-  font-size: 0.58rem;
+.location-warning {
+  margin-top: 20px;
+
+  padding: 12px;
+
+  border-left: 3px solid #8b6415;
+
+  background: rgba(71, 47, 9, 0.08);
+
+  color: rgba(48, 32, 13, 0.7);
+
+  font-size: 10px;
   line-height: 1.6;
-  letter-spacing: 0.04em;
 }
 
 /* =========================================================
-   FINAL QUESTION — CORRECT
+   TECHNICAL CHALLENGE
    ========================================================= */
 
-.final-success {
-  width: min(760px, calc(100% - 40px));
-  margin: 70px auto;
-  padding: 65px 40px;
-  text-align: center;
-  border: 1px solid rgba(143, 185, 88, 0.4);
-  background:
-    radial-gradient(
-      circle at 50% 20%,
-      rgba(111, 160, 68, 0.08),
-      transparent 45%
-    ),
-    rgba(5, 13, 10, 0.94);
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+.technical-challenge {
+  margin-top: 24px;
+
+  padding: 22px;
+
+  border: 1px solid rgba(89, 58, 9, 0.45);
+
+  background: rgba(246, 221, 161, 0.25);
 }
 
-.final-success-icon {
-  width: 85px;
-  height: 85px;
-  margin: 0 auto 28px;
+.technical-challenge h3 {
+  color: #4b3309;
+
+  font-size: 25px;
+}
+
+.technical-challenge pre,
+.technical-challenge code {
+  margin-top: 12px;
+
+  display: block;
+
+  padding: 16px;
+
+  background: #151109;
+
+  color: #e5cb8d;
+
+  border: 1px solid #765414;
+
+  overflow-x: auto;
+
+  font-family: monospace;
+
+  line-height: 1.6;
+}
+
+.instruction {
+  margin-top: 20px;
+
+  color: rgba(45, 29, 10, 0.7);
+
+  font-size: 10px;
+  line-height: 1.7;
+}
+
+/* =========================================================
+   ROUND 2 ANSWER
+   ========================================================= */
+
+.round-two-page .answer-area {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(143, 185, 88, 0.5);
-  border-radius: 50%;
-  color: #a5ce6d;
-  box-shadow: 0 0 35px rgba(143, 185, 88, 0.08);
-}
+  gap: 10px;
 
-.final-success h2 {
-  margin: 0;
-  color: #e6efcf;
-  font-family: "Pirata One", cursive;
-  font-size: clamp(3rem, 8vw, 5.5rem);
-  font-weight: 400;
-}
-
-.final-success h3 {
-  margin: 15px 0;
-  color: #b9d98a;
-  font-size: 0.8rem;
-  letter-spacing: 0.2em;
-}
-
-.final-success p {
-  margin: 15px auto;
-  color: rgba(224, 240, 202, 0.5);
-  font-size: 0.68rem;
-  line-height: 1.8;
-  letter-spacing: 0.05em;
-}
-
-/* =========================================================
-   FINAL QUESTION — WRONG
-   ========================================================= */
-
-.final-error {
-  width: min(760px, calc(100% - 40px));
-  margin: 70px auto;
-  padding: 65px 40px;
-  text-align: center;
-  border: 1px solid rgba(190, 83, 62, 0.4);
-  background:
-    radial-gradient(
-      circle at 50% 20%,
-      rgba(155, 55, 38, 0.08),
-      transparent 45%
-    ),
-    rgba(14, 7, 7, 0.94);
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
-}
-
-.final-error-icon {
-  width: 85px;
-  height: 85px;
-  margin: 0 auto 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(190, 83, 62, 0.5);
-  border-radius: 50%;
-  color: #d87862;
-}
-
-.final-error h2 {
-  margin: 0;
-  color: #edc0b4;
-  font-family: "Pirata One", cursive;
-  font-size: clamp(3rem, 8vw, 5.5rem);
-  font-weight: 400;
-}
-
-.final-error h3 {
-  margin: 15px 0;
-  color: #d9826e;
-  font-size: 0.8rem;
-  letter-spacing: 0.2em;
-}
-
-.final-error p {
-  margin: 15px auto;
-  color: rgba(240, 204, 194, 0.5);
-  font-size: 0.68rem;
-  line-height: 1.8;
-}
-
-/* =========================================================
-   LOADING / SUBMIT STATE
-   ========================================================= */
-
-.loading-text {
-  color: rgba(245, 224, 170, 0.5);
-  font-size: 0.68rem;
-  letter-spacing: 0.12em;
-  animation: pulseText 1.4s ease-in-out infinite;
-}
-
-@keyframes pulseText {
-  0%,
-  100% {
-    opacity: 0.4;
-  }
-
-  50% {
-    opacity: 1;
-  }
-}
-
-/* =========================================================
-   DEVELOPMENT BUTTONS
-   KEEPING HOME DESIGN UNCHANGED
-   ========================================================= */
-
-.dev-buttons {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 8px;
   margin-top: 20px;
 }
 
-.dev-buttons button {
-  padding: 7px 12px;
-  border: 1px solid rgba(220, 169, 62, 0.25);
-  color: rgba(245, 224, 170, 0.35);
-  background: rgba(220, 169, 62, 0.025);
-  font-size: 0.5rem;
-  letter-spacing: 0.08em;
+.round-two-page .answer-area input {
+  flex: 1;
+
+  padding: 13px 15px;
+
+  border: 1px solid #795716;
+
+  background: rgba(255, 243, 203, 0.7);
+
+  color: #23180a;
 }
 
-.dev-buttons button:hover {
-  color: #dca93e;
-  border-color: rgba(220, 169, 62, 0.5);
+.round-two-page .answer-area input:focus {
+  border-color: #3d2807;
+
+  box-shadow: 0 0 0 3px rgba(212, 167, 42, 0.15);
+}
+
+.round-two-page .answer-area button {
+  padding: 13px 22px;
+
+  border: 1px solid #5d400c;
+
+  background: #30200b;
+
+  color: #f3dc9e;
+
+  font-weight: 700;
+
+  transition: 0.2s ease;
+}
+
+.round-two-page .answer-area button:hover {
+  background: #4b330b;
+}
+
+/* =========================================================
+   QR ASSEMBLY
+   ========================================================= */
+
+.qr-assembly-screen {
+  position: relative;
+  z-index: 2;
+
+  width: min(800px, 94vw);
+
+  margin: 40px auto;
+
+  padding: 45px 30px;
+
+  text-align: center;
+
+  border: 1px solid rgba(212, 167, 42, 0.35);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(14, 23, 35, 0.96),
+      rgba(5, 10, 17, 0.96)
+    );
+
+  box-shadow:
+    0 25px 70px rgba(0, 0, 0, 0.4);
+}
+
+.qr-assembly-screen h2 {
+  color: #d4a72c;
+
+  font-size: clamp(38px, 6vw, 65px);
+}
+
+.qr-grid {
+  width: min(420px, 80vw);
+
+  margin: 30px auto;
+
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 7px;
+
+  padding: 12px;
+
+  background: #d8c28b;
+
+  border: 5px solid #80601e;
+
+  box-shadow:
+    0 0 35px rgba(212, 167, 42, 0.15);
+}
+
+.qr-piece {
+  aspect-ratio: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #0b1018;
+
+  border: 1px solid rgba(212, 167, 42, 0.25);
+
+  color: #d4a72c;
+
+  font-family: "Pirata One", cursive;
+
+  font-size: 24px;
+}
+
+.assembly-message {
+  color: rgba(244, 234, 211, 0.62);
+
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+.final-instruction {
+  margin-top: 18px;
+
+  color: #d4a72c;
+
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   ROUND 03 — FINAL ISLAND
+   ========================================================= */
+
+.round-three-page {
+  position: relative;
+
+  min-height: 100vh;
+
+  padding: 30px 6% 80px;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 50% 30%,
+      rgba(212, 167, 42, 0.12),
+      transparent 35%
+    ),
+    linear-gradient(
+      180deg,
+      #07111e,
+      #03070d
+    );
+}
+
+.round-three-page::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background-image:
+    linear-gradient(
+      rgba(212, 167, 42, 0.04) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(212, 167, 42, 0.04) 1px,
+      transparent 1px
+    );
+
+  background-size: 70px 70px;
+
+  pointer-events: none;
+}
+
+.round-three-page .game-header {
+  position: relative;
+  z-index: 3;
+}
+
+.round-three-page .eyebrow {
+  position: relative;
+  z-index: 2;
+
+  margin-top: 45px;
+
+  text-align: center;
+
+  color: #d4a72c;
+}
+
+.final-intro {
+  position: relative;
+  z-index: 2;
+
+  max-width: 900px;
+
+  margin: auto;
+
+  text-align: center;
+}
+
+.final-intro h1 {
+  margin-top: 10px;
+
+  font-size: clamp(55px, 9vw, 110px);
+
+  color: #f2dfad;
+
+  text-shadow:
+    0 4px 0 #775516,
+    0 12px 35px rgba(0, 0, 0, 0.6);
+}
+
+.final-intro p {
+  max-width: 600px;
+
+  margin: 15px auto;
+
+  color: rgba(244, 234, 211, 0.55);
+
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+/* =========================================================
+   FRAGMENTS
+   ========================================================= */
+
+.fragment-section {
+  position: relative;
+  z-index: 2;
+
+  width: min(900px, 94vw);
+
+  margin: 50px auto;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 20px;
+}
+
+.section-heading h2 {
+  color: #d4a72c;
+
+  font-size: 36px;
+}
+
+.fragment-counter {
+  color: rgba(244, 234, 211, 0.45);
+
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.fragment-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 14px;
+}
+
+.fragment-card {
+  position: relative;
+
+  min-height: 130px;
+
+  padding: 15px;
+
+  border: 1px solid rgba(212, 167, 42, 0.3);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(28, 35, 43, 0.96),
+      rgba(7, 12, 19, 0.96)
+    );
+
+  color: #e8d5a5;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.fragment-card:hover {
+  transform: translateY(-4px);
+
+  border-color: #d4a72c;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(55, 48, 31, 0.96),
+      rgba(9, 13, 19, 0.96)
+    );
+}
+
+.fragment-card::before {
+  content: "✦";
+
+  position: absolute;
+
+  top: 8px;
+  left: 10px;
+
+  color: rgba(212, 167, 42, 0.5);
+}
+
+.fragment-card strong {
+  font-family: "Pirata One", cursive;
+
+  font-size: 25px;
+  font-weight: 400;
+}
+
+/* =========================================================
+   FINAL ASSEMBLY
+   ========================================================= */
+
+.assembly-final-section {
+  position: relative;
+  z-index: 2;
+
+  width: min(700px, 94vw);
+
+  margin: 50px auto;
+
+  padding: 40px 25px;
+
+  text-align: center;
+
+  border-top: 1px solid rgba(212, 167, 42, 0.25);
+  border-bottom: 1px solid rgba(212, 167, 42, 0.25);
+}
+
+.success-icon {
+  width: 65px;
+  height: 65px;
+
+  margin: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  border: 1px solid #d4a72c;
+
+  color: #d4a72c;
+
+  font-size: 26px;
+
+  box-shadow:
+    0 0 25px rgba(212, 167, 42, 0.12);
+}
+
+.qr-placeholder,
+.qr-frame {
+  width: 230px;
+  height: 230px;
+
+  margin: 25px auto;
+
+  padding: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #f0dfad;
+
+  border: 6px solid #80601e;
+
+  box-shadow:
+    0 0 45px rgba(212, 167, 42, 0.12);
+}
+
+.qr-placeholder::after {
+  content: "FINAL";
+  color: #332208;
+
+  font-family: "Pirata One", cursive;
+
+  font-size: 35px;
+}
+
+.assembly-final-section p {
+  color: rgba(244, 234, 211, 0.5);
+
+  font-size: 10px;
+  line-height: 1.7;
+}
+
+/* =========================================================
+   FINAL QUESTION
+   ========================================================= */
+
+.final-question-section {
+  position: relative;
+  z-index: 2;
+
+  width: min(700px, 94vw);
+
+  margin: 50px auto;
+
+  text-align: center;
+}
+
+.final-question-section h2 {
+  color: #d4a72c;
+
+  font-size: clamp(38px, 6vw, 65px);
+}
+
+.final-question-section p {
+  margin-top: 10px;
+
+  color: rgba(244, 234, 211, 0.55);
+
+  font-size: 11px;
+}
+
+.final-question-section .answer-area {
+  display: flex;
+  gap: 10px;
+
+  margin-top: 25px;
+}
+
+.final-question-section input {
+  flex: 1;
+
+  padding: 14px;
+
+  border: 1px solid rgba(212, 167, 42, 0.4);
+
+  background: rgba(3, 8, 14, 0.85);
+
+  color: #f2dfad;
+}
+
+.final-question-section input:focus {
+  border-color: #d4a72c;
+
+  box-shadow:
+    0 0 20px rgba(212, 167, 42, 0.08);
+}
+
+.final-question-section button {
+  padding: 14px 24px;
+
+  border: 1px solid #d4a72c;
+
+  background: #c39424;
+
+  color: #1b1205;
+
+  font-weight: 800;
+}
+
+/* =========================================================
+   FINAL WIN
+   ========================================================= */
+
+.final-win-card {
+  position: relative;
+  z-index: 3;
+
+  width: min(750px, 94vw);
+
+  margin: 70px auto;
+
+  padding: 55px 35px;
+
+  text-align: center;
+
+  border: 1px solid rgba(212, 167, 42, 0.5);
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(212, 167, 42, 0.12),
+      rgba(5, 10, 17, 0.96)
+    );
+
+  box-shadow:
+    0 30px 100px rgba(0, 0, 0, 0.55);
+}
+
+.skull {
+  font-size: 65px;
+
+  filter:
+    drop-shadow(
+      0 0 15px rgba(212, 167, 42, 0.25)
+    );
+}
+
+.final-win-card h1 {
+  margin-top: 10px;
+
+  color: #f2dfad;
+
+  font-size: clamp(50px, 8vw, 90px);
+
+  text-shadow:
+    0 3px 0 #765315;
+}
+
+.win-message {
+  margin-top: 12px;
+
+  color: rgba(244, 234, 211, 0.65);
+
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+.final-time {
+  margin: 28px 0;
+
+  color: #d4a72c;
+
+  font-size: 30px;
+  font-weight: 800;
+}
+
+.final-quote {
+  color: rgba(244, 234, 211, 0.45);
+
+  font-family: "Pirata One", cursive;
+
+  font-size: 22px;
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 800px) {
+  .navbar {
+    padding: 0 5%;
+  }
+
+  .hero {
+    padding-top: 45px;
+  }
+
+  .hero h1 {
+    font-size: clamp(60px, 18vw, 100px);
+  }
+
+  .round-legend {
+    gap: 12px;
+
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .round-stats {
+    gap: 25px;
+  }
+
+  .wanted-card {
+    padding: 35px 20px;
+  }
+
+  .fragment-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .game-header {
+    width: 100%;
+  }
+}
+
+@media (max-width: 500px) {
+  .navbar {
+    height: 68px;
+  }
+
+  .brand {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+  }
+
+  .hero {
+    min-height: calc(100vh - 68px);
+
+    padding: 35px 15px 80px;
+  }
+
+  .compass {
+    width: 85px;
+    height: 85px;
+  }
+
+  .hero-subtitle {
+    font-size: 12px;
+    letter-spacing: 3px;
+  }
+
+  .hero-description {
+    font-size: 11px;
+  }
+
+  .round-page,
+  .round-two-page,
+  .round-three-page {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .round-title {
+    font-size: 55px;
+  }
+
+  .round-stats {
+    gap: 15px;
+  }
+
+  .wanted-card {
+    width: 100%;
+
+    border-width: 5px;
+  }
+
+  .wanted-header {
+    font-size: 35px;
+  }
+
+  .logo-circle {
+    width: 120px;
+    height: 120px;
+  }
+
+  .answer-input {
+    width: 100%;
+  }
+
+  .hint-buttons {
+    flex-wrap: wrap;
+  }
+
+  .game-header {
+    align-items: flex-start;
+  }
+
+  .timer-box {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
+  .hunt-card {
+    padding: 32px 18px;
+  }
+
+  .hunt-card h1 {
+    font-size: 45px;
+  }
+
+  .round-two-page .answer-area,
+  .final-question-section .answer-area {
+    flex-direction: column;
+  }
+
+  .qr-grid {
+    width: min(300px, 85vw);
+  }
+
+  .fragment-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-heading {
+    align-items: flex-end;
+  }
+
+  .section-heading h2 {
+    font-size: 29px;
+  }
+
+  .final-win-card {
+    padding: 40px 20px;
+  }
+
+  footer {
+    position: relative;
+
+    margin-top: 30px;
+  }
 }
 
 /* =========================================================
@@ -1372,566 +2709,8 @@ footer span {
 
 button:focus-visible,
 input:focus-visible {
-  outline: 2px solid rgba(220, 169, 62, 0.75);
+  outline: 2px solid #d4a72c;
   outline-offset: 3px;
-}
-
-/* =========================================================
-   TABLET
-   ========================================================= */
-
-@media (max-width: 900px) {
-  .navbar {
-    padding: 0 30px;
-  }
-
-  .round-container {
-    width: min(100% - 30px, 850px);
-    padding-top: 50px;
-  }
-
-  .treasure-clue-card {
-    padding: 40px 35px;
-  }
-
-  .final-treasure-content {
-    padding: 45px 35px;
-  }
-
-  .final-question-content {
-    padding: 3rem 2.5rem;
-  }
-
-  .final-steps {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* =========================================================
-   MOBILE — MAIN
-   ========================================================= */
-
-@media (max-width: 600px) {
-  html,
-  body {
-    overflow-x: hidden;
-  }
-
-  .app {
-    min-height: 100svh;
-  }
-
-  /* ---------------- HOME ---------------- */
-
-  .navbar {
-    height: 65px;
-    padding: 0 16px;
-  }
-
-  .brand {
-    gap: 7px;
-    font-size: 0.58rem;
-    letter-spacing: 0.1em;
-  }
-
-  .brand-icon {
-    font-size: 1rem;
-  }
-
-  .nav-status {
-    font-size: 0.48rem;
-    letter-spacing: 0.08em;
-  }
-
-  .status-dot {
-    width: 5px;
-    height: 5px;
-  }
-
-  .hero {
-    min-height: calc(100svh - 65px);
-    padding: 35px 15px 80px;
-  }
-
-  .compass {
-    width: 46px;
-    height: 46px;
-    margin-bottom: 20px;
-    font-size: 1.1rem;
-  }
-
-  .eyebrow {
-    margin-bottom: 13px;
-    font-size: 0.52rem;
-    letter-spacing: 0.18em;
-  }
-
-  .hero h1 {
-    font-size: clamp(4rem, 20vw, 6rem);
-    line-height: 0.78;
-  }
-
-  .hero h1 span {
-    margin-top: 12px;
-  }
-
-  .divider {
-    margin: 25px auto 20px;
-  }
-
-  .hero h2 {
-    font-size: 0.72rem;
-    letter-spacing: 0.25em;
-    text-indent: 0.25em;
-  }
-
-  .description {
-    max-width: 340px;
-    margin: 18px 0 27px;
-    font-size: 0.62rem;
-    line-height: 1.8;
-  }
-
-  .sail-button {
-    width: min(230px, 85vw);
-    min-width: 0;
-    padding: 14px 20px;
-    gap: 20px;
-    font-size: 0.62rem;
-  }
-
-  .legend {
-    width: 100%;
-    margin-top: 45px;
-    grid-template-columns: 1fr;
-  }
-
-  .legend div {
-    padding: 11px 8px;
-    border-right: none;
-    border-bottom: 1px solid rgba(220, 169, 62, 0.12);
-    font-size: 0.48rem;
-  }
-
-  .legend div:last-child {
-    border-bottom: none;
-  }
-
-  footer {
-    bottom: 10px;
-    padding: 0 12px;
-    gap: 8px;
-    font-size: 0.42rem;
-    letter-spacing: 0.1em;
-    text-align: center;
-  }
-
-  /* ---------------- SHARED ROUNDS ---------------- */
-
-  .round-container {
-    width: calc(100% - 24px);
-    padding: 35px 0 40px;
-  }
-
-  .round-title {
-    font-size: clamp(2.7rem, 15vw, 4.5rem);
-  }
-
-  .round-title span {
-    margin-top: 10px;
-    font-size: 0.43em;
-  }
-
-  .round-subtitle {
-    margin: 15px auto 25px;
-    font-size: 0.62rem;
-    line-height: 1.6;
-  }
-
-  .round-stats {
-    grid-template-columns: repeat(3, 1fr);
-    margin-bottom: 20px;
-  }
-
-  .round-stats > div {
-    padding: 12px 5px;
-  }
-
-  .round-stats small {
-    margin-bottom: 5px;
-    font-size: 0.47rem;
-    letter-spacing: 0.08em;
-  }
-
-  .round-stats strong {
-    font-size: 0.75rem;
-  }
-
-  /* ---------------- ROUND 1 ---------------- */
-
-  .wanted-card {
-    width: 100%;
-  }
-
-  .wanted-header {
-    padding: 12px;
-    font-size: 1.25rem;
-  }
-
-  .logo-area {
-    padding: 35px 15px 25px;
-  }
-
-  .logo-circle {
-    width: 145px;
-    height: 145px;
-    margin-bottom: 20px;
-  }
-
-  .logo-question {
-    font-size: 0.58rem;
-    line-height: 1.5;
-  }
-
-  .answer-area {
-    width: calc(100% - 30px);
-    flex-direction: column;
-  }
-
-  .answer-area input {
-    width: 100%;
-    padding: 14px;
-    font-size: 0.68rem;
-  }
-
-  .submit-button {
-    width: 100%;
-    min-height: 45px;
-    padding: 12px;
-  }
-
-  .hint-section {
-    width: calc(100% - 30px);
-  }
-
-  .hint-buttons {
-    flex-direction: column;
-  }
-
-  .hint-button {
-    width: 100%;
-  }
-
-  .round-controls {
-    flex-direction: column;
-  }
-
-  .round-controls button {
-    width: 100%;
-  }
-
-  /* ---------------- ROUND 2 ---------------- */
-
-  .treasure-clue-card {
-    width: 100%;
-    margin-top: 25px;
-    padding: 32px 20px;
-  }
-
-  .treasure-clue-card::before {
-    inset: 6px;
-  }
-
-  .clue-label {
-    font-size: 0.52rem;
-    letter-spacing: 0.17em;
-  }
-
-  .clue-number {
-    margin-bottom: 18px;
-    font-size: 2.3rem;
-  }
-
-  .clue-text {
-    font-size: 0.8rem;
-    line-height: 1.8;
-  }
-
-  .hunt-instructions {
-    padding: 22px 15px;
-  }
-
-  .hunt-instructions h3 {
-    font-size: 0.58rem;
-  }
-
-  .instruction-grid {
-    grid-template-columns: 1fr;
-    gap: 8px;
-  }
-
-  .instruction-item {
-    padding: 14px 10px;
-  }
-
-  .instruction-item span {
-    font-size: 1.35rem;
-  }
-
-  .instruction-item strong {
-    font-size: 0.58rem;
-  }
-
-  .instruction-item p {
-    font-size: 0.52rem;
-  }
-
-  .round-note {
-    font-size: 0.54rem;
-  }
-
-  .give-up-button {
-    width: 100%;
-  }
-
-  /* ---------------- ROUND 3 ---------------- */
-
-  .final-treasure-card {
-    width: 100%;
-    margin-top: 25px;
-  }
-
-  .final-treasure-content {
-    padding: 35px 18px;
-  }
-
-  .final-treasure-content h2 {
-    font-size: clamp(2.3rem, 13vw, 3.5rem);
-  }
-
-  .final-treasure-content > p {
-    font-size: 0.6rem;
-    line-height: 1.7;
-  }
-
-  .final-treasure-icon {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 18px;
-  }
-
-  .qr-assembly-display {
-    width: min(300px, 82vw);
-    padding: 12px;
-    gap: 3px;
-    margin: 30px auto;
-  }
-
-  .final-steps {
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-  }
-
-  .final-step {
-    padding: 15px 7px;
-  }
-
-  .step-icon {
-    width: 32px;
-    height: 32px;
-    margin-bottom: 8px;
-  }
-
-  .final-step strong {
-    font-size: 0.52rem;
-  }
-
-  .final-step span {
-    font-size: 0.47rem;
-  }
-
-  .final-treasure-warning {
-    font-size: 0.52rem;
-    padding: 12px;
-  }
-
-  .final-actions {
-    flex-direction: column;
-  }
-
-  .final-action-button {
-    width: 100%;
-  }
-
-  /* ---------------- FINAL QUESTION ---------------- */
-
-  .final-question-card {
-    width: calc(100% - 24px);
-    margin: 30px auto;
-  }
-
-  .final-question-card::before {
-    inset: 6px;
-  }
-
-  .final-question-content {
-    min-height: 0;
-    padding: 40px 20px;
-  }
-
-  .final-question-label {
-    font-size: 0.52rem;
-    letter-spacing: 0.17em;
-  }
-
-  .final-question-content h2 {
-    margin: 18px auto;
-    font-size: clamp(1.25rem, 6vw, 1.8rem);
-    line-height: 1.5;
-  }
-
-  .final-question-description {
-    font-size: 0.55rem;
-    line-height: 1.7;
-  }
-
-  .final-answer-form {
-    width: 100%;
-  }
-
-  .final-answer-form input {
-    padding: 15px 12px;
-    font-size: 0.68rem;
-  }
-
-  .final-submit-button {
-    padding: 14px;
-    font-size: 0.6rem;
-  }
-
-  .final-warning {
-    font-size: 0.48rem;
-  }
-
-  /* ---------------- SUCCESS / ERROR ---------------- */
-
-  .final-success,
-  .final-error {
-    width: calc(100% - 24px);
-    margin: 40px auto;
-    padding: 45px 20px;
-  }
-
-  .final-success-icon,
-  .final-error-icon {
-    width: 65px;
-    height: 65px;
-    margin-bottom: 20px;
-  }
-
-  .final-success h2,
-  .final-error h2 {
-    font-size: clamp(2.7rem, 14vw, 4rem);
-  }
-
-  .final-success h3,
-  .final-error h3 {
-    font-size: 0.62rem;
-    letter-spacing: 0.13em;
-  }
-
-  .final-success p,
-  .final-error p {
-    font-size: 0.56rem;
-    line-height: 1.7;
-  }
-
-  /* ---------------- ROUND COMPLETE ---------------- */
-
-  .round-complete {
-    width: calc(100% - 24px);
-    margin: 40px auto;
-    padding: 45px 20px;
-  }
-
-  .round-complete-icon {
-    width: 65px;
-    height: 65px;
-  }
-
-  .round-complete h2 {
-    font-size: clamp(2.7rem, 14vw, 4rem);
-  }
-
-  .round-complete p {
-    font-size: 0.58rem;
-  }
-
-  .final-time strong {
-    font-size: 2rem;
-  }
-
-  /* ---------------- DEVELOPMENT BUTTONS ---------------- */
-
-  .dev-buttons {
-    width: 100%;
-    gap: 5px;
-  }
-
-  .dev-buttons button {
-    font-size: 0.42rem;
-    padding: 6px 8px;
-  }
-}
-
-/* =========================================================
-   SMALL PHONES
-   ========================================================= */
-
-@media (max-width: 380px) {
-  .navbar {
-    padding: 0 11px;
-  }
-
-  .brand {
-    font-size: 0.48rem;
-  }
-
-  .nav-status {
-    font-size: 0.4rem;
-  }
-
-  .hero h1 {
-    font-size: 3.6rem;
-  }
-
-  .hero h2 {
-    font-size: 0.62rem;
-  }
-
-  .round-stats small {
-    font-size: 0.42rem;
-  }
-
-  .round-stats strong {
-    font-size: 0.67rem;
-  }
-
-  .qr-assembly-display {
-    width: 260px;
-  }
-
-  .final-steps {
-    grid-template-columns: 1fr;
-  }
-
-  .final-question-content {
-    padding: 32px 15px;
-  }
-
-  .final-question-content h2 {
-    font-size: 1.2rem;
-  }
 }
 
 /* =========================================================
@@ -1943,29 +2722,461 @@ input:focus-visible {
   *::before,
   *::after {
     scroll-behavior: auto !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    transition: none !important;
+    animation: none !important;
   }
 }
 
 /* =========================================================
-   SCROLLBAR
+   TEAM DETAILS — CREW ASSEMBLY
    ========================================================= */
 
-::-webkit-scrollbar {
-  width: 7px;
+.team-details-page {
+  position: relative;
+
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 50px 20px;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 50% 35%,
+      rgba(212, 167, 42, 0.1),
+      transparent 32%
+    ),
+    linear-gradient(
+      180deg,
+      #07111e 0%,
+      #050a13 55%,
+      #03060b 100%
+    );
 }
 
-::-webkit-scrollbar-track {
-  background: #050911;
+/* Grand Line map lines */
+
+.team-details-page::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background-image:
+    linear-gradient(
+      rgba(212, 167, 42, 0.04) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(212, 167, 42, 0.04) 1px,
+      transparent 1px
+    );
+
+  background-size: 65px 65px;
+
+  pointer-events: none;
 }
 
-::-webkit-scrollbar-thumb {
-  background: #79561e;
-  border-radius: 10px;
+/* Ocean glow */
+
+.team-details-page::after {
+  content: "";
+
+  position: absolute;
+
+  width: 550px;
+  height: 550px;
+
+  border-radius: 50%;
+
+  background: rgba(20, 91, 125, 0.13);
+
+  filter: blur(100px);
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  pointer-events: none;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #a97529;
+/* =========================================================
+   CREW CARD
+   ========================================================= */
+
+.team-details-card {
+  position: relative;
+  z-index: 2;
+
+  width: min(760px, 95vw);
+
+  padding: 45px 50px;
+
+  border: 1px solid rgba(212, 167, 42, 0.5);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(12, 21, 32, 0.97),
+      rgba(4, 9, 15, 0.98)
+    );
+
+  box-shadow:
+    0 30px 90px rgba(0, 0, 0, 0.55),
+    inset 0 0 50px rgba(212, 167, 42, 0.025);
+
+  text-align: center;
+}
+
+/* Decorative inner border */
+
+.team-details-card::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 10px;
+
+  border: 1px solid rgba(212, 167, 42, 0.13);
+
+  pointer-events: none;
+}
+
+/* Corner decorations */
+
+.team-details-card::after {
+  content: "⚓";
+
+  position: absolute;
+
+  top: 17px;
+  right: 22px;
+
+  color: rgba(212, 167, 42, 0.35);
+
+  font-size: 22px;
+}
+
+/* =========================================================
+   ANCHOR ICON
+   ========================================================= */
+
+.team-details-icon {
+  position: relative;
+  z-index: 2;
+
+  width: 70px;
+  height: 70px;
+
+  margin: 0 auto 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(212, 167, 42, 0.55);
+
+  color: #d4a72c;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(212, 167, 42, 0.12),
+      transparent 70%
+    );
+
+  box-shadow:
+    0 0 30px rgba(212, 167, 42, 0.08);
+}
+
+/* =========================================================
+   TITLE
+   ========================================================= */
+
+.team-details-card .eyebrow {
+  position: relative;
+  z-index: 2;
+
+  color: #d4a72c;
+
+  font-size: 9px;
+  font-weight: 700;
+
+  letter-spacing: 3px;
+
+  margin-bottom: 8px;
+}
+
+.team-details-card h1 {
+  position: relative;
+  z-index: 2;
+
+  color: #f2dfad;
+
+  font-size: clamp(48px, 7vw, 78px);
+
+  line-height: 0.95;
+
+  text-shadow:
+    0 3px 0 #725215,
+    0 10px 30px rgba(0, 0, 0, 0.55);
+}
+
+.team-details-subtitle {
+  position: relative;
+  z-index: 2;
+
+  margin: 14px auto 32px;
+
+  color: rgba(244, 234, 211, 0.5);
+
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.team-details-card form {
+  position: relative;
+  z-index: 2;
+
+  text-align: left;
+}
+
+.team-input-group {
+  margin-bottom: 20px;
+}
+
+.team-input-group label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #d4a72c;
+
+  font-size: 9px;
+  font-weight: 800;
+
+  letter-spacing: 2px;
+}
+
+.team-input-group input {
+  width: 100%;
+
+  padding: 13px 15px;
+
+  border: 1px solid rgba(212, 167, 42, 0.3);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(5, 11, 18, 0.9),
+      rgba(8, 15, 23, 0.9)
+    );
+
+  color: #f1dfb4;
+
+  font-size: 12px;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.team-input-group input::placeholder {
+  color: rgba(244, 234, 211, 0.25);
+}
+
+.team-input-group input:hover {
+  border-color: rgba(212, 167, 42, 0.5);
+}
+
+.team-input-group input:focus {
+  border-color: #d4a72c;
+
+  background: rgba(212, 167, 42, 0.035);
+
+  box-shadow:
+    0 0 0 3px rgba(212, 167, 42, 0.08),
+    0 0 20px rgba(212, 167, 42, 0.05);
+}
+
+/* Remove number input arrows */
+
+.team-input-group input[type="number"]::-webkit-inner-spin-button,
+.team-input-group input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.team-input-group input[type="number"] {
+  appearance: textfield;
+}
+
+/* =========================================================
+   CREW MEMBERS HEADING
+   ========================================================= */
+
+.members-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  margin: 30px 0 18px;
+
+  padding-bottom: 10px;
+
+  border-bottom: 1px solid rgba(212, 167, 42, 0.18);
+
+  color: #d4a72c;
+
+  font-size: 10px;
+  font-weight: 800;
+
+  letter-spacing: 3px;
+}
+
+.members-heading svg {
+  width: 17px;
+  height: 17px;
+}
+
+/* =========================================================
+   CREW GRID
+   ========================================================= */
+
+.members-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 0 20px;
+}
+
+/* =========================================================
+   START VOYAGE BUTTON
+   ========================================================= */
+
+.team-start-button {
+  width: 100%;
+
+  margin-top: 15px;
+
+  min-height: 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 18px;
+
+  font-size: 11px;
+  letter-spacing: 2px;
+
+  border: 1px solid #d4a72c;
+
+  background:
+    linear-gradient(
+      135deg,
+      #e5c45e,
+      #c39424 50%,
+      #8b6415
+    );
+
+  color: #171006;
+
+  box-shadow:
+    0 10px 30px rgba(212, 167, 42, 0.14);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    filter 0.25s ease;
+}
+
+.team-start-button span:last-child {
+  font-size: 20px;
+}
+
+.team-start-button:hover:not(:disabled) {
+  transform: translateY(-3px);
+
+  filter: brightness(1.08);
+
+  box-shadow:
+    0 15px 40px rgba(212, 167, 42, 0.25);
+}
+
+.team-start-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.team-start-button:disabled {
+  cursor: not-allowed;
+
+  opacity: 0.6;
+
+  filter: grayscale(0.2);
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 650px) {
+  .team-details-page {
+    padding: 30px 15px;
+  }
+
+  .team-details-card {
+    width: 100%;
+
+    padding: 38px 22px;
+  }
+
+  .team-details-card h1 {
+    font-size: 52px;
+  }
+
+  .team-details-subtitle {
+    font-size: 10px;
+
+    line-height: 1.7;
+  }
+
+  .members-grid {
+    grid-template-columns: 1fr;
+
+    gap: 0;
+  }
+
+  .team-input-group {
+    margin-bottom: 17px;
+  }
+}
+
+@media (max-width: 400px) {
+  .team-details-card {
+    padding: 32px 17px;
+  }
+
+  .team-details-card h1 {
+    font-size: 46px;
+  }
+
+  .team-details-icon {
+    width: 60px;
+    height: 60px;
+  }
 }

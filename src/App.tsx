@@ -1,18 +1,27 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import { supabase } from "./lib/supabase";
 
 import RoundOne from "./pages/RoundOne";
 import RoundTwo from "./pages/RoundTwo";
 import RoundThree from "./pages/RoundThree";
 import FinalQuestion from "./pages/FinalQuestion";
-
+import TeamDetails from "./pages/TeamDetails";
 
 type GameScreen =
   | "home"
+  | "teamDetails"
   | "round1"
   | "round2"
   | "round3"
   | "final";
+
+type Team = {
+  id: number;
+  teamNumber: number;
+  teamName: string;
+  members: string[];
+};
 
 function formatTime(seconds: number) {
   const safeSeconds = Math.max(0, Math.floor(seconds));
@@ -52,8 +61,11 @@ function App() {
   const [finalTime, setFinalTime] =
     useState<number | null>(null);
 
-  // Temporary crew name
-  const crewName = "Tech Pirates";
+  // ================================
+  // TEAM DETAILS
+  // ================================
+
+  const [team, setTeam] = useState<Team | null>(null);
 
   // ================================
   // GLOBAL TIMER
@@ -70,10 +82,25 @@ function App() {
   }, [gameStarted]);
 
   // ================================
-  // START GAME
+  // HOME → TEAM DETAILS
   // ================================
 
   const startGame = () => {
+    setElapsedTime(0);
+    setTotalPenaltySeconds(0);
+    setFinalTime(null);
+    setGameStarted(false);
+
+    setScreen("teamDetails");
+  };
+
+  // ================================
+  // TEAM DETAILS → ROUND 1
+  // ================================
+
+  const handleTeamStart = (teamDetails: Team) => {
+    setTeam(teamDetails);
+
     setElapsedTime(0);
     setTotalPenaltySeconds(0);
     setFinalTime(null);
@@ -91,6 +118,8 @@ function App() {
     setElapsedTime(0);
     setTotalPenaltySeconds(0);
     setFinalTime(null);
+
+    setTeam(null);
 
     setScreen("home");
   };
@@ -110,6 +139,9 @@ function App() {
     setFinalTime(null);
     setElapsedTime(0);
     setTotalPenaltySeconds(0);
+
+    setTeam(null);
+
     setScreen("home");
   };
 
@@ -117,20 +149,54 @@ function App() {
   // ROUND 1 COMPLETE
   // ================================
 
-  const handleRoundOneComplete = (
-    penaltySeconds: number
-  ) => {
-    setTotalPenaltySeconds(penaltySeconds);
-    setScreen("round2");
-  };
+ const handleRoundOneComplete = async (
+  penaltySeconds: number
+) => {
+  setTotalPenaltySeconds(penaltySeconds);
+
+  if (team?.id) {
+    const { error } = await supabase
+      .from("teams")
+      .update({
+        round_1_completed_at: new Date().toISOString(),
+        round_1_penalty_seconds: penaltySeconds,
+        status: "round_2",
+      })
+      .eq("id", team.id);
+
+    if (error) {
+      console.error("Round 1 update error:", error);
+      alert("Round 1 could not be saved. Please try again.");
+      return;
+    }
+  }
+
+  setScreen("round2");
+};
 
   // ================================
   // ROUND 2 COMPLETE
   // ================================
 
-  const handleRoundTwoComplete = () => {
-    setScreen("round3");
-  };
+  const handleRoundTwoComplete = async () => {
+  if (team?.id) {
+    const { error } = await supabase
+      .from("teams")
+      .update({
+        round_2_completed_at: new Date().toISOString(),
+        status: "round_3",
+      })
+      .eq("id", team.id);
+
+    if (error) {
+      console.error("Round 2 update error:", error);
+      alert("Round 2 could not be saved. Please try again.");
+      return;
+    }
+  }
+
+  setScreen("round3");
+};
 
   // ================================
   // STOP TIMER
@@ -148,13 +214,50 @@ function App() {
   // ================================
   // FINAL COMPLETE
   // ================================
+const handleFinalComplete = async () => {
+  if (team?.id) {
+    const { error } = await supabase
+      .from("teams")
+      .update({
+        round_3_completed_at: new Date().toISOString(),
+        status: "final",
+      })
+      .eq("id", team.id);
 
-  const handleFinalComplete = () => {
-    setScreen("final");
-  };
+    if (error) {
+      console.error("Round 3 update error:", error);
+      alert("Round 3 could not be saved. Please try again.");
+      return;
+    }
+  }
 
-    if (window.location.pathname === "/final") {
-    return <FinalQuestion crewName={crewName} />;
+  setScreen("final");
+};
+
+  // ================================
+  // FINAL QUESTION ROUTE
+  // ================================
+
+ if (window.location.pathname === "/final") {
+  return (
+    <FinalQuestion
+      crewName={team?.teamName ?? "Tech Pirates"}
+      teamId={team?.id ?? null}
+    />
+  );
+
+  }
+
+  // ================================
+  // TEAM DETAILS
+  // ================================
+
+  if (screen === "teamDetails") {
+    return (
+      <TeamDetails
+        onStart={handleTeamStart}
+      />
+    );
   }
 
   // ================================
@@ -286,10 +389,10 @@ function App() {
   if (screen === "round1") {
     return (
       <RoundOne
-        crewName={crewName}
+        crewName={team?.teamName ?? "Tech Pirates"}
         elapsedTime={elapsedTime}
         onComplete={handleRoundOneComplete}
-        onBack={goHome}
+        onBack={() => setScreen("teamDetails")}
         onGiveUp={handleGiveUp}
       />
     );
@@ -302,10 +405,10 @@ function App() {
   if (screen === "round2") {
     return (
       <RoundTwo
-        crewName={crewName}
+        crewName={team?.teamName ?? "Tech Pirates"}
         elapsedTime={elapsedTime}
         onComplete={handleRoundTwoComplete}
-        onBack={goHome}
+        onBack={() => setScreen("round1")}
         onGiveUp={handleGiveUp}
       />
     );
@@ -318,9 +421,9 @@ function App() {
   if (screen === "round3") {
     return (
       <RoundThree
-        crewName={crewName}
+        crewName={team?.teamName ?? "Tech Pirates"}
         elapsedTime={elapsedTime}
-        onBack={goHome}
+        onBack={() => setScreen("round2")}
         onComplete={handleFinalComplete}
         onStopTimer={handleStopTimer}
       />
@@ -361,7 +464,8 @@ function App() {
           </h1>
 
           <p className="round-subtitle">
-            Congratulations, {crewName}.
+            Congratulations,{" "}
+            {team?.teamName ?? "Tech Pirates"}.
             <br />
             You have conquered the Grand Line.
           </p>

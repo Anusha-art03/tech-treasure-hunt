@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { CheckCircle2, Flag, Skull, Sparkles, XCircle } from "lucide-react";
+import { supabase } from "../lib/supabase";
 
 type FinalQuestionProps = {
   crewName: string;
+  teamId: number | null;
 };
 
 type SubmissionResult = {
@@ -11,9 +13,13 @@ type SubmissionResult = {
   error?: string;
 };
 
-function FinalQuestion({ crewName }: FinalQuestionProps) {
+function FinalQuestion({
+  crewName,
+  teamId,
+}: FinalQuestionProps) {
   const [answer, setAnswer] = useState("");
-  const [result, setResult] = useState<SubmissionResult | null>(null);
+  const [result, setResult] =
+    useState<SubmissionResult | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
   const handleSubmit = async (
@@ -32,8 +38,13 @@ function FinalQuestion({ crewName }: FinalQuestionProps) {
       const functionUrl =
         import.meta.env.VITE_FINAL_SUBMISSION_FUNCTION_URL;
 
+      console.log("FUNCTION URL =", functionUrl);
+      console.log("TEAM ID =", teamId);
+
       if (!functionUrl) {
-        throw new Error("Final submission function is not configured.");
+        throw new Error(
+          "Final submission function is not configured."
+        );
       }
 
       const response = await fetch(functionUrl, {
@@ -55,6 +66,36 @@ function FinalQuestion({ crewName }: FinalQuestionProps) {
         );
       }
 
+      /*
+       * Update the same team record in Supabase.
+       */
+      if (teamId) {
+        const { error: teamUpdateError } = await supabase
+          .from("teams")
+          .update({
+            final_answer: trimmedAnswer,
+            final_correct: data.correct === true,
+            final_submitted_at:
+              new Date().toISOString(),
+            status:
+              data.correct === true
+                ? "completed"
+                : "final_wrong",
+          })
+          .eq("id", teamId);
+
+        if (teamUpdateError) {
+          console.error(
+            "Final team update error:",
+            teamUpdateError
+          );
+
+          throw new Error(
+            "Answer was submitted, but team details could not be updated."
+          );
+        }
+      }
+
       setResult(data);
     } catch (error) {
       console.error(error);
@@ -71,6 +112,9 @@ function FinalQuestion({ crewName }: FinalQuestionProps) {
     }
   };
 
+  /*
+   * CORRECT ANSWER SCREEN
+   */
   if (result?.correct) {
     return (
       <main className="round-page">
@@ -79,7 +123,9 @@ function FinalQuestion({ crewName }: FinalQuestionProps) {
         <header className="navbar">
           <div className="brand">
             <span className="brand-icon">☠</span>
-            <span>TECHNITUDE × HACK THE HUNT</span>
+            <span>
+              TECHNITUDE × HACK THE HUNT
+            </span>
           </div>
 
           <div className="nav-status">
@@ -122,10 +168,11 @@ function FinalQuestion({ crewName }: FinalQuestionProps) {
               </p>
 
               <p className="description">
-                Your submission has been successfully recorded.
+                Your submission has been successfully
+                recorded.
                 <br />
-                Please wait for the event organizers to announce
-                the result.
+                Please wait for the event organizers
+                to announce the result.
               </p>
             </div>
           </section>
@@ -140,6 +187,9 @@ function FinalQuestion({ crewName }: FinalQuestionProps) {
     );
   }
 
+  /*
+   * WRONG ANSWER SCREEN
+   */
   if (result && !result.correct && !result.error) {
     return (
       <main className="round-page">
@@ -148,7 +198,9 @@ function FinalQuestion({ crewName }: FinalQuestionProps) {
         <header className="navbar">
           <div className="brand">
             <span className="brand-icon">☠</span>
-            <span>TECHNITUDE × HACK THE HUNT</span>
+            <span>
+              TECHNITUDE × HACK THE HUNT
+            </span>
           </div>
 
           <div className="nav-status">
@@ -193,8 +245,8 @@ function FinalQuestion({ crewName }: FinalQuestionProps) {
               <p className="description">
                 Your submission has been recorded.
                 <br />
-                Contact the event organizers if another attempt
-                is permitted.
+                Contact the event organizers if another
+                attempt is permitted.
               </p>
             </div>
           </section>
@@ -209,6 +261,9 @@ function FinalQuestion({ crewName }: FinalQuestionProps) {
     );
   }
 
+  /*
+   * FINAL QUESTION FORM
+   */
   return (
     <main className="round-page">
       <div className="ocean-glow" />
@@ -216,7 +271,9 @@ function FinalQuestion({ crewName }: FinalQuestionProps) {
       <header className="navbar">
         <div className="brand">
           <span className="brand-icon">☠</span>
-          <span>TECHNITUDE × HACK THE HUNT</span>
+          <span>
+            TECHNITUDE × HACK THE HUNT
+          </span>
         </div>
 
         <div className="nav-status">
@@ -241,7 +298,8 @@ function FinalQuestion({ crewName }: FinalQuestionProps) {
         <p className="round-subtitle">
           You have reached the end of the Grand Line.
           <br />
-          Only one answer stands between your crew and victory.
+          Only one answer stands between your crew
+          and victory.
         </p>
 
         <section className="wanted-card final-question-card">
@@ -258,10 +316,10 @@ function FinalQuestion({ crewName }: FinalQuestionProps) {
               FINAL CHALLENGE
             </span>
 
-           <h2>
-            In JavaScript, what is the output of{" "}
-         <code>typeof null</code>?
-        </h2>
+            <h2>
+              In JavaScript, what is the output of{" "}
+              <code>typeof null</code>?
+            </h2>
 
             <p>
               Enter your crew&apos;s final answer below.
@@ -282,12 +340,15 @@ function FinalQuestion({ crewName }: FinalQuestionProps) {
                 placeholder="Enter your answer..."
                 autoComplete="off"
                 autoFocus
+                disabled={submitting}
               />
 
               <button
                 type="submit"
                 className="sail-button final-submit-button"
-                disabled={!answer.trim() || submitting}
+                disabled={
+                  !answer.trim() || submitting
+                }
               >
                 <span>
                   {submitting
@@ -318,8 +379,9 @@ function FinalQuestion({ crewName }: FinalQuestionProps) {
           <Skull size={16} />
 
           <span>
-            <strong>WARNING:</strong> Once submitted, your
-            answer is recorded with the official server time.
+            <strong>WARNING:</strong> Once submitted,
+            your answer is recorded with the official
+            server time.
           </span>
         </div>
       </main>
