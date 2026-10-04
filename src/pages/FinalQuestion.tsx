@@ -5,7 +5,6 @@ import { supabase } from "../lib/supabase";
 type FinalQuestionProps = {
   crewName: string;
   teamId: number | null;
-  elapsedTime: number;
   onStopTimer: () => void;
 };
 
@@ -18,7 +17,6 @@ type SubmissionResult = {
 function FinalQuestion({
   crewName,
   teamId,
-  elapsedTime,
   onStopTimer,
 
 }: FinalQuestionProps) {

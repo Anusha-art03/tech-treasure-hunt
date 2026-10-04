@@ -52,7 +52,8 @@ function App() {
   // GLOBAL GAME TIMER
   // ================================
 
-  const [elapsedTime, setElapsedTime] = useState(0);
+  const [elapsedTime, setElapsedTime] =
+    useState(0);
 
   const [gameStarted, setGameStarted] =
     useState(false);
@@ -61,8 +62,10 @@ function App() {
   // TOTAL PENALTIES
   // ================================
 
-  const [totalPenaltySeconds, setTotalPenaltySeconds] =
-    useState(0);
+  const [
+    totalPenaltySeconds,
+    setTotalPenaltySeconds,
+  ] = useState(0);
 
   // ================================
   // FINAL TIME
@@ -509,7 +512,6 @@ function App() {
           "Tech Pirates"
         }
         teamId={team?.id ?? null}
-        elapsedTime={elapsedTime}
         onStopTimer={
           handleStopTimer
         }
