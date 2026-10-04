@@ -14,7 +14,7 @@ type TeamDetailsProps = {
 function TeamDetails({ onStart }: TeamDetailsProps) {
   const [teamNumber, setTeamNumber] = useState("");
   const [teamName, setTeamName] = useState("");
-  const [members, setMembers] = useState(["", "", "", ""]);
+  const [members, setMembers] = useState(["", "", "", "", ""]);
   const [isSaving, setIsSaving] = useState(false);
 
   const updateMember = (index: number, value: string) => {
@@ -55,10 +55,11 @@ function TeamDetails({ onStart }: TeamDetailsProps) {
         member_2: cleanedMembers[1] || null,
         member_3: cleanedMembers[2] || null,
         member_4: cleanedMembers[3] || null,
+        member_5: cleanedMembers[4] || null,
         started_at: new Date().toISOString(),
         status: "round_1",
       })
-      .select("id, team_number, team_name, member_1, member_2, member_3, member_4")
+      .select("id, team_number, team_name, member_1, member_2, member_3, member_4, member_5")
       .single();
 
     setIsSaving(false);
@@ -74,6 +75,7 @@ function TeamDetails({ onStart }: TeamDetailsProps) {
       data.member_2,
       data.member_3,
       data.member_4,
+      data.member_5,
     ].filter(Boolean);
 
     onStart({

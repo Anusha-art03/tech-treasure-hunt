@@ -36,7 +36,8 @@ type Question = {
 };
 
 const logoPool: Question[] = [
-  // EASY
+  // ================= EASY =================
+
   {
     name: "Docker",
     aliases: ["docker"],
@@ -47,6 +48,7 @@ const logoPool: Question[] = [
       "Its famous logo is a whale carrying containers.",
     ],
   },
+
   {
     name: "Python",
     aliases: ["python"],
@@ -57,6 +59,7 @@ const logoPool: Question[] = [
       "Its logo contains two snakes.",
     ],
   },
+
   {
     name: "React",
     aliases: ["react", "reactjs", "react.js"],
@@ -67,6 +70,7 @@ const logoPool: Question[] = [
       "Its logo looks like an atom.",
     ],
   },
+
   {
     name: "GitHub",
     aliases: ["github", "git hub"],
@@ -77,6 +81,7 @@ const logoPool: Question[] = [
       "Its famous logo resembles a cat.",
     ],
   },
+
   {
     name: "JavaScript",
     aliases: ["javascript", "js"],
@@ -87,6 +92,7 @@ const logoPool: Question[] = [
       "Its logo is a yellow square containing JS.",
     ],
   },
+
   {
     name: "Linux",
     aliases: ["linux"],
@@ -98,7 +104,8 @@ const logoPool: Question[] = [
     ],
   },
 
-  // MEDIUM
+  // ================= MEDIUM =================
+
   {
     name: "Kubernetes",
     aliases: ["kubernetes", "k8s"],
@@ -109,6 +116,7 @@ const logoPool: Question[] = [
       "Its logo resembles a ship wheel.",
     ],
   },
+
   {
     name: "MongoDB",
     aliases: ["mongodb", "mongo db", "mongo"],
@@ -119,6 +127,7 @@ const logoPool: Question[] = [
       "Its logo is a green leaf.",
     ],
   },
+
   {
     name: "MySQL",
     aliases: ["mysql", "my sql"],
@@ -129,6 +138,7 @@ const logoPool: Question[] = [
       "Its logo contains a dolphin.",
     ],
   },
+
   {
     name: "Firebase",
     aliases: ["firebase"],
@@ -139,6 +149,7 @@ const logoPool: Question[] = [
       "Its logo is an orange/yellow flame.",
     ],
   },
+
   {
     name: "Node.js",
     aliases: ["node", "nodejs", "node.js"],
@@ -149,6 +160,7 @@ const logoPool: Question[] = [
       "Its logo is a green hexagon.",
     ],
   },
+
   {
     name: "Git",
     aliases: ["git"],
@@ -160,7 +172,8 @@ const logoPool: Question[] = [
     ],
   },
 
-  // HARD
+  // ================= HARD =================
+
   {
     name: "TypeScript",
     aliases: ["typescript", "ts"],
@@ -171,6 +184,7 @@ const logoPool: Question[] = [
       "Its logo is a blue square containing TS.",
     ],
   },
+
   {
     name: "Kubernetes",
     aliases: ["kubernetes", "k8s"],
@@ -181,6 +195,7 @@ const logoPool: Question[] = [
       "It orchestrates containers at scale.",
     ],
   },
+
   {
     name: "MongoDB",
     aliases: ["mongodb", "mongo db", "mongo"],
@@ -191,6 +206,7 @@ const logoPool: Question[] = [
       "Its name contains the word 'Mongo'.",
     ],
   },
+
   {
     name: "Firebase",
     aliases: ["firebase"],
@@ -201,6 +217,7 @@ const logoPool: Question[] = [
       "Google acquired it in 2014.",
     ],
   },
+
   {
     name: "Git",
     aliases: ["git"],
@@ -211,6 +228,7 @@ const logoPool: Question[] = [
       "It was created by Linus Torvalds.",
     ],
   },
+
   {
     name: "Node.js",
     aliases: ["node", "nodejs", "node.js"],
@@ -224,7 +242,18 @@ const logoPool: Question[] = [
 ];
 
 function shuffle<T>(items: T[]): T[] {
-  return [...items].sort(() => Math.random() - 0.5);
+  const shuffled = [...items];
+
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+
+    [shuffled[i], shuffled[j]] = [
+      shuffled[j],
+      shuffled[i],
+    ];
+  }
+
+  return shuffled;
 }
 
 function normalizeAnswer(value: string): string {
@@ -256,23 +285,46 @@ function RoundOne({
 }: RoundOneProps) {
   /*
    * Every team gets:
-   * 3 Easy + 4 Medium + 3 Hard = 10 logos.
-   * The final order is randomized.
+   * 2 Easy + 2 Medium + 2 Hard = 6 logos.
+   *
+   * Duplicate technology names are removed so the
+   * same logo cannot appear twice in one round.
+   *
+   * Final order is randomized.
    */
   const questions = useMemo(() => {
-    const easy = shuffle(
-      logoPool.filter((question) => question.difficulty === "Easy")
-    ).slice(0, 3);
+    const selected: Question[] = [];
+    const usedNames = new Set<string>();
 
-    const medium = shuffle(
-      logoPool.filter((question) => question.difficulty === "Medium")
-    ).slice(0, 4);
+    const difficulties: Difficulty[] = [
+      "Easy",
+      "Medium",
+      "Hard",
+    ];
 
-    const hard = shuffle(
-      logoPool.filter((question) => question.difficulty === "Hard")
-    ).slice(0, 3);
+    for (const difficulty of difficulties) {
+      const candidates = shuffle(
+        logoPool.filter(
+          (question) =>
+            question.difficulty === difficulty &&
+            !usedNames.has(question.name)
+        )
+      );
 
-    return shuffle([...easy, ...medium, ...hard]);
+      let added = 0;
+
+      for (const question of candidates) {
+        if (added >= 2) break;
+
+        if (!usedNames.has(question.name)) {
+          selected.push(question);
+          usedNames.add(question.name);
+          added++;
+        }
+      }
+    }
+
+    return shuffle(selected);
   }, []);
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -324,7 +376,8 @@ function RoundOne({
   ]);
 
   const finishOrNext = (additionalPenalty: number) => {
-    const totalPenalty = penaltySeconds + additionalPenalty;
+    const totalPenalty =
+      penaltySeconds + additionalPenalty;
 
     if (additionalPenalty > 0) {
       setPenaltySeconds(totalPenalty);
@@ -337,6 +390,7 @@ function RoundOne({
     }
 
     setCurrentIndex((previous) => previous + 1);
+
     setAnswer("");
     setWrongAttempts(0);
     setRevealedHints([]);
@@ -349,7 +403,8 @@ function RoundOne({
     const normalized = normalizeAnswer(answer);
 
     const correct = currentQuestion.aliases.some(
-      (alias) => normalizeAnswer(alias) === normalized
+      (alias) =>
+        normalizeAnswer(alias) === normalized
     );
 
     if (correct) {
@@ -373,7 +428,9 @@ function RoundOne({
      */
     if (wrongAttempts === 0) {
       setWrongAttempts(1);
-      setPenaltySeconds((previous) => previous + 5);
+      setPenaltySeconds(
+        (previous) => previous + 5
+      );
       setFeedback("wrong");
       setAnswer("");
       return;
@@ -403,8 +460,13 @@ function RoundOne({
     /*
      * Every hint = +10 seconds.
      */
-    setHintsUsed((previous) => previous + 1);
-    setPenaltySeconds((previous) => previous + 10);
+    setHintsUsed(
+      (previous) => previous + 1
+    );
+
+    setPenaltySeconds(
+      (previous) => previous + 10
+    );
 
     setRevealedHints((previous) => [
       ...previous,
@@ -417,7 +479,9 @@ function RoundOne({
 
     if (skipsUsed >= 2) return;
 
-    setSkipsUsed((previous) => previous + 1);
+    setSkipsUsed(
+      (previous) => previous + 1
+    );
 
     /*
      * Skip = +20 seconds.
@@ -438,13 +502,17 @@ function RoundOne({
     ROUND_TIME_LIMIT
   );
 
-  const adjustedTime = actualTime + penaltySeconds;
+  const adjustedTime =
+    actualTime + penaltySeconds;
 
   return (
     <div className="app round-page">
       <header className="navbar">
         <div className="brand">
-          <span className="brand-icon">☠</span>
+          <span className="brand-icon">
+            ☠
+          </span>
+
           <span>GRAND LINE</span>
         </div>
 
@@ -468,7 +536,7 @@ function RoundOne({
         </h1>
 
         <p className="round-subtitle">
-          Identify all 10 technical logos as fast as possible.
+          Identify 6 random technical logos as fast as possible.
         </p>
 
         {/* ================= STATS ================= */}
@@ -478,32 +546,43 @@ function RoundOne({
             <small>LOGOS</small>
 
             <strong>
-              {String(currentIndex + 1).padStart(2, "0")} / 10
+              {String(
+                currentIndex + 1
+              ).padStart(2, "0")}{" "}
+              / 06
             </strong>
           </div>
 
           <div>
             <small>TIME</small>
 
-            <strong>{formatTime(actualTime)}</strong>
+            <strong>
+              {formatTime(actualTime)}
+            </strong>
           </div>
 
           <div>
             <small>PENALTY</small>
 
-            <strong>+{penaltySeconds}s</strong>
+            <strong>
+              +{penaltySeconds}s
+            </strong>
           </div>
 
           <div>
             <small>HINTS</small>
 
-            <strong>{2 - hintsUsed} / 2</strong>
+            <strong>
+              {2 - hintsUsed} / 2
+            </strong>
           </div>
 
           <div>
             <small>SKIPS</small>
 
-            <strong>{2 - skipsUsed} / 2</strong>
+            <strong>
+              {2 - skipsUsed} / 2
+            </strong>
           </div>
         </div>
 
@@ -551,7 +630,8 @@ function RoundOne({
               className="submit-button"
               onClick={submitAnswer}
               disabled={
-                roundFinished || !answer.trim()
+                roundFinished ||
+                !answer.trim()
               }
             >
               SUBMIT
@@ -566,11 +646,12 @@ function RoundOne({
             </div>
           )}
 
-          {feedback === "wrong" && wrongAttempts === 1 && (
-            <div className="answer-feedback wrong">
-              ✕ WRONG — +5 SEC — ONE MORE ATTEMPT
-            </div>
-          )}
+          {feedback === "wrong" &&
+            wrongAttempts === 1 && (
+              <div className="answer-feedback wrong">
+                ✕ WRONG — +5 SEC — ONE MORE ATTEMPT
+              </div>
+            )}
 
           {/* ================= HINTS ================= */}
 
@@ -607,14 +688,21 @@ function RoundOne({
               </button>
             </div>
 
-            {revealedHints.map((hintIndex) => (
-              <div
-                className="hint-text"
-                key={hintIndex}
-              >
-                💡 {currentQuestion.hints[hintIndex]}
-              </div>
-            ))}
+            {revealedHints.map(
+              (hintIndex) => (
+                <div
+                  className="hint-text"
+                  key={hintIndex}
+                >
+                  💡{" "}
+                  {
+                    currentQuestion.hints[
+                      hintIndex
+                    ]
+                  }
+                </div>
+              )
+            )}
           </div>
 
           {/* ================= ACTIONS ================= */}
@@ -624,7 +712,8 @@ function RoundOne({
               className="skip-button"
               onClick={skipQuestion}
               disabled={
-                roundFinished || skipsUsed >= 2
+                roundFinished ||
+                skipsUsed >= 2
               }
             >
               SKIP
@@ -643,10 +732,21 @@ function RoundOne({
           {/* ================= PENALTY INFO ================= */}
 
           <div className="penalty-info">
-            <span>1st wrong: +5 sec</span>
-            <span>2nd wrong: +10 sec</span>
-            <span>Hint: +10 sec</span>
-            <span>Skip: +20 sec</span>
+            <span>
+              1st wrong: +5 sec
+            </span>
+
+            <span>
+              2nd wrong: +10 sec
+            </span>
+
+            <span>
+              Hint: +10 sec
+            </span>
+
+            <span>
+              Skip: +20 sec
+            </span>
           </div>
         </div>
 
@@ -661,15 +761,21 @@ function RoundOne({
             </strong>
           </div>
 
-          <div className="summary-plus">+</div>
+          <div className="summary-plus">
+            +
+          </div>
 
           <div>
             <span>PENALTIES</span>
 
-            <strong>+{penaltySeconds}s</strong>
+            <strong>
+              +{penaltySeconds}s
+            </strong>
           </div>
 
-          <div className="summary-equals">=</div>
+          <div className="summary-equals">
+            =
+          </div>
 
           <div>
             <span>ADJUSTED TIME</span>
