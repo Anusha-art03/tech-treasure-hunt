@@ -194,7 +194,7 @@ function App() {
             <span>☠</span>
           </div>
 
-          <h2>TECH TREASURE HUNT</h2>
+          <h2>HACK THE HUNT</h2>
 
           <p className="description">
             Gather your crew. Follow the clues. Solve
